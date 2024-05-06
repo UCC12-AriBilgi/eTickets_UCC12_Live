@@ -1,8 +1,19 @@
+using eTickets.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// VT için gerekli olacak AppDbContext tanýmý yapýlýyor. (Step01.6)
+builder.Services.AddDbContext<AppDbContext>();
+
+
+
+
+
+
+// Gerekli tüm ayarlama iþlemlerinden sonra programýn bir anlamda kurulacaðý bölüm.
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

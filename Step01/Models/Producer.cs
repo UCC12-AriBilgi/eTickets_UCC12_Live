@@ -10,5 +10,8 @@
         // direkt resim olarak tutmak yerine resmin bulunduğu yer olarak tutmak vt boyutu ve performansını artırmak için iyidir
 
         public string Bio { get; set; }
+
+        // Relations
+        public List<Movie> Movies { get; set; } // Movie modelini besliyor..
     }
 }
