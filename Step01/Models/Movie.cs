@@ -1,10 +1,12 @@
 ﻿using eTickets.Data.Enum;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eTickets.Models
 {
     public class Movie
     {
+        [Key]
         public int Id { get; set; }
 
         public string Name { get; set; }

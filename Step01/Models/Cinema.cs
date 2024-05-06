@@ -1,9 +1,12 @@
-﻿namespace eTickets.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace eTickets.Models
 {
     // Cinema bilgilerini tutacak class
 
     public class Cinema
     {
+        [Key]
         public int Id { get; set; }
 
         public string Logo { get; set; }

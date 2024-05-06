@@ -1,9 +1,12 @@
-﻿namespace eTickets.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace eTickets.Models
 {
     // Actor bilgilerinin tutulacağı model(class)
 
     public class Actor
     {
+        [Key]
         public int Id { get; set; }
 
         public string FullName { get; set; }

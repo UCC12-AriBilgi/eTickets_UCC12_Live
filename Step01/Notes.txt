@@ -21,10 +21,29 @@ Step01
 
 	+6. Programın ana giriş noktası olan Program.cs classına gidip bu tanımı oraya da ekleyelim. VT için gerekli olacak ConnectionString tanımını da ilerleyen bölümlerde güncelleyeceğiz.
 
-	7. Model ilişkilendirmeleri
+	+7. Model ilişkilendirmeleri
 		. Cinema <-->> Movie (Bir cinemada bir kaç tane movie oynayabilir)
+		
 		. Producer <-->> Movie (Bir yapımcı/yönetmen birkaç Movie yaratmış/yönetmiş olabilir)
+		
 		. Birçok Actor birçok Movie de oynayabilir(çoğa çok ilişki). Bundan dolayı Actor-Movie classları/modelleri arasındaki ilişkiyi kurabilmek için ara bir modelden(Actors_Movies) yararlanmak (junction) daha uygun bir çözümdür. Dolayısı ile bununla ilişkili ara modelimi oluşturmalıyım.
+			Movies <-->> Actors_Movies (Bir Movie de birçok Actor olabilir)
+			Actors <-->> Actors_Movies (Bir Actor birçok Movie de oynayabilir)
+
+		7.1 Modellerde relation eklemeleri
+			. Producer.cs --> Relations
+			. Cinema.cs --> Relations
+			. Actor_Movie ara classı yaratıldı
+			. Actor.cs --> Relations
+			. Movie.cs --> Relations
+
+	8. AppDbContext classındaki ayarlamalar. Yaratılırken modellerin birbirine bağlanması, model yapılarının vt tarafındaki tablo karşılıklarının tanımlanması gibi işlemler.
+			
+
+
+
+
+
 
 
 
