@@ -58,6 +58,9 @@ Step01
 
 		(Not : ALTER AUTHORIZATION ON DATABASE::eTickets_UCC12 TO sa)
 
+	14. Şu an VT yapı olarak oluştu fakat içinde herhangi bir veri yok. Onun için fake/dummy data oluşturacak şekilde düzenlemeler yapalım.(AppDbInitializer.cs)
+
+
 
 
 
