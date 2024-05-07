@@ -42,7 +42,7 @@ namespace eTickets.Data
 
         // VT tarafında oluşacak olan modele karşılık gelecek tablolarım
 
-        public DbSet<Actor> Actors { get; set; }
+        public DbSet<Actor> Actors { get; set; } // class:Actor --> vt:Actors
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Actor_Movie> Actors_Movies { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }

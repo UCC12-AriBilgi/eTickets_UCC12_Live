@@ -1,8 +1,6 @@
 ﻿using eTickets.Models;
 using eTickets.Data.Enum;
 
-
-
 namespace eTickets.Data
 {
     // Burası fake/dummy data üretecek
@@ -159,6 +157,107 @@ namespace eTickets.Data
 
 
                 }
+
+                //Movie tablosu için
+                if (!context.Movies.Any()) // içinde kayıt var/yok
+                {
+                    // eğer kayıt yoksa buraya düşecek o yüzden !(not) operatörünü koyduk
+                    // Yeni bazı kayıtlar bölümü
+
+                    context.Movies.AddRange(new List<Movie>()
+                    {
+                        // 1.Kayıt
+                        new Movie()
+                        {
+                            Name = "Life",
+                            Description="Bu Life filmidir",
+                            Price=40,
+                            ImageURL="http://dotnethow.net/images/movies/movie-3.jpeg",
+                            StartDate=DateTime.Now.AddDays(-10), // Bulunduğumuz günden 10 gün öncesi
+                            EndDate=DateTime.Now.AddDays(20), // Bulunduğumuz günden 20 gün sonrası
+                            CinemaId=3,
+                            ProducerId=3,
+                            movieCategory=MovieCategory.Action
+
+                        },
+                        // 2.Kayıt
+                        new Movie()
+                        {
+                            Name = "The Shawnshank Redemption",
+                            Description="Bu Esaretin Bedeli filmidir",
+                            Price=60,
+                            ImageURL="http://dotnethow.net/images/movies/movie-1.jpeg",
+                            StartDate=DateTime.Now, 
+                            EndDate=DateTime.Now.AddDays(3),
+                            CinemaId=1,
+                            ProducerId=1,
+                            movieCategory=MovieCategory.Drama
+                        },
+                        // 3.Kayıt
+                        new Movie()
+                        {
+                            Name = "Ghost",
+                            Description="Bu Ghost filmidir",
+                            Price=39.5,
+                            ImageURL="http://dotnethow.net/images/movies/movie-4.jpeg",
+                            StartDate=DateTime.Now,
+                            EndDate=DateTime.Now.AddDays(7),
+                            CinemaId=4,
+                            ProducerId=4,
+                            movieCategory=MovieCategory.Drama
+
+                        },
+                        // 4.Kayıt
+                        new Movie()
+                        {
+                            Name = "Race",
+                            Description="Bu Race filmidir",
+                            Price=35.5,
+                            ImageURL="http://dotnethow.net/images/movies/movie-6.jpeg",
+                            StartDate=DateTime.Now.AddDays(-10), // Bulunduğumuz günden 10 gün öncesi
+                            EndDate=DateTime.Now.AddDays(-5), // Bulunduğumuz günden 20 gün sonrası
+                            CinemaId=1,
+                            ProducerId=2,
+                            movieCategory=MovieCategory.Action
+
+                        },
+                        // 5.Kayıt
+                        new Movie()
+                        {
+                            Name = "Cold Souls",
+                            Description="Bu Cold Soles filmidir",
+                            Price=38.5,
+                            ImageURL="http://dotnethow.net/images/movies/movie-8.jpeg",
+                            StartDate=DateTime.Now.AddDays(3), // Bulunduğumuz günden 10 gün öncesi
+                            EndDate=DateTime.Now.AddDays(20), // Bulunduğumuz günden 20 gün sonrası
+                            CinemaId=1,
+                            ProducerId=3,
+                            movieCategory=MovieCategory.Horror
+
+                        },
+                        // 6.Kayıt
+                        new Movie()
+                        {
+                            Name = "Scooby Doo",
+                            Description="Bu Scooby Doo filmidir",
+                            Price=25,
+                            ImageURL="http://dotnethow.net/images/movies/movie-7.jpeg",
+                            StartDate=DateTime.Now.AddDays(-10), // Bulunduğumuz günden 10 gün öncesi
+                            EndDate=DateTime.Now.AddDays(-2), // Bulunduğumuz günden 20 gün sonrası
+                            CinemaId=1,
+                            ProducerId=3,
+                            movieCategory=MovieCategory.Cartoon
+
+                        }
+
+                    });
+
+                    context.SaveChanges(); // Yukarda girdiğim bilgiler VT deki Producers tablosuna yazılacak.
+
+
+                }
+
+
 
             }
 
