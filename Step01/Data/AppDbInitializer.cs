@@ -257,7 +257,106 @@ namespace eTickets.Data
 
                 }
 
+                //Actors-Movies tablosu için
+                if (!context.Actors_Movies.Any()) // içinde kayıt var/yok
+                {
+                    // eğer kayıt yoksa buraya düşecek o yüzden !(not) operatörünü koyduk
+                    // Yeni bazı kayıtlar bölümü
 
+                    context.Actors_Movies.AddRange(new List<Actor_Movie>()
+                    {
+                        // 1.Kayıt
+                        new Actor_Movie()
+                        {
+                            ActorId=1,
+                            MovieId=1
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=3,
+                            MovieId=1
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=1,
+                            MovieId=2
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=4,
+                            MovieId=2
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=1,
+                            MovieId=3
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=2,
+                            MovieId=3
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=5,
+                            MovieId=3
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=2,
+                            MovieId=4
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=3,
+                            MovieId=4
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=4,
+                            MovieId=4
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=2,
+                            MovieId=5
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=3,
+                            MovieId=5
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=4,
+                            MovieId=5
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=5,
+                            MovieId=5
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=3,
+                            MovieId=6
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=4,
+                            MovieId=6
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId=5,
+                            MovieId=6
+                        }
+                    });
+
+                    context.SaveChanges(); // Yukarda girdiğim bilgiler VT deki Producers tablosuna yazılacak.
+
+
+                }
 
             }
 
