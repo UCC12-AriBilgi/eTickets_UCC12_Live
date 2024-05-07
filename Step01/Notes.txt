@@ -56,6 +56,8 @@ Step01
 	13. VT nin yaratılması için PM dan asağıdaki komut girilir
 		PM> update-database -verbose
 
+		(Not : ALTER AUTHORIZATION ON DATABASE::eTickets_UCC12 TO sa)
+
 
 
 
