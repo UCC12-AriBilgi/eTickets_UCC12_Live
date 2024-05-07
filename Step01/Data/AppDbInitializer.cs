@@ -112,6 +112,54 @@ namespace eTickets.Data
 
 
                 }
+
+                //Producer tablosu için
+                if (!context.Producers.Any()) // içinde kayıt var/yok
+                {
+                    // eğer kayıt yoksa buraya düşecek o yüzden !(not) operatörünü koyduk
+                    // Yeni bazı kayıtlar bölümü
+
+                    context.Producers.AddRange(new List<Producer>()
+                    {
+                        // 1.Kayıt
+                        new Producer()
+                        {
+                            FullName="Producer 1",
+                            ProfilePictureURL="http://dotnethow.net/images/producers/producer-1.jpeg",
+                            Bio="Burası Producer 1 için bir bio dur."
+                        },
+                        new Producer()
+                        {
+                            FullName="Producer 2",
+                            ProfilePictureURL="http://dotnethow.net/images/producers/producer-2.jpeg",
+                            Bio="Burası Producer 2 için bir bio dur."
+                        },
+                        new Producer()
+                        {
+                            FullName="Producer 3",
+                            ProfilePictureURL="http://dotnethow.net/images/producers/producer-3.jpeg",
+                            Bio="Burası Producer 3 için bir bio dur."
+                        },
+                        new Producer()
+                        {
+                            FullName="Producer 4",
+                            ProfilePictureURL="http://dotnethow.net/images/producers/producer-4.jpeg",
+                            Bio="Burası Producer 4 için bir bio dur."
+                        },
+                        new Producer()
+                        {
+                            FullName="Producer 5",
+                            ProfilePictureURL="http://dotnethow.net/images/producers/producer-5.jpeg",
+                            Bio="Burası Producer 5 için bir bio dur."
+                        }
+
+                    });
+
+                    context.SaveChanges(); // Yukarda girdiğim bilgiler VT deki Producers tablosuna yazılacak.
+
+
+                }
+
             }
 
 
