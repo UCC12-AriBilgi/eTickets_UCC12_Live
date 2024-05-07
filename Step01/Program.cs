@@ -17,6 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(buil
 
 
 
+
 // Gerekli tüm ayarlama iþlemlerinden sonra programýn bir anlamda kurulacaðý bölüm.
 var app = builder.Build();
 
@@ -39,4 +40,10 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.Run();
+
+// VT içine veri koyma kýsmý
+
+AppDbInitializer.Seed(app);
+
+
+app.Run(); // Ekrana gelir
