@@ -1,13 +1,17 @@
 using eTickets.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// VT için gerekli olacak AppDbContext tanýmý yapýlýyor. (Step01.6)
-builder.Services.AddDbContext<AppDbContext>();
+// VT için gerekli olacak AppDbContext tanýmý yapýlýyor.
+// (Step01.6) - Önceki durum
+//builder.Services.AddDbContext<AppDbContext>();
 
+// (Step01.10) - Düzenleme
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
 
 

@@ -1,4 +1,5 @@
-﻿06.05.2024
+﻿06.05.2024 (1.Gün)
+------------------
 Step01
 	+1. Projenin yaratılması 
 		
@@ -38,7 +39,26 @@ Step01
 			. Movie.cs --> Relations
 
 	8. AppDbContext classındaki ayarlamalar. Yaratılırken modellerin birbirine bağlanması, model yapılarının vt tarafındaki tablo karşılıklarının tanımlanması gibi işlemler.
-			
+
+07.05.2024 (2.gün)
+------------------
+Step01
+
+	9. appsettings.json (uygulamaya ait çeşitli konfigürasyon ayarlarının bulunduğu dosya) VT için gerekli ConnectionString bilgisinin ayarlanması (Server=BABEGT\\SQLEXPRESS;Initial Catalog=eTickets_UCC12;Integrated Security=True;TrustServerCertificate=True;)
+
+	10. Program.cs altında daha önceden belirtimini yapmış olduğumuz AddDbContext kısmına bu konfigürasyon değerlerini okuyacak ve öğrenecek şekilde gerekli düzenlemelerin yapılması
+
+	11. SQL tarafında VT yi oluşturabilmek için Migration yapısını kullanalımç Migration karşı tarafta ne tür bir yapı olacağını oluşturur.
+		PM> add-migration Initial
+		
+	12. İşlem başarılıysa oluşacak Migration isimli dizin altında ilgili vt yapısının kod karşılığını görmüş olacağız. Not: Daha henüz vt yaratılmadı.
+
+	13. VT nin yaratılması için PM dan asağıdaki komut girilir
+		PM> update-database -verbose
+
+
+
+
 
 
 
