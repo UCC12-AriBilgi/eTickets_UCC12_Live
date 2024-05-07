@@ -1,4 +1,4 @@
-using eTickets.Data;
+ï»¿using eTickets.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,11 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// VT için gerekli olacak AppDbContext tanımı yapılıyor.
-// (Step01.6) - Önceki durum
+// VT iÃ§in gerekli olacak AppDbContext tanÃ½mÃ½ yapÃ½lÃ½yor.
+// (Step01.6) - Ã–nceki durum
 //builder.Services.AddDbContext<AppDbContext>();
 
-// (Step01.10) - Düzenleme
+// (Step01.10) - DÃ¼zenleme
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
 
@@ -18,7 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(buil
 
 
 
-// Gerekli tüm ayarlama işlemlerinden sonra programın bir anlamda kurulacağı bölüm.
+// Gerekli tÃ¼m ayarlama iÃ¾lemlerinden sonra programÃ½n bir anlamda kurulacaÃ°Ã½ bÃ¶lÃ¼m.
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,9 +41,9 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
-// VT içine veri koyma kısmı
+// VT iÃ§ine fake/dummy veri yaratma kÄ±smÄ±
 
 AppDbInitializer.Seed(app);
 
 
-app.Run(); // Ekrana gelir
+app.Run(); // Uygulama baÅŸlar...
