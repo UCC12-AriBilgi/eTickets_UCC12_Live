@@ -85,7 +85,10 @@
 
 	+18. Gelen sayfanın daha güzel gözükmesi için _Layout.cshtml dosyasında gerekli bazı düzenlemelerin yapılması ..iconlar..vs
 
-	19. Uygulamanın ekrana ilk geldiği zaman direkt olarak Movies listesinin gelmesini sağlayalım..Layout üzerinde de
+	+19. Uygulamanın ekrana ilk geldiği zaman direkt olarak Movies listesinin gelmesini sağlayalım..Layout üzerinde de gerekli değişikliği yapalım.
+
+	20. Gelen ekranı(Movies) daha da düzenlemek/güzelleştirmek amacıyla verileri bir Card görünümü şeklinde düzenleyebiliriz.
+
 
 
 
