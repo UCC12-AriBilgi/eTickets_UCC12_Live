@@ -75,10 +75,17 @@
 		- CinemasController
 		- MoviesController
 
-	17. Controller lara bağlı olarak Index Viewlarının oluşturulması.
-		Not: Amaç VT tarafında ilgili tablolarda bulunan verileri listeleme yapacağımız için öncelikle bu controller lar içine ilgili View a gittiğinde verileri gösterebilmesi için gerekli VT okumalarını yapalım ki View lar bunları gösterebilsin.
+	+17. Controller lara bağlı olarak Index Viewlarının oluşturulması.
+		Not: 
+			. Amaç VT tarafında ilgili tablolarda bulunan verileri listeleme yapacağımız için öncelikle bu controller lar içine ilgili View a gittiğinde verileri gösterebilmesi için gerekli VT okumalarını yapalım ki View lar bunları gösterebilsin.
 
-		Bundan sonrada _Layout.cshtml de linklerin verilmesi
+			. Viewlar oluşturulurken RazorVie/Template:List/Model:[ilgili model]/DbContext:[ilgili context]
+
+			. Bundan sonrada _Layout.cshtml de linklerin verilmesi
+
+	18. Gelen sayfanın daha güzel gözükmesi için _Layout.cshtml dosyasında gerekli bazı düzenlemelerin yapılması ..iconlar..vs
+
+
 
 
 
