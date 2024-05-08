@@ -44,31 +44,54 @@
                         @* Cinema ve diğer bilgiler *@
                         <div class="card-body">
                             <p class="card-text">@item.Description</p>
-                            <p class="card-text"><b>Cinema:</b>@item.Cinema.Name</p>
+                            <p class="card-text"><b>Cinema:</b>@item.CinemaId</p>
+                            <p class="card-text"><b>Category:</b>@item.movieCategory</p>
+                            <p class="card-text"><b>Start Date:</b>@item.StartDate.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>End Date:</b>@item.EndDate.ToString("dd MMM yy")</p>
+                            <p class="card-text">
+                                <b>Status: </b>
+                                @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                                { @* Demekki gösterimde *@
+                                    <span class="badge bg-success text-white">GÖSTERİMDE</span>
+                                }
+                                else if (DateTime.Now > item.EndDate)
+                                { @* Demekki vizyondan kalkmış *@
+                                    <span class="badge bg-danger text-white">VİZYONDA DEĞİL</span>
+                                }
+                                else
+                                { @* Demekki daha vizyona girmemiş *@
+                                    <span class="badge bg-danger text-white">GELECEK</span>
+                                }
+
+
+
+                            </p>
+
+
                         </div>
-                        <p class="card-text"><b>Category:</b>@item.movieCategory</p>
-                        <p class="card-text"><b>Start Date:</b>@item.StartDate.ToString("dd MMM yy")</p>
-                        <p class="card-text"><b>End Date:</b>@item.EndDate.ToString("dd MMM yy")</p>
-                        <p class="card-text">
-                            <b>Status: </b>
-                            @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
-                            { @* Demekki gösterimde *@
-                                <span class="badge bg-success text-white">GÖSTERİMDE</span>
-                            }
-                            else if (DateTime.Now > item.EndDate)
-                            { @* Demekki vizyondan kalkmış *@
-                                <span class="badge bg-danger text-white">VİZYONDA DEĞİL</span>
-                            }
-                            else
-                            { @* Demekki daha vizyona girmemiş *@
-                                <span class="badge bg-danger text-white">GELECEK</span>
-                            }
 
 
 
-                        </p>
+                    </div>
+                    <div class="col-md-12">
 
+                        <div class="card-footer">
+                            <p class="card-text">
+                                @* Ternary Operator *@
+                                <a class="btn btn-success text-white @((DateTime.Now > item.EndDate) ? "disabled" : "")"
+                                    
+                                    asp-controller="Orders"
+                                    asp-action="AddItemToShoppingCart"
+                                    asp-route-id="@item.Id">
+                                    <i class="bi bi-cart-plus"></i> Sepete Ekle (Price @item.Price.ToString("c"))
+                                
+                                </a>
+                                <a class="btn btn-outline-primary float-end" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="bi bi-eye-fill"></i> Show Details
+                                </a>
 
+                            </p>
+                        </div>
                     </div>
 
                 </div>
