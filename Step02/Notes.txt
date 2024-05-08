@@ -53,19 +53,12 @@
 	+13. VT nin yaratılması için PM dan aşağıdaki komut girilir
 		PM> update-database -verbose
 
-		(Not : ALTER AUTHORIZATION ON DATABASE::eTickets_UCC12 TO sa) (SQL tarafında Diagram yaratma sorunuyla karşılaşılırsa)
+		(Not : ALTER AUTHORIZATION ON DATABASE::eTickets_UCC12 TO sa) (SQL tarafında Digram yaratma sorunuyla karşılaşılırsa)
 
 	+14. Şu an VT yapı olarak oluştu fakat içinde herhangi bir veri yok. Onun için fake/dummy data oluşturacak şekilde düzenlemeler yapalım.
 		. \Data\AppDbInitializer.cs isimli class ı yaratalım
 
 	+15. Program.cs altına bu veri yaratma kısmını ekleyelim
-
-08.05.2024 (3.Gün) - Step02
-
-	Not : 
-		. Solution içersine Step02 isimli yeni bir proje yaratalım.
-		. Step01 projesi içinde yapılanları Step02 projesi içersine kopyeleyelim (Controllers,Data,Migrations,Models,ProjectItems,Views,appsettings.json,Notes,Program.cs)
-		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
 
 
 
