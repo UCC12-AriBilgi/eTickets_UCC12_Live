@@ -38,7 +38,7 @@
 			. Movie.cs --> Relations
 
 	+8. AppDbContext classındaki ayarlamalar. Yaratılırken modellerin birbirine bağlanması, model yapılarının vt tarafındaki tablo karşılıklarının tanımlanması gibi işlemler.
-
+-------------------------------------------------------------------------
 07.05.2024 (2.gün) - Step01
 
 	+9. appsettings.json (uygulamaya ait çeşitli konfigürasyon ayarlarının bulunduğu dosya) VT için gerekli ConnectionString bilgisinin ayarlanması (Server=BABEGT\\SQLEXPRESS;Initial Catalog=eTickets_UCC12;Integrated Security=True;TrustServerCertificate=True;)
@@ -59,14 +59,15 @@
 		. \Data\AppDbInitializer.cs isimli class ı yaratalım
 
 	+15. Program.cs altına bu veri yaratma kısmını ekleyelim
-
+------------------------------------------------------------------------
 08.05.2024 (3.Gün) - Step02
+
 
 	Not : 
 		. Solution içersine Step02 isimli yeni bir proje yaratalım.
 		. Step01 projesi içinde yapılanları Step02 projesi içersine kopyeleyelim (Controllers,Data,Migrations,Models,ProjectItems,Views,appsettings.json,Notes,Program.cs)
 		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
-		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.
+		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
 
 	+16. Modellerimize bağlı olarak öncelikle Controller ların oluşturulması
 		- ActorsController
@@ -76,6 +77,8 @@
 
 	17. Controller lara bağlı olarak Index Viewlarının oluşturulması.
 		Not: Amaç VT tarafında ilgili tablolarda bulunan verileri listeleme yapacağımız için öncelikle bu controller lar içine ilgili View a gittiğinde verileri gösterebilmesi için gerekli VT okumalarını yapalım ki View lar bunları gösterebilsin.
+
+		Bundan sonrada _Layout.cshtml de linklerin verilmesi
 
 
 
