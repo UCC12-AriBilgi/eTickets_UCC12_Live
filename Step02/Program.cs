@@ -36,9 +36,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Browser da ilk gelecek controller
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Movies}/{action=Index}/{id?}");
 
 
 // VT içine fake/dummy veri yaratma kısmı
