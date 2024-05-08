@@ -60,22 +60,4 @@
 
 	+15. Program.cs altına bu veri yaratma kısmını ekleyelim
 
-08.05.2024 (3.Gün) - Step02
-
-	Not : 
-		. Solution içersine Step02 isimli yeni bir proje yaratalım.
-		. Step01 projesi içinde yapılanları Step02 projesi içersine kopyeleyelim (Controllers,Data,Migrations,Models,ProjectItems,Views,appsettings.json,Notes,Program.cs)
-		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
-
-
-
-
-
-
-
-
-
-
-
-
 
