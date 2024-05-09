@@ -30,7 +30,6 @@
 			Movies <-->> Actors_Movies (Bir Movie de birçok Actor olabilir)
 			Actors <-->> Actors_Movies (Bir Actor birçok Movie de oynayabilir)
 
-		7.1 Modellerde relation eklemeleri
 			. Producer.cs --> Relations
 			. Cinema.cs --> Relations
 			. Actor_Movie ara classı yaratıldı
