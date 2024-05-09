@@ -129,6 +129,8 @@
 
 		Bunun yanında MoviesService üzerinde kullanağım View Modelleri de ekledik.
 
+	27. Tüm Controller 
+
 
 
 		

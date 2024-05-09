@@ -133,5 +133,16 @@ namespace eTickets.Data.Services
 
             return response;
         }
+
+        // ??
+        public Movie AddNewMovie(Movie movie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Movie UpdateMovie(Movie movie)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
