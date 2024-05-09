@@ -112,7 +112,7 @@
 		
 	+24. IEntityBase interface inin tüm ilgili modeller üzerine implementation u yapılır
 
-	~25. Interface lerin oluşturulması (Data\Interfaces)
+	+25. Interface lerin oluşturulması (Data\Interfaces)
 		. IActorsService
 		. ICinemaService
 		. IProducersService
@@ -121,11 +121,15 @@
 
 		Not: ViewModel yapuısı
 
-	26. Service lerin oluşturulması (Data\Services)
+	+26. Service lerin oluşturulması (Data\Services)
 		. ActorsService
 		. CinemasService
 		. ProducersService
-		. MovieService
+		. MoviesService
+
+		Bunun yanında MoviesService üzerinde kullanağım View Modelleri de ekledik.
+
+
 
 		
 
