@@ -39,6 +39,20 @@
                             </div>
                         </li>
                     </ul>
+
+                    <form class="d-flex" asp-controller="Movies" asp-action="Filter">
+                        <input name="searchString" type="text" class="form-control" placeholder="Arama kelimesini giriniz..." aria-label="Recipient's name" aria-describedby="button-addon2" />
+
+                        <span style="padding:5px"></span>
+
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+
+                    </form>
+
+                    <partial name="_Identity.cshtml" />
+
+
+
                 </div>
             </div>
         </nav>

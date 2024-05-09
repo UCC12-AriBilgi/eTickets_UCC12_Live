@@ -87,7 +87,26 @@
 
 	+19. Uygulamanın ekrana ilk geldiği zaman direkt olarak Movies listesinin gelmesini sağlayalım..Layout üzerinde de gerekli değişikliği yapalım.
 
-	20. Gelen ekranı(Movies) daha da düzenlemek/güzelleştirmek amacıyla verileri bir Card görünümü şeklinde düzenleyebiliriz.
+	+20. Gelen ana ekranı(Movies) daha da düzenlemek/güzelleştirmek amacıyla verileri bir Card görünümü şeklinde düzenleyebiliriz.
+---------------------------------------------------------------------
+09.05.2024 (4.gün) - Step02
+
+	+21. Üst header kısmında ekranın sağ tarafında yeralacak şekilde bazı düzenlemeler(searchbox,login,register)
+		. login ve register işlemlerini biraz farklı olacak şekilde tasarımlayalım. Bunun için yine view gibi çalışan ama ismi PartialView olarak tanımlanan bir yapı ile tasarlayalım.
+		Views\Shared\_Identity.cshtml olarak bir partial view tanımlayalım
+
+		Bu viewın amacı kullanıcı giriş/kayıt gibi işlemler olacak. Bu yüzden daha sonra da kullanılacak "Yetkilendirme" işlemleriyle ilgili gerekli NuGet paketlerini yüklememiz gerekiyor (Microsoft.AspNetCore.Identity.EntityFrameworkCore)
+
+		Bazı hazırlıklar yaptık.İlerleyen stepler için
+
+	22. Normalde veri alışverişlerinde genelde controller üzerinden yapıldığı durumlar var. Ama bazen bu tam efektif/uygun bir çözüm olmayabilir. Controller içindeki metotlar çok olabilir. Bu da performans kaybına neden olabilir. Bunun yerine bu tür işleri gerçekleştirek şekilde Servis yapısını kullanmak daha iyi bir çözüm olabilr. Çok ön planda olan yapıları biraz daha sistemin derinliklerine alıp "işi olan işini yapsın" mantığıyla hareket sağlamak.
+
+		Bizim elimizde Actor,Cinema,Movie,Producer var . Bunların verileriyle bu şekilde çalışabilmek için herbirine uygun servis yapılarının oluşturalım ve bunları da Interface yardımıyla yapalım.
+		
+
+
+
+
 
 
 
