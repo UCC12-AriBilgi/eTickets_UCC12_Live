@@ -115,16 +115,18 @@
 	~25. Interface lerin oluşturulması (Data\Interfaces)
 		. IActorsService
 		. ICinemaService
-		. IMovieService
 		. IProducersService
+		. IMovieService
+
 
 		Not: ViewModel yapuısı
 
 	26. Service lerin oluşturulması (Data\Services)
 		. ActorsService
-		. CinemaService
-		. MovieService
+		. CinemasService
 		. ProducersService
+		. MovieService
+
 		
 
 
