@@ -17,7 +17,7 @@ namespace eTickets.Controllers
         {
             // Listelemeyi yapacak View
 
-            var producersData = _context.Producers.ToList(); // VT deki Cinemas tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
+            var producersData = _context.Producers.ToList(); // VT deki Producers tablosundaki verileri al..Bir liste yapısı olarak producersData değişgenine yerleştir.
 
             return View(producersData); // olusan değişgen içeriğini View'a postalar
         }
