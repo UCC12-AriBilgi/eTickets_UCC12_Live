@@ -30,7 +30,6 @@
 			Movies <-->> Actors_Movies (Bir Movie de birçok Actor olabilir)
 			Actors <-->> Actors_Movies (Bir Actor birçok Movie de oynayabilir)
 
-		7.1 Modellerde relation eklemeleri
 			. Producer.cs --> Relations
 			. Cinema.cs --> Relations
 			. Actor_Movie ara classı yaratıldı
@@ -58,7 +57,7 @@
 	+14. Şu an VT yapı olarak oluştu fakat içinde herhangi bir veri yok. Onun için fake/dummy data oluşturacak şekilde düzenlemeler yapalım.
 		. \Data\AppDbInitializer.cs isimli class ı yaratalım
 
-	+15. Program.cs altına bu veri yaratma kısmını ekleyelim
+	+15. Program.cs altına bu veri yaratma kısmını ekleyelim ve uygulamayı çalıştıralım
 ------------------------------------------------------------------------
 08.05.2024 (3.Gün) - Step02
 
