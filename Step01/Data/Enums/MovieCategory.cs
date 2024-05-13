@@ -1,4 +1,4 @@
-﻿namespace eTickets.Data.Enum
+﻿namespace eTickets.Data.Enums
 {
     // Film kategorilerini tutacak olan bir liste yapısı gibi düşünülebilir.
 

@@ -13,10 +13,9 @@ namespace eTickets.Data
         }
 
         // Step01.8 - İlşkilerin belirtilmesi
+        // override bildirimi temel sınıftaki metodun yerine onu ezip kendi yazdığımız metodun çalışacağını bildirir
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // override tanımı normal temel sınıftaki metodun yerine onu ezerek kendi metodumun geçerli olması için.
-
             // İlişkiler
             modelBuilder.Entity<Actor_Movie>().HasKey(acmo => new {
                 acmo.ActorId,
@@ -40,7 +39,7 @@ namespace eTickets.Data
 
         }
 
-        // VT tarafında oluşacak olan modele karşılık gelecek tablolarım
+        // VT tarafında oluşacak olan modele karşılık gelecek tablo belirtimleri
 
         public DbSet<Actor> Actors { get; set; } // class:Actor --> vt:Actors
         public DbSet<Movie> Movies { get; set; }

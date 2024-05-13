@@ -61,12 +61,15 @@
 ------------------------------------------------------------------------
 08.05.2024 (3.Gün) - Step02
 
-
 	Not : 
 		. Solution içersine Step02 isimli yeni bir proje yaratalım.
 		. Step01 projesi içinde yapılanları Step02 projesi içersine kopyeleyelim (Controllers,Data,Migrations,Models,ProjectItems,Views,appsettings.json,Notes,Program.cs)
 		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
 		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
+
+
+
+
 
 	+16. Modellerimize bağlı olarak öncelikle Controller ların oluşturulması
 		- ActorsController

@@ -1,10 +1,10 @@
-﻿06.05.2024 (1.Gün) - Step01
+﻿06-05-2024 (1.Gün) - Step01
 
-	+1. Projenin yaratılması 
-		
-	+2.	Adım adım ilerleme şeklinde yapılacağı için tüm solution Step01,Step02,Step03,.... yapısında ayrı ayrı ama birbirini takip edecek şekilde olabilmesi için projenin namespace ve assembly kısımlarının aynı olabilmesi için gerekli değişiklikleri Project/Properties kısmından ayarlandı(eTickets)
-
-	+3.Arka planda bir veritabanı olacağı ve CodeFirst yapısı kullanılacağı için gerekli NuGet paketlerinin yüklenmesi.
+	+1. Projenin Yaratılması
+	
+	+2.	Proje adım adım ilerleme şeklinde yapılacağı için tüm solution Step01,Step02,Step03,.... yapısında ayrı ayrı ama birbirini takip edecek şekilde olabilmesi için projenin namespace ve assembly kısımlarının aynı olabilmesi için gerekli değişiklikleri Project/Properties kısmından ayarlandı(eTickets)
+	
+	+3.Arka planda bir veritabanı olacağı ve CodeFirst yapısı kullanılacağı için gerekli NuGet paketlerinin yüklenmesi (EF).
 		. Microsoft.EntityFrameworkCore
 		. Microsoft.EntityFrameworkCore.SqlServer
 		. Microsoft.EntityFrameworkCore.Design
@@ -15,17 +15,18 @@
 		. Producer
 		. Cinema
 		. Movie
-			Bu class da movienin hangi category de olduğunu belirtecek bir alanımız var.Bunu ayrı bir class altında "enum" şeklinde tutalım. Bunun için ayrı bir Data isimli klasör yaratalım.
+			Bu class da movienin hangi category de olduğunu belirtecek bir alanımız var.Bunu ayrı bir class altında "enum" yapısı olarak tutalım. Bunun için ayrı bir Data isimli klasör yaratalım.
 
-	+5. DbContext yapısının eklenmesi (Db ile Modellerim arasındaki translator/tercüman) (\Data\AppDbContext.cs) İçeriği ilerleyen bölümlerde tamamlayacağız.
+	+5. DbContext yapısının eklenmesi (Db ile Modellerim arasındaki translator/tercüman) 
+		. \Data\AppDbContext.cs classının eklenmesi (İçeriği ilerleyen bölümlerde tamamlayacağız.)
+		. Data dizini üzerinde bazı düzenlemeler yapılması
+			Data\Enums
 
-	+6. Programın ana giriş noktası olan Program.cs classına gidip bu tanımı oraya da ekleyelim. VT için gerekli olacak ConnectionString tanımını da ilerleyen bölümlerde güncelleyeceğiz.
-
+	+6. Programın ana giriş noktası olan Program.cs classına gidip bu DbContext tanımını oraya da ekleyelim. VT için gerekli olacak ConnectionString tanımını da ilerleyen bölümlerde güncelleyeceğiz.
+	
 	+7. Model ilişkilendirmeleri
-		. Cinema <-->> Movie (Bir cinemada bir kaç tane movie oynayabilir)
-		
+		. Cinema <-->> Movie (Bir cinemada bir kaç Movie oynayabilir)
 		. Producer <-->> Movie (Bir yapımcı/yönetmen birkaç Movie yaratmış/yönetmiş olabilir)
-		
 		. Birçok Actor birçok Movie de oynayabilir(çoğa çok ilişki). Bundan dolayı Actor-Movie classları/modelleri arasındaki ilişkiyi kurabilmek için ara bir modelden(Actors_Movies) yararlanmak (junction) daha uygun bir çözümdür. Dolayısı ile bununla ilişkili ara modelimi oluşturmalıyım.
 			Movies <-->> Actors_Movies (Bir Movie de birçok Actor olabilir)
 			Actors <-->> Actors_Movies (Bir Actor birçok Movie de oynayabilir)
@@ -33,15 +34,20 @@
 		7.1 Modellerde relation eklemeleri
 			. Producer.cs --> Relations
 			. Cinema.cs --> Relations
-			. Actor_Movie ara classı yaratıldı
+			. Actor_Movie ara classı yaratıldı ve tanımlarını girelim
 			. Actor.cs --> Relations
 			. Movie.cs --> Relations
+				Movie aynı zamanda Cinema ve Producer'a da bağlı olduğu için
 
-	+8. AppDbContext classındaki ayarlamalar. Yaratılırken modellerin birbirine bağlanması, model yapılarının vt tarafındaki tablo karşılıklarının tanımlanması gibi işlemler.
 
-07.05.2024 (2.gün) - Step01
+	+8. AppDbContext classındaki ayarlamalar. 
+		Yaratılırken modellerin birbirine bağlanması, model yapılarının vt tarafındaki tablo karşılıklarının tanımlanması gibi işlemler.
 
-	+9. appsettings.json (uygulamaya ait çeşitli konfigürasyon ayarlarının bulunduğu dosya) VT için gerekli ConnectionString bilgisinin ayarlanması (Server=BABEGT\\SQLEXPRESS;Initial Catalog=eTickets_UCC12;Integrated Security=True;TrustServerCertificate=True;)
+-------------------------------------------
+
+07.05.2024 (Devam..2.gün) - Step01
+
+	+9. appsettings.json (uygulamaya ait çeşitli konfigürasyon ayarlarının bulunduğu dosya) VT için gerekli ConnectionString bilgisinin ayarlanması (Server=[BABEGT\\SQLEXPRESS];Initial Catalog=[eTickets_UCC12];Integrated Security=True;TrustServerCertificate=True;)
 
 	+10. Program.cs altında daha önceden belirtimini yapmış olduğumuz AddDbContext kısmına bu konfigürasyon değerlerini okuyacak ve öğrenecek şekilde gerekli düzenlemelerin yapılması
 
@@ -53,11 +59,11 @@
 	+13. VT nin yaratılması için PM dan aşağıdaki komut girilir
 		PM> update-database -verbose
 
-		(Not : ALTER AUTHORIZATION ON DATABASE::eTickets_UCC12 TO sa) (SQL tarafında Diagram yaratma sorunuyla karşılaşılırsa)
+		(Not : ALTER AUTHORIZATION ON DATABASE::eTickets_UCC12 TO sa) (SQL tarafında Digram yaratma sorunuyla karşılaşılırsa)
 
 	+14. Şu an VT yapı olarak oluştu fakat içinde herhangi bir veri yok. Onun için fake/dummy data oluşturacak şekilde düzenlemeler yapalım.
 		. \Data\AppDbInitializer.cs isimli class ı yaratalım
 
-	+15. Program.cs altına bu veri yaratma kısmını ekleyelim
+	+15. Program.cs altına bu veri yaratma kısmını ekleyelim ve projeyi çalıştıralım.VT tarafında verilerin yaratıldığını görmeliyiz.
 
-
+--------------------------------------------------------------------------

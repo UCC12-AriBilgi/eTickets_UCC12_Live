@@ -1,5 +1,5 @@
 ﻿using eTickets.Models;
-using eTickets.Data.Enum;
+using eTickets.Data.Enums;
 
 namespace eTickets.Data
 {
@@ -107,8 +107,6 @@ namespace eTickets.Data
                     });
 
                     context.SaveChanges(); // Yukarda girdiğim bilgiler VT deki Actors tablosuna yazılacak.
-
-
                 }
 
                 //Producer tablosu için
@@ -150,12 +148,9 @@ namespace eTickets.Data
                             ProfilePictureURL="http://dotnethow.net/images/producers/producer-5.jpeg",
                             Bio="Burası Producer 5 için bir bio dur."
                         }
-
                     });
 
                     context.SaveChanges(); // Yukarda girdiğim bilgiler VT deki Producers tablosuna yazılacak.
-
-
                 }
 
                 //Movie tablosu için
@@ -249,12 +244,9 @@ namespace eTickets.Data
                             movieCategory=MovieCategory.Cartoon
 
                         }
-
                     });
 
                     context.SaveChanges(); // Yukarda girdiğim bilgiler VT deki Producers tablosuna yazılacak.
-
-
                 }
 
                 //Actors-Movies tablosu için
@@ -354,15 +346,8 @@ namespace eTickets.Data
                     });
 
                     context.SaveChanges(); // Yukarda girdiğim bilgiler VT deki Producers tablosuna yazılacak.
-
-
                 }
-
             }
-
-
-
-
         }
     }
 }
