@@ -128,8 +128,13 @@
 		. MoviesService
 
 		Bunun yanında MoviesService üzerinde kullanağım View Modelleri de ekledik.
+---------------------------------------------------------------------
+03.05.2024 (5.gün) - Step03
 
-	27. Tüm Controller 
+	27.Varolan Viewlarımız üzerinde bazı düzenlemeler yapalım.
+		Actors\Index
+
+
 
 
 
