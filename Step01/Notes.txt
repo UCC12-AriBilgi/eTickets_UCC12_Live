@@ -43,7 +43,7 @@
 	+8. AppDbContext classındaki ayarlamalar. 
 		Yaratılırken modellerin birbirine bağlanması, model yapılarının vt tarafındaki tablo karşılıklarının tanımlanması gibi işlemler.
 
--------------------------------------------
+----------------------------------------------------------------------------------------
 
 07.05.2024 (Devam..2.gün) - Step01
 
