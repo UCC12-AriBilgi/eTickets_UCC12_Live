@@ -131,8 +131,12 @@
 ---------------------------------------------------------------------
 03.05.2024 (5.gün) - Step03
 
-	27.Varolan Viewlarımız üzerinde bazı düzenlemeler yapalım.
-		Actors\Index
+	+27.Varolan Viewlarımız üzerinde bazı düzenlemeler yapalım.
+		Actors\Index.cshtml
+
+	28. Actors\Create.cshtml üzerinde bazı düzenlemeler yapalım. Aynı zamanda "ModelValidation" eklemelerini de yapalım. Diğer taraftan Create View a gelebilmek için ActorsController ' da ilgili Create metodunu yazalım
+	
+		Controllerda yapılan service değişikliğini Program.cs altına belirtmek gerekmekte
 
 
 
