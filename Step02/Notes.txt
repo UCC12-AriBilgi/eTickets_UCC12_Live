@@ -67,15 +67,34 @@
 		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
 		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
 
+		Normalde veri alışverişlerinin genelde controller üzerinden yapıldığı durumlar vardır. Ama bazı durumlarda bu pek doğru bir yol olmayabilir. Bunun yerine bu tür işleri gerçekleştirecek olan Service yapılarının olması  daha doğru bir seçenektir. (Olayları geriye daha derin bölgelere almak). İlgili verilerle çalışmaya başlamadan önce gerekli herbir model için bir service interface'i yaratmak ile işe başlayabiliriz. Bunu ilgili controller a injecte ederek veri alışverişini gerçekleştirebiliriz.
 
-
-
+		Hazırlık olması açısından Data\Interfaces  ve Data\Services dizinlerini yaratalım. Gerekli olacak Interface tanımları burada olacak(Data\Interfaces). Gerekli olacak Service tanımları da burada olacak (Data\Services)
 
 	+16. Modellerimize bağlı olarak öncelikle Controller ların oluşturulması
 		- ActorsController
 		- ProducersController
 		- CinemasController
 		- MoviesController
+
+	-17. Service yapısının entegre edilmesi için öncelikle Actor verileriyle işe başlayalım
+		1. IActorsService.cs Interface'ini yaratalım. Ve burada GetActors, GetActor, Add, Update, Delete metot imzalarını yaratalım
+		
+		2. ActorsService.cs Service class'ını yaratalım ve Interfaceinden implement edelim.Ve GetActors kodunu yazalım.
+
+		3.ActorsController'a geri dönerek IActorsService yapısını enjecte edelim.
+
+		4.IActorsService yapısını Task şekline çevirelim. Bunu yaptıktan sonra da ActorsService deki ilgili yeri Task haline getirelim.(Implemente etmiş gibi olduk)
+
+		5.ActorsController'da da benzer düzenlemeleri yapalım
+
+		6.Bunları yaptıktan sonra programı çalıştıralım. Service tanımlarının yapılmadığına ilişkin bir hata verecektir.(Dependency Injection)
+
+		7.Program.cs e gidelim. Service tanımlarını yapalım.
+
+
+
+
 
 	+17. Controller lara bağlı olarak Index Viewlarının oluşturulması.
 		Not: 

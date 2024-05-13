@@ -5,6 +5,7 @@ namespace eTickets.Controllers
 {
     public class CinemasController : Controller
     {
+        // Notes.16
         private readonly AppDbContext _context;
 
         //constructor - ctor code snippet

@@ -1,24 +1,35 @@
 ﻿using eTickets.Data;
+using eTickets.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eTickets.Controllers
 {
     public class ActorsController : Controller
     {
-        private readonly AppDbContext _context;
+        // (16)
+        //private readonly AppDbContext _context;
+        // (17.3)
+        private readonly IActorsService _service;
 
         //constructor - ctor code snippet
-        public ActorsController(AppDbContext context)
+        // (16)
+        //public ActorsController(AppDbContext context)
+        //{
+        //    _context = context; // AppDbContext i içeri almış oluyorum.
+        //}
+
+        // (17.3)
+        public ActorsController(IActorsService service)
         {
-            _context = context; // AppDbContext i içeri almış oluyorum.
+            _service = service;
         }
 
-
-        public IActionResult Index()
+        // (17.5)
+        public async Task<IActionResult> Index()
         {
             // Listelemeyi yapacak View
 
-            var actorsData=_context.Actors.ToList(); // VT deki Actors tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
+            var actorsData= await _service.GetActors(); // VT deki Actors tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
 
             return View(actorsData); // olusan değişgen içeriğini View'a postalar
         }
