@@ -20,9 +20,9 @@ namespace eTickets.Controllers
 
         public async Task<IActionResult> Index()
         {
-            // Listelemeyi yapacak View
+            // Listelemeyi yapacak View...Veriler direkt controller üzerinden değil service üzerinden alınıyor.
 
-            var actorsData= _service.GetAll(); // VT deki Actors tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
+            var actorsData= await _service.GetActorsAsync(); // VT deki Actors tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
 
             return View(actorsData); // olusan değişgen içeriğini View'a postalar
         }
@@ -37,8 +37,10 @@ namespace eTickets.Controllers
         // (28)
         // Post : Actors/Create den gelen bilgileri yakalama
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")]Actor actor)
+        public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
         {
+            // ÜK..Model Valid gelmiyor...
+
             if (!ModelState.IsValid)
             {
                 // Eğer benim Create formumdan gelen verilerde bir uyumsuzluk varsa hiçbir şey yapma.
@@ -46,10 +48,24 @@ namespace eTickets.Controllers
                 return View(actor);
             }
 
-            _service.Add(actor); 
+            _service.AddAsync(actor);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index)); // Index sayfasına tekrardan yönlendirme yapılıyor.
 
+        }
+
+        // (28)
+        // Get: Actors/Detail/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var actorDetails= _service.GetActorAsync(id); // tekbir actoru getiriyor
+
+            if (actorDetails == null)
+            {
+                return View("Empty"); // eğer ilgili kayıt gelmemişse gidilecek olan View
+            }
+
+            return View(actorDetails);
         }
     }
 }

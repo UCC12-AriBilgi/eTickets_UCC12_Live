@@ -138,6 +138,8 @@
 	
 		Controllerda yapılan service değişikliğini Program.cs altına belirtmek gerekmekte
 
+		Controller ın bağlı olduğu IActorsService interface i ce ActorsService i üzerinde IAActorService interface ini implement edelim
+
 
 
 

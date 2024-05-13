@@ -1,42 +1,47 @@
 ﻿using eTickets.Data.Interfaces;
 using eTickets.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace eTickets.Data.Services
 {
     public class ActorsService : IActorsService
     {
+        private readonly AppDbContext _context;
+
         // constructor...Injection
         public ActorsService(AppDbContext context)
         {
+            _context = context;
         }
 
-        public void Add(Actor entity)
+        public async Task AddAsync(Actor actor) // Ekleme
+        {
+            await _context.Actors.AddAsync(actor);
+
+            await _context.SaveChangesAsync();
+        }
+
+        public void DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public async Task<Actor> GetActorAsync(int id) // Index Listeleme için
         {
-            throw new NotImplementedException();
+            var actorRecord=await _context.Actors.FirstOrDefaultAsync(ar => ar.Id == id);
+
+            return actorRecord;
         }
 
-        public IEnumerable<Actor> GetAll()
+        public async Task<IEnumerable<Actor>> GetActorsAsync()
         {
-            throw new NotImplementedException();
+            var records=await _context.Actors.ToListAsync();
+
+            return records;
         }
 
-        public IEnumerable<Actor> GetAll(params Expression<Func<Actor, object>>[] includeProperties)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Actor GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(int id, Actor entity)
+        public Actor Update(int id, Actor actor)
         {
             throw new NotImplementedException();
         }
