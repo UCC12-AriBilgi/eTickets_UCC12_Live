@@ -7,14 +7,13 @@ namespace eTickets.Models
         [Key]
         public int Id { get; set; }
 
-        public string? FullName { get; set; }
-
         public string? ProfilePictureURL { get; set; }
-        // direkt resim olarak tutmak yerine resmin bulunduğu yer olarak tutmak vt boyutu ve performansını artırmak için iyidir
+
+        public string? FullName { get; set; }
 
         public string? Bio { get; set; }
 
         // Relations
-        public List<Movie>? Movies { get; set; } // Movie modelini besliyor..Bir Producerın birçok Movie si olabilir
+        public List<Movie>? Movies { get; set; } // bir producerın birçok filmi olabilir
     }
 }

@@ -2,8 +2,6 @@
 
 namespace eTickets.Models
 {
-    // Cinema bilgilerini tutacak class
-
     public class Cinema
     {
         [Key]
@@ -11,12 +9,11 @@ namespace eTickets.Models
 
         public string? Logo { get; set; }
 
-        public string? Name { get; set; } // Cinema adı
+        public string? Name { get; set; }
 
-        public string? Description { get; set; } 
+        public string? Description { get; set; }
 
-        // Relations
-
-        public List<Movie>? Movies { get; set; } // Şu an Movie tablosuna bağlantı kuruldu. Bir Cinemada birçok Movie oynayabilir
+        //Relations
+        public List<Movie>? Movies { get; set; } // Bir cinemada birçok film olabilir
     }
 }
