@@ -36,7 +36,7 @@ namespace eTickets.Controllers
 
         // (24)
         // Post : Actors/Create den gelen bilgileri yakalama
-        [HttpPost]
+        [HttpPost] // Request
         public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
         {
             // (25)
