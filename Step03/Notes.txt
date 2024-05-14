@@ -145,7 +145,14 @@ Step03
 	+26. Actors\Details.cshtml
 		ActorsControllerda gerekli düzenlemeler yapıldı
 
-	27. Actors\Edit.cshtml
+	~27. Actors\Edit.cshtml
+
+	28. Interface - Service yapıları var. Actor,Cinema,Producer,Movie ile ilgili tüm ortak yapıların (CRUD) kodlar içinde tekrarını önleyebilmek için bir taban(base) yapı kurmamız ideal bir çözüm olacaktır. Bunun için Data\Base isimli bir dizin açıp gerekli classları yaratalım.
+		.IEntityBase.cs --> En taban yapı
+		.IEntityBaseRepository.cs 
+		.EntityBaseRepository.cs <--IEntityBaseRepository.cs
+
+
 
 
 

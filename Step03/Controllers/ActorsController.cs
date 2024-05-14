@@ -83,7 +83,7 @@ namespace eTickets.Controllers
         }
         // (27)
         [HttpPost] // Edit Viewdan gönderilen bilgiyi yakalamak
-        public async Task<IActionResult> Edit(int id, [Bind("Id","FullName","ProfilePictureURL,Bio")] Actor actor)
+        public IActionResult Edit(int id, [Bind("Id","FullName","ProfilePictureURL,Bio")] Actor actor)
         {
             if (!ModelState.IsValid)
             {
