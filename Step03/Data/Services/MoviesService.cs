@@ -16,11 +16,6 @@ namespace eTickets.Data.Services
             _context= context;
         }
 
-        // 26.adım
-        //public Movie AddNewMovie(Movie movie)
-        //{
-        //    // Standard model yapısı kullanımı
-        //}
 
         public Movie AddNewMovie(NewMovieVM data)
         {

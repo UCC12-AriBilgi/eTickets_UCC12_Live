@@ -22,7 +22,7 @@ namespace eTickets.Controllers
         {
             // Listelemeyi yapacak View...Veriler direkt controller üzerinden değil service üzerinden alınıyor.
 
-            var actorsData= await _service.GetActorsAsync(); // VT deki Actors tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
+            var actorsData= _service.GetAll(); // VT deki Actors tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
 
             return View(actorsData); // olusan değişgen içeriğini View'a postalar
         }
@@ -47,7 +47,7 @@ namespace eTickets.Controllers
                 return View(actor);
             }
 
-            _service.AddAsync(actor);
+            _service.Add(actor);
 
             return RedirectToAction(nameof(Index)); // Index sayfasına tekrardan yönlendirme yapılıyor.
 
@@ -57,7 +57,7 @@ namespace eTickets.Controllers
         // Get: Actors/Detail/1
         public async Task<IActionResult> Details(int id)
         {
-            var actorDetails= _service.GetActorAsync(id); // tekbir actoru getiriyor
+            var actorDetails= _service.GetById(id); // tekbir actoru getiriyor
 
             if (actorDetails == null)
             {
@@ -65,6 +65,40 @@ namespace eTickets.Controllers
             }
 
             return View(actorDetails);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var actorRecord =  _service.GetById(id);
+
+            if (actorRecord == null)
+            {
+                return View("Empty");
+            }
+            return View(actorRecord);
+
+            //if(actor == null)
+            //{
+            //    return View("Empty");
+            //}
+            //return View(actor); 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id", "FullName", "ProfilePictureURL", "Bio")] Actor actor)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+             _service.Update(id,actor);
+
+            return RedirectToAction("Details",actor);
+
+            //--------------
+            //return View("Details",actor);
+            //return RedirectToAction(nameof(Details),actor);
         }
     }
 }

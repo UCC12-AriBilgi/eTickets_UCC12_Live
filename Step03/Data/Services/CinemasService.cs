@@ -4,7 +4,7 @@ using eTickets.Models;
 
 namespace eTickets.Data.Services
 {
-    public class CinemasService : EntityBaseRepository<Cinema>, ICinemasService
+    public class CinemasService : EntityBaseRepository<Cinema>, IEntityBaseRepository<Cinema>
     {
         public CinemasService(AppDbContext context) : base(context)
         {
