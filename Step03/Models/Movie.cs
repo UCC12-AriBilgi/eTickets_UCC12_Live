@@ -14,7 +14,7 @@ namespace eTickets.Models
 
         public string? Description { get; set; }
 
-        public double? Price { get; set; } // Bilet fiyatı
+        public double Price { get; set; } // Bilet fiyatı
 
         public string? ImageURL { get; set; } // Filmin afişi
 
