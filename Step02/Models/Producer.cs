@@ -1,21 +1,26 @@
-﻿using eTickets.Data.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace eTickets.Models
 {
-    public class Producer : IEntityBase
+    public class Producer
     {
         [Key]
         public int Id { get; set; }
 
-        public string FullName { get; set; }
+        [Display(Name = "Profile Picture")]
+        [Required(ErrorMessage = "Profile picture gereklidir.")]
+        public string? ProfilePictureURL { get; set; }
 
-        public string ProfilePictureURL { get; set; }
-        // direkt resim olarak tutmak yerine resmin bulunduğu yer olarak tutmak vt boyutu ve performansını artırmak için iyidir
+        [Display(Name = "Full Name")]
+        [Required(ErrorMessage = "Tam ad gereklidir.")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Ad 3-50 karakter arasında olmalıdır..")]
+        public string? FullName { get; set; }
 
-        public string Bio { get; set; }
+        [Display(Name = "Biography")]
+        [Required(ErrorMessage = "Biografi bilgisi gereklidir.")]
+        public string? Bio { get; set; }
 
         // Relations
-        public List<Movie> Movies { get; set; } // Movie modelini besliyor..
+        public List<Movie>? Movies { get; set; } // bir producerın birçok filmi olabilir
     }
 }

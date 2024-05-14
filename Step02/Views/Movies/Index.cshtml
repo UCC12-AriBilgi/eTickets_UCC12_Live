@@ -1,18 +1,17 @@
-﻿@* (19) *@
-@model IEnumerable<eTickets.Models.Movie>
+﻿@model IEnumerable<eTickets.Models.Movie>
 
 @{
     ViewData["Title"] = "List of Movies";
 }
 
 <div class="row">
+
     @foreach (var item in Model)
     {
         <div class="col-md-4 col-xs-6 border-primary mb-3">
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-12">
-                        @* Card yapısına başlangıç *@
                         <div class="card-header text-white bg-info">
                             <p class="card-text">
                                 <h5 class="card-title">
@@ -25,29 +24,27 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        @* Image bölümü *@
                         <img src="@item.ImageURL" width="100%" alt="@item.Name">
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
-                            @* Diğer bilgiler *@
                             <p class="card-text">@item.Description</p>
                             <p class="card-text"><b>Cinema: </b>@item.Cinema.Name</p>
                             <p class="card-text"><b>Category: </b>@item.MovieCategory</p>
-                            <p class="card-text"><b>Start Date: </b>@item.StartDate</p>
-                            <p class="card-text"><b>End Date: </b>@item.EndDate</p>
+                            <p class="card-text"><b>Start Date: </b>@item.StartDate.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>End Date: </b>@item.EndDate.ToString("dd MMM yy")</p>
                             <p class="card-text ">
                                 <b>Status: </b>
                                 @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
-                                { @* Demek ki hala gösterimde *@
+                                {
                                     <span class="badge bg-success text-white">AVAILABLE</span>
                                 }
                                 else if (DateTime.Now > item.EndDate)
-                                { @* Demek ki gösterimden kalkmış *@
+                                {
                                     <span class="badge bg-danger text-white">EXPIRED</span>
                                 }
                                 else
-                                { @* Demek ki gösterime girecek *@
+                                {
                                     <span class="badge bg-primary text-white">UPCOMING</span>
                                 }
                             </p>
@@ -56,15 +53,14 @@
                     <div class="col-md-12">
                         <div class="card-footer ">
                             <p class="card-text">
-                                <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
-                                    <i class="bi bi-eye-fill"></i> Show Details
-                                </a>
-                                @* Ternary Operator *@
-                                <a class="btn btn-success text-white float-end @((DateTime.Now > item.EndDate) ? "disabled" : "")"
+                                <a class="btn btn-success text-white @((DateTime.Now > item.EndDate) ? "disabled" : "")"
                                    asp-controller="Orders"
                                    asp-action="AddItemToShoppingCart"
                                    asp-route-id="@item.Id">
-                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @item.Price)
+                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @item.Price.ToString("c"))
+                                </a>
+                                <a class="btn btn-outline-primary float-end" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="bi bi-eye-fill"></i> Show Details
                                 </a>
                             </p>
                         </div>
@@ -74,5 +70,3 @@
         </div>
     }
 </div>
-
-

@@ -1,23 +1,25 @@
-﻿using eTickets.Data.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace eTickets.Models
 {
-    // Cinema bilgilerini tutacak class
-
-    public class Cinema : IEntityBase
+    public class Cinema
     {
         [Key]
         public int Id { get; set; }
 
-        public string Logo { get; set; }
+        [Display(Name = "Cinema Logo")]
+        [Required(ErrorMessage = "Cinema logo gereklidir.")]
+        public string? Logo { get; set; }
 
-        public string Name { get; set; } // Cinema adı
+        [Display(Name = "Cinema Name")]
+        [Required(ErrorMessage = "Cinema adı gereklidir.")]
+        public string? Name { get; set; }
 
-        public string Description { get; set; } 
+        [Display(Name = "Description")]
+        [Required(ErrorMessage = "Cinema açıklama gereklidir.")]
+        public string? Description { get; set; }
 
-        // Relations
-
-        public List<Movie> Movies { get; set; } // Şu an Movie tablosuna bağlantı kuruldu. Bir cinemada birçok film oynayabilir
+        //Relations
+        public List<Movie>? Movies { get; set; } // Bir cinemada birçok film olabilir
     }
 }

@@ -1,37 +1,72 @@
 ﻿using eTickets.Data;
-using eTickets.Data.Interfaces;
+using eTickets.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
 {
-    public class ActorsController : Controller
+
+    public class ActorsController : Controller // Controller sınıfından inherit
     {
         // (16)
-        //private readonly AppDbContext _context;
-        // (17.3)
-        private readonly IActorsService _service;
+        private readonly AppDbContext _context;
 
-        //constructor - ctor code snippet
+
         // (16)
-        //public ActorsController(AppDbContext context)
+        // inject constructor
+        public ActorsController(AppDbContext context)
+        {
+            _context = context;
+        }
+        // (22)
+        //public ActorsController(IActorsService service)
         //{
-        //    _context = context; // AppDbContext i içeri almış oluyorum.
+        //    _service = service;
         //}
 
-        // (17.3)
-        public ActorsController(IActorsService service)
+        // (16)
+        public IActionResult Index()
         {
-            _service = service;
+            var actorData = _context.Actors.ToList();
+
+            return View(actorData);
+        }
+        // 22
+        //public IActionResult Index()
+        // 22.5
+        //public async Task<IActionResult> Index()
+        //{
+        //    //16.
+        //    //var actorsData= _context.Actors.ToList();
+        //    //22
+        //    //var actorsData= _service.GetActors();
+        //    // 22.5
+        //    var actorsData= await _service.GetActors();
+
+        //    return View(actorsData);
+        //}
+
+        //Get: Actors/Create
+        // (23)
+        public IActionResult Create()
+        {
+            return View();
         }
 
-        // (17.5)
-        public async Task<IActionResult> Index()
-        {
-            // Listelemeyi yapacak View
+        //[HttpPost]
+        //public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
+        //{
+        //    // (24)
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(actor);
+        //    }
 
-            var actorsData= await _service.GetActors(); // VT deki Actors tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
+        //    _service.Add(actor);
 
-            return View(actorsData); // olusan değişgen içeriğini View'a postalar
-        }
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+
     }
 }

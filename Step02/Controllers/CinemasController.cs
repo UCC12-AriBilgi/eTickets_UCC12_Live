@@ -1,26 +1,25 @@
 ﻿using eTickets.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
 {
+
     public class CinemasController : Controller
     {
-        // Notes.16
+        // (16)
         private readonly AppDbContext _context;
 
-        //constructor - ctor code snippet
         public CinemasController(AppDbContext context)
         {
-            _context = context; // AppDbContext i içeri almış oluyorum.
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            // Listelemeyi yapacak View
+            var cinemasData = await _context.Cinemas.ToListAsync();
 
-            var cinemasData = _context.Cinemas.ToList(); // VT deki Cinemas tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
-
-            return View(cinemasData); // olusan değişgen içeriğini View'a postalar
+            return View(cinemasData);
         }
     }
 }

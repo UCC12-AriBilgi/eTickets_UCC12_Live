@@ -1,10 +1,10 @@
-﻿Step01 (2)
+﻿Step01 (2d x 4h)
 
-	+1. Projenin yaratılması 
-		
-	+2.	Adım adım ilerleme şeklinde yapılacağı için tüm solution Step01,Step02,Step03,.... yapısında ayrı ayrı ama birbirini takip edecek şekilde olabilmesi için projenin namespace ve assembly kısımlarının aynı olabilmesi için gerekli değişiklikleri Project/Properties kısmından ayarlandı(eTickets)
-
-	+3.Arka planda bir veritabanı olacağı ve CodeFirst yapısı kullanılacağı için gerekli NuGet paketlerinin yüklenmesi.
+	+1. Projenin Yaratılması
+	
+	+2.	Proje adım adım ilerleme şeklinde yapılacağı için tüm solution Step01,Step02,Step03,.... yapısında ayrı ayrı ama birbirini takip edecek şekilde olabilmesi için projenin namespace ve assembly kısımlarının aynı olabilmesi için gerekli değişiklikleri Project/Properties kısmından ayarlandı(eTickets)
+	
+	+3.Arka planda bir veritabanı olacağı ve CodeFirst yapısı kullanılacağı için gerekli NuGet paketlerinin yüklenmesi (EF).
 		. Microsoft.EntityFrameworkCore
 		. Microsoft.EntityFrameworkCore.SqlServer
 		. Microsoft.EntityFrameworkCore.Design
@@ -15,30 +15,35 @@
 		. Producer
 		. Cinema
 		. Movie
-			Bu class da movienin hangi category de olduğunu belirtecek bir alanımız var.Bunu ayrı bir class altında "enum" şeklinde tutalım. Bunun için ayrı bir Data isimli klasör yaratalım.
+			Bu class da movienin hangi category de olduğunu belirtecek bir alanımız var.Bunu ayrı bir class altında "enum" yapısı olarak tutalım. Bunun için ayrı bir Data isimli klasör yaratalım.
 
-	+5. DbContext yapısının eklenmesi (Db ile Modellerim arasındaki translator/tercüman) (\Data\AppDbContext.cs) İçeriği ilerleyen bölümlerde tamamlayacağız.
+	+5. DbContext yapısının eklenmesi (Db ile Modellerim arasındaki translator/tercüman) 
+		. \Data\AppDbContext.cs classının eklenmesi (İçeriği ilerleyen bölümlerde tamamlayacağız.)
+		. Data dizini üzerinde bazı düzenlemeler yapılması
+			Data\Enums
 
-	+6. Programın ana giriş noktası olan Program.cs classına gidip bu tanımı oraya da ekleyelim. VT için gerekli olacak ConnectionString tanımını da ilerleyen bölümlerde güncelleyeceğiz.
-
+	+6. Programın ana giriş noktası olan Program.cs classına gidip bu DbContext tanımını oraya da ekleyelim. VT için gerekli olacak ConnectionString tanımını da ilerleyen bölümlerde güncelleyeceğiz.
+	
 	+7. Model ilişkilendirmeleri
-		. Cinema <-->> Movie (Bir cinemada bir kaç tane movie oynayabilir)
-		
+		. Cinema <-->> Movie (Bir cinemada bir kaç Movie oynayabilir)
 		. Producer <-->> Movie (Bir yapımcı/yönetmen birkaç Movie yaratmış/yönetmiş olabilir)
-		
 		. Birçok Actor birçok Movie de oynayabilir(çoğa çok ilişki). Bundan dolayı Actor-Movie classları/modelleri arasındaki ilişkiyi kurabilmek için ara bir modelden(Actors_Movies) yararlanmak (junction) daha uygun bir çözümdür. Dolayısı ile bununla ilişkili ara modelimi oluşturmalıyım.
 			Movies <-->> Actors_Movies (Bir Movie de birçok Actor olabilir)
 			Actors <-->> Actors_Movies (Bir Actor birçok Movie de oynayabilir)
 
+		7.1 Modellerde relation eklemeleri
 			. Producer.cs --> Relations
 			. Cinema.cs --> Relations
-			. Actor_Movie ara classı yaratıldı
+			. Actor_Movie ara classı yaratıldı ve tanımlarını girelim
 			. Actor.cs --> Relations
 			. Movie.cs --> Relations
+				Movie aynı zamanda Cinema ve Producer'a da bağlı olduğu için
 
-	+8. AppDbContext classındaki ayarlamalar. Yaratılırken modellerin birbirine bağlanması, model yapılarının vt tarafındaki tablo karşılıklarının tanımlanması gibi işlemler.
 
-	+9. appsettings.json (uygulamaya ait çeşitli konfigürasyon ayarlarının bulunduğu dosya) VT için gerekli ConnectionString bilgisinin ayarlanması (Server=BABEGT\\SQLEXPRESS;Initial Catalog=eTickets_UCC12;Integrated Security=True;TrustServerCertificate=True;)
+	+8. AppDbContext classındaki ayarlamalar. 
+		Yaratılırken modellerin birbirine bağlanması, model yapılarının vt tarafındaki tablo karşılıklarının tanımlanması gibi işlemler.
+
+	+9. appsettings.json (uygulamaya ait çeşitli konfigürasyon ayarlarının bulunduğu dosya) VT için gerekli ConnectionString bilgisinin ayarlanması (Server=[BABEGT\\SQLEXPRESS];Initial Catalog=[eTickets_UCC12];Integrated Security=True;TrustServerCertificate=True;)
 
 	+10. Program.cs altında daha önceden belirtimini yapmış olduğumuz AddDbContext kısmına bu konfigürasyon değerlerini okuyacak ve öğrenecek şekilde gerekli düzenlemelerin yapılması
 
@@ -50,14 +55,15 @@
 	+13. VT nin yaratılması için PM dan aşağıdaki komut girilir
 		PM> update-database -verbose
 
-		(Not : ALTER AUTHORIZATION ON DATABASE::eTickets_UCC12 TO sa) (SQL tarafında Diagram yaratma sorunuyla karşılaşılırsa)
+		(Not : ALTER AUTHORIZATION ON DATABASE::eTickets_UCC12 TO sa) (SQL tarafında Digram yaratma sorunuyla karşılaşılırsa)
 
 	+14. Şu an VT yapı olarak oluştu fakat içinde herhangi bir veri yok. Onun için fake/dummy data oluşturacak şekilde düzenlemeler yapalım.
 		. \Data\AppDbInitializer.cs isimli class ı yaratalım
 
-	+15. Program.cs altına bu veri yaratma kısmını ekleyelim ve uygulamayı çalıştıralım
+	+15. Program.cs altına bu veri yaratma kısmını ekleyelim ve projeyi çalıştıralım.VT tarafında verilerin yaratıldığını görmeliyiz.
+
 ------------------------------------------------------------------------
-Step02 (2)
+Step02 (2d x 4h)
 
 	Not : 
 		. Solution içersine Step02 isimli yeni bir proje yaratalım.
@@ -65,15 +71,43 @@ Step02 (2)
 		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
 		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
 
+	+16. Controller'ların oluşturulması
+		. ActorsController (View henüz yok)
+		. ProducersController
+		. CinemasController
+		. MoviesController
+	
+		Not : public IActionResult  --> public async Task<IActionResult>.. await..ToList --> ToListAsync 
+
+	+17. Controller lara bağlı şekilde ilk olarak Index Viewlarının oluşturulması.
+		! Viewlar oluşturulurken RazorView/Template:List /Model:[ilgili model] /DbContext:[ilgili context]
+		Normal bir şekilde bunlar oluştuktan sonra Bootstrap yapısını kullanarak View larımızı daha güzel hale getirelim
+
+		. Actors\Index.cshtml
+		. Producers\Index.cshtml
+		. Cinemas\Index.cshtml
+		
+
+		17.1 - Bootstrap ile ilgili bölümleri hazırlarken ekranda görülmesi istediğimiz textleri ilgili modeller üzerinde tanımlayalım
+
+		17.3 - Movies\Index.cshtml
+			Viewlarımızın en önemlisi. 
+			Öncelikle MoviesController üzerinde Index View a veriyi gönderelim
+			Bootstrap yapısında CardView yöntemini kullanalım
+
+		17.4 - _Layout.cshtml de bootstrap düzenlemelerinin yapılması ve navigation yapılması
+
+		17.5 - İlgili viewları manuel olarak deneyelim (Actors/Index...)
+				Burada movie/Index gelirken bir hata verecektir. Bunu düzeltmek için Movie controller a gitmeli ve düzenlemeyi yapmalıyız (İlişkisellik olduğu için .Include kullanmalıyız)
+
+
+		17.6 - Uygulamanın giriş noktasının Program.cs altından Movies olarak ayarlanması
+
+		*************************************************************************
 		Normalde veri alışverişlerinin genelde controller üzerinden yapıldığı durumlar vardır. Ama bazı durumlarda bu pek doğru bir yol olmayabilir. Bunun yerine bu tür işleri gerçekleştirecek olan Service yapılarının olması  daha doğru bir seçenektir. (Olayları geriye daha derin bölgelere almak). İlgili verilerle çalışmaya başlamadan önce gerekli herbir model için bir service interface'i yaratmak ile işe başlayabiliriz. Bunu ilgili controller a injecte ederek veri alışverişini gerçekleştirebiliriz.
 
 		Hazırlık olması açısından Data\Interfaces  ve Data\Services dizinlerini yaratalım. Gerekli olacak Interface tanımları burada olacak(Data\Interfaces). Gerekli olacak Service tanımları da burada olacak (Data\Services)
 
-	+16. Modellerimize bağlı olarak öncelikle Controller ların oluşturulması
-		- ActorsController
-		- ProducersController
-		- CinemasController
-		- MoviesController
 
 	+17. Service yapısının entegre edilmesi için öncelikle Actor verileriyle işe başlayalım
 		1. IActorsService.cs Interface'ini yaratalım. Ve burada GetActors, GetActor, Add, Update, Delete metot imzalarını yaratalım

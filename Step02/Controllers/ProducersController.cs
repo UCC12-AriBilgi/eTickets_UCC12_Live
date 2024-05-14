@@ -1,25 +1,25 @@
 ﻿using eTickets.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
 {
     public class ProducersController : Controller
     {
+        // (16)
         private readonly AppDbContext _context;
 
-        //constructor - ctor code snippet
         public ProducersController(AppDbContext context)
         {
-            _context = context; // AppDbContext i içeri almış oluyorum.
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            // Listelemeyi yapacak View
 
-            var producersData = _context.Producers.ToList(); // VT deki Producers tablosundaki verileri al..Bir liste yapısı olarak producersData değişgenine yerleştir.
+            var producersData = await _context.Producers.ToListAsync();
 
-            return View(producersData); // olusan değişgen içeriğini View'a postalar
+            return View(producersData);
         }
     }
 }
