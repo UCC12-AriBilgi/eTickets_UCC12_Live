@@ -16,16 +16,12 @@ namespace eTickets.Data.Services
             _context= context;
         }
 
-        // 26.adım
-        //public Movie AddNewMovie(Movie movie)
-        //{
-        //    // Standard model yapısı kullanımı
-        //}
-
+        // Bir ViewModel den yararlanarak yeni bir movie bilgisi ekleme
         public Movie AddNewMovie(NewMovieVM data)
         {
             var newMovie = new Movie()
             {
+                // Movie modeline göre
                 Name=data.Name,
                 Description=data.Description,
                 Price =data.Price,
@@ -38,6 +34,7 @@ namespace eTickets.Data.Services
             };
 
             _context.Movies.Add(newMovie);
+
             _context.SaveChanges();
 
             //Bu film için seçilen aktörlerin ActorsMovies ara tablosuna yazılması
@@ -57,6 +54,7 @@ namespace eTickets.Data.Services
 
         }
 
+        // parametre olarak verilen id bilgisine göre ilgili kayıdı getirme
         public Movie GetMovieById(int id)
         {
             //LINQ sorgusu (InnerJoin)
@@ -71,13 +69,14 @@ namespace eTickets.Data.Services
 
         }
 
+        // Bir ViewModel den yararlanarak varolan movie bilgisini update etme
         public Movie UpdateMovie(NewMovieVM data)
         {
             var dbMovie = _context.Movies.FirstOrDefault(m => m.Id == data.Id);
 
             if (dbMovie != null) // ilgili movie var mı / yok mu
             {
-                // varsa
+                // varsa güncelle
                 dbMovie.Name= data.Name;
                 dbMovie.Description= data.Description;
                 dbMovie.Price = data.Price;
@@ -135,14 +134,14 @@ namespace eTickets.Data.Services
         }
 
         // ??
-        public Movie AddNewMovie(Movie movie)
-        {
-            throw new NotImplementedException();
-        }
+        //public Movie AddNewMovie(Movie movie)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Movie UpdateMovie(Movie movie)
-        {
-            throw new NotImplementedException();
-        }
+        //public Movie UpdateMovie(Movie movie)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

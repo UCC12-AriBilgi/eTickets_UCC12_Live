@@ -4,6 +4,7 @@ namespace eTickets.Data.Base
 {
     // Bu interface de tüm modeller için kullanılacak temel CRUD metotlar tanımlarını toplayacağımız kısım
 
+    // (31)
     public interface IEntityBaseRepository<T> where T : class, IEntityBase,new()
     {
         IEnumerable<T> GetAll(); // Tüm kayıtları getirme

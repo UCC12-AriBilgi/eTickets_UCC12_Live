@@ -147,10 +147,37 @@ Step03
 
 	~27. Actors\Edit.cshtml
 
-	28. Interface - Service yapıları var. Actor,Cinema,Producer,Movie ile ilgili tüm ortak yapıların (CRUD) kodlar içinde tekrarını önleyebilmek için bir taban(base) yapı kurmamız ideal bir çözüm olacaktır. Bunun için Data\Base isimli bir dizin açıp gerekli classları yaratalım.
+	+28. Interface - Service yapıları var. Actor,Cinema,Producer,Movie ile ilgili tüm ortak yapıların (CRUD) kodlar içinde tekrarını önleyebilmek için bir taban(base) yapı kurmamız ideal bir çözüm olacaktır. Bunun için Data\Base isimli bir dizin açıp gerekli classları yaratalım.
 		.IEntityBase.cs --> En taban yapı
 		.IEntityBaseRepository.cs 
 		.EntityBaseRepository.cs <--IEntityBaseRepository.cs
+
+	+29. IEntityBase interfaceini Actor,Movie,Cinema,Producer modelleri üzerine implement edelim.
+
+	+30. IEntityBaseRepository yapısını kullanacak şekilde gerekli interfaceleri yaratalım.
+		.IActorsService
+		.ICinemasService
+		.IMoviesService
+		.IProducersService 
+
+	31.	Daha sonra tüm ortak olan metotları (CRUD işlemleri için) tek bir yerde toplamak için gerekli değişiklikleri yapalım. Bunun için IEntityBaseRepository interfacine gerekli metot yapılarını yerleştirelim. (GetAll,GetById,Add,Update,Delete)
+
+	32. Aşağıdaki Interfaceler üzerinde bu ana Interfacei kullanacak şekilde gerekli değişiklikleri yapalım.
+		.IActorsService
+		.ICinemasService
+		.IMoviesService
+		.IProducersService
+
+
+
+
+
+
+
+
+
+
+
 
 
 

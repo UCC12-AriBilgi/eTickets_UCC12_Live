@@ -5,5 +5,6 @@ namespace eTickets.Data.Interfaces
 {
     public interface ICinemasService : IEntityBaseRepository<Cinema>
     {
+
     }
 }

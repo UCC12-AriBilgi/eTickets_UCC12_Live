@@ -5,6 +5,7 @@ namespace eTickets.Models
 {
     // Actor bilgilerinin tutulacağı model(class)
 
+    // (29)
     public class Actor : IEntityBase
     {
         [Key]

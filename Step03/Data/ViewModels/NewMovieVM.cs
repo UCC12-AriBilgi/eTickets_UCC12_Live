@@ -10,11 +10,11 @@ namespace eTickets.Data.ViewModels
 
         [Display(Name = "Film Adı")]
         [Required(ErrorMessage = "Film adı girilmesi zorunludur..")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Display(Name="Film açıklaması")]
         [Required(ErrorMessage = "Film açıklaması gereklidir..")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Display(Name = "Bilet fiyatı")]
         [Required(ErrorMessage = "Bilet fiyatı gereklidir..")]
@@ -22,7 +22,7 @@ namespace eTickets.Data.ViewModels
 
         [Display(Name = "Film afişi")]
         [Required(ErrorMessage = "Film afişi gereklidir..")]
-        public string ImageURL { get; set; }
+        public string? ImageURL { get; set; }
 
         [Display(Name = "Vizyona giriş tarihi")]
         [Required(ErrorMessage = "Vizyona giriş tarihi gereklidir..")]
@@ -39,7 +39,7 @@ namespace eTickets.Data.ViewModels
         // Relations
         [Display(Name = "Aktör seç")]
         [Required(ErrorMessage = "Aktör bilgisi gereklidir..")]
-        public List<int> ActorIds { get; set; }
+        public List<int>? ActorIds { get; set; }
 
         [Display(Name = "Sinema seç")]
         [Required(ErrorMessage = "Sinema bilgisi gereklidir..")]

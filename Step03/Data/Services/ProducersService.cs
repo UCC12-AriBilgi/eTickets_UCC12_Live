@@ -8,6 +8,7 @@ namespace eTickets.Data.Services
     {
         public ProducersService(AppDbContext context) : base(context)
         {
+
         }
     }
 }

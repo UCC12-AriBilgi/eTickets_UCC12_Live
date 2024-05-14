@@ -5,6 +5,7 @@ namespace eTickets.Models
 {
     // Cinema bilgilerini tutacak class
 
+    // (29)
     public class Cinema : IEntityBase
     {
         [Key]
