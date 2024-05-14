@@ -22,7 +22,7 @@ namespace eTickets.Controllers
         {
             // Listelemeyi yapacak View...Veriler direkt controller üzerinden değil service üzerinden alınıyor.
 
-            var actorsData= await _service.GetActorsAsync(); // VT deki Actors tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
+            var actorsData= _service.GetAll(); // VT deki Actors tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
 
             return View(actorsData); // olusan değişgen içeriğini View'a postalar
         }
