@@ -1,4 +1,5 @@
 ﻿using eTickets.Data.Base;
+using eTickets.Data.ViewModels;
 using eTickets.Models;
 
 namespace eTickets.Data.Interfaces
@@ -7,10 +8,10 @@ namespace eTickets.Data.Interfaces
     {
         Movie GetMovieById(int id);
 
-        Movie AddNewMovie(Movie movie); //
+        Movie AddNewMovie(NewMovieVM movie); //
 
-        Movie UpdateMovie(Movie movie); //
+        Movie UpdateMovie(NewMovieVM movie); //
 
-        //NewMovieDropdownsVM GetNewMovieDropdownsValues();
+        NewMovieDropdownsVM GetNewMovieDropdownsValues();
     }
 }

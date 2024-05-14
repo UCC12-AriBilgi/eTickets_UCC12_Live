@@ -22,15 +22,15 @@ namespace eTickets.Data.Services
             var newMovie = new Movie()
             {
                 // Movie modeline göre
-                Name=data.Name,
-                Description=data.Description,
-                Price =data.Price,
-                ImageURL=data.ImageURL,
-                StartDate=data.StartDate,
-                EndDate=data.EndDate,
-                movieCategory=data.MovieCategory,
+                Name = data.Name,
+                Description = data.Description,
+                Price = data.Price,
+                ImageURL = data.ImageURL,
+                StartDate = data.StartDate,
+                EndDate = data.EndDate,
+                movieCategory = data.MovieCategory,
                 CinemaId = data.CinemaId,
-                ProducerId =data.ProducerId
+                ProducerId = data.ProducerId
             };
 
             _context.Movies.Add(newMovie);
@@ -51,7 +51,6 @@ namespace eTickets.Data.Services
             _context.SaveChanges();
 
             return newMovie;
-
         }
 
         // parametre olarak verilen id bilgisine göre ilgili kayıdı getirme
@@ -77,8 +76,8 @@ namespace eTickets.Data.Services
             if (dbMovie != null) // ilgili movie var mı / yok mu
             {
                 // varsa güncelle
-                dbMovie.Name= data.Name;
-                dbMovie.Description= data.Description;
+                dbMovie.Name = data.Name;
+                dbMovie.Description = data.Description;
                 dbMovie.Price = data.Price;
                 dbMovie.ImageURL = data.ImageURL;
                 dbMovie.StartDate = data.StartDate;
@@ -94,7 +93,7 @@ namespace eTickets.Data.Services
             // Önce ilgili movienin actorlerini silmek ardından yeni kayıtları eklemek
 
             // Varolan ilgili kayıtları silelim
-            var existingActors = _context.Actors_Movies.Where(m=> m.MovieId == data.Id).ToList();
+            var existingActors = _context.Actors_Movies.Where(m => m.MovieId == data.Id).ToList();
 
             _context.Actors_Movies.RemoveRange(existingActors);
 
@@ -116,10 +115,7 @@ namespace eTickets.Data.Services
             _context.SaveChanges();
 
             return dbMovie;
-          
-
         }
-
         // Dropdowns
         public NewMovieDropdownsVM GetNewMovieDropdownsValues()
         {
@@ -133,15 +129,5 @@ namespace eTickets.Data.Services
             return response;
         }
 
-        // ??
-        //public Movie AddNewMovie(Movie movie)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Movie UpdateMovie(Movie movie)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
