@@ -53,11 +53,11 @@ namespace eTickets.Controllers
 
         }
 
-        // (28)
+        // (26)
         // Get: Actors/Detail/1
         public async Task<IActionResult> Details(int id)
         {
-            var actorDetails= _service.GetActorAsync(id); // tekbir actoru getiriyor
+            var actorDetails= await _service.GetActorAsync(id); // tekbir actoru getiriyor
 
             if (actorDetails == null)
             {
@@ -65,6 +65,32 @@ namespace eTickets.Controllers
             }
 
             return View(actorDetails);
+        }
+
+        // (27)
+        // Get: Actors/Edit/1--- Ekrana getiren kısım
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var actorRecord = await _service.GetActorAsync(id); // tekbir actoru getiriyor
+
+            if (actorRecord == null)
+            {
+                return View("Empty"); // eğer ilgili kayıt gelmemişse gidilecek olan View
+            }
+
+            return View(actorRecord);
+        }
+        // (27)
+        [HttpPost] // Edit Viewdan gönderilen bilgiyi yakalamak
+        public async Task<IActionResult> Edit(int id, [Bind("Id","FullName","ProfilePictureURL,Bio")] Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            
+            _service.UpdateAsync(actor);
         }
     }
 }

@@ -142,6 +142,13 @@ Step03
 
 	+25. Create View ından Post işlemi gerçekleştiğinde ActorsController üzerindeki HttpPost Requestin altında bulunan Create metodu üzerinde bu işlemi kontrol edeceğiz. Bunun için herhangi bir şekilde model üzerinde bulunan propertieslerin boş gelmesi durumunda da işlem görebilmesi için Actor modeli üzerinde çeşitli bildirimlerin yapılması gerekmektedir. (Model Validation)
 
+	+26. Actors\Details.cshtml
+		ActorsControllerda gerekli düzenlemeler yapıldı
+
+	27. Actors\Edit.cshtml
+
+
+
 
 
 
