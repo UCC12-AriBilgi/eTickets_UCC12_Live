@@ -1,9 +1,9 @@
-﻿@model eTickets.Models.Actor
+﻿@* (24) *@
+@model eTickets.Models.Actor
 
 @{
     ViewData["Title"] = "Create a new Actor";
 }
-
 
 <div class="row text">
     <div class="col-md-8 offset-2">
@@ -55,7 +55,6 @@
             output.src = $("#ProfilePictureURL").val();
 
         })
-
 
         $("#ProfilePictureURL").on("change"), function () {
             var output = document.getElementById('ProfilePicturePreview');

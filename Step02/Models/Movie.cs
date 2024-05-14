@@ -23,7 +23,7 @@ namespace eTickets.Models
         public DateTime EndDate { get; set; } // Vizyondan kalkış tarihi
 
         // Film türü için
-        public MovieCategory movieCategory { get; set; }
+        public MovieCategory? movieCategory { get; set; }
 
         // Relations (One-to-Many)
         // Cinema

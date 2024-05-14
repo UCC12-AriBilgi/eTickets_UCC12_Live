@@ -1,4 +1,4 @@
-﻿06.05.2024 (1.Gün) - Step01
+﻿Step01 (2)
 
 	+1. Projenin yaratılması 
 		
@@ -37,8 +37,6 @@
 			. Movie.cs --> Relations
 
 	+8. AppDbContext classındaki ayarlamalar. Yaratılırken modellerin birbirine bağlanması, model yapılarının vt tarafındaki tablo karşılıklarının tanımlanması gibi işlemler.
--------------------------------------------------------------------------
-07.05.2024 (2.gün) - Step01
 
 	+9. appsettings.json (uygulamaya ait çeşitli konfigürasyon ayarlarının bulunduğu dosya) VT için gerekli ConnectionString bilgisinin ayarlanması (Server=BABEGT\\SQLEXPRESS;Initial Catalog=eTickets_UCC12;Integrated Security=True;TrustServerCertificate=True;)
 
@@ -59,7 +57,7 @@
 
 	+15. Program.cs altına bu veri yaratma kısmını ekleyelim ve uygulamayı çalıştıralım
 ------------------------------------------------------------------------
-08.05.2024 (3.Gün) - Step02
+Step02 (2)
 
 	Not : 
 		. Solution içersine Step02 isimli yeni bir proje yaratalım.
@@ -77,7 +75,7 @@
 		- CinemasController
 		- MoviesController
 
-	-17. Service yapısının entegre edilmesi için öncelikle Actor verileriyle işe başlayalım
+	+17. Service yapısının entegre edilmesi için öncelikle Actor verileriyle işe başlayalım
 		1. IActorsService.cs Interface'ini yaratalım. Ve burada GetActors, GetActor, Add, Update, Delete metot imzalarını yaratalım
 		
 		2. ActorsService.cs Service class'ını yaratalım ve Interfaceinden implement edelim.Ve GetActors kodunu yazalım.
@@ -92,11 +90,12 @@
 
 		7.Program.cs e gidelim. Service tanımlarını yapalım.
 
+	+18. Controller lara bağlı olarak Index Viewlarının oluşturulması.
+		. Actors\Index.cshtml
+		. Producers\Index.cshtml
+		. Cinemas\Index.cshtml
+		. Movies\Index.cshtml
 
-
-
-
-	+17. Controller lara bağlı olarak Index Viewlarının oluşturulması.
 		Not: 
 			. Amaç VT tarafında ilgili tablolarda bulunan verileri listeleme yapacağımız için öncelikle bu controller lar içine ilgili View a gittiğinde verileri gösterebilmesi için gerekli VT okumalarını yapalım ki View lar bunları gösterebilsin.
 
@@ -104,75 +103,24 @@
 
 			. Bundan sonrada _Layout.cshtml de linklerin verilmesi
 
-	+18. Gelen sayfanın daha güzel gözükmesi için _Layout.cshtml dosyasında gerekli bazı düzenlemelerin yapılması ..iconlar..vs
+	+19. Yaratılan Index Viewlar üzerinde bazı düzenlemeler
+		. Actors\Index.cshtml
+		. Producers\Index.cshtml
+		. Cinemas\Index.cshtml
+		. Movies\Index.cshtml	
 
-	+19. Uygulamanın ekrana ilk geldiği zaman direkt olarak Movies listesinin gelmesini sağlayalım..Layout üzerinde de gerekli değişikliği yapalım.
+	+20. Gelen sayfanın daha güzel gözükmesi için _Layout.cshtml dosyasında gerekli bazı düzenlemelerin yapılması ..iconlar..
 
-	+20. Gelen ana ekranı(Movies) daha da düzenlemek/güzelleştirmek amacıyla verileri bir Card görünümü şeklinde düzenleyebiliriz.
----------------------------------------------------------------------
-09.05.2024 (4.gün) - Step02
+	+21. Uygulamanın ekrana ilk geldiği zaman direkt olarak Movies listesinin gelmesini sağlayalım..Layout üzerinde de gerekli değişikliği yapalım.
 
-	+21. Üst header kısmında ekranın sağ tarafında yeralacak şekilde bazı düzenlemeler(searchbox,login,register)
+	+22. Gelen ana ekranı(Movies) daha da düzenlemek/güzelleştirmek amacıyla verileri bir Card görünümü şeklinde düzenleyebiliriz.
+
+	+23. Üst header kısmında ekranın sağ tarafında yeralacak şekilde bazı düzenlemeler(searchbox,login,register)
 		. login ve register işlemlerini biraz farklı olacak şekilde tasarımlayalım. Bunun için yine view gibi çalışan ama ismi PartialView olarak tanımlanan bir yapı ile tasarlayalım.
 		Views\Shared\_Identity.cshtml olarak bir partial view tanımlayalım
 
 		Bu viewın amacı kullanıcı giriş/kayıt gibi işlemler olacak. Bu yüzden daha sonra da kullanılacak "Yetkilendirme" işlemleriyle ilgili gerekli NuGet paketlerini yüklememiz gerekiyor (Microsoft.AspNetCore.Identity.EntityFrameworkCore)
 
 		Bazı hazırlıklar yaptık.İlerleyen stepler için
-
-	+22. Normalde veri alışverişlerinde genelde controller üzerinden yapıldığı durumlar var. Ama bazen bu tam efektif/uygun bir çözüm olmayabilir. Controller içindeki metotlar çok olabilir. Bu da performans kaybına neden olabilir. Bunun yerine bu tür işleri gerçekleştirek şekilde Servis yapısını kullanmak daha iyi bir çözüm olabilir. Çok ön planda olan yapıları biraz daha sistemin derinliklerine alıp "işi olan işini yapsın" mantığıyla hareket sağlamak.
-
-		Bizim elimizde Actor,Cinema,Movie,Producer var . Bunların verileriyle bu şekilde çalışabilmek için herbirine uygun servis yapılarının oluşturalım ve bunları da Interface yardımıyla yapalım.
-		(Data\Services, Data\Interfaces)
-
-	+23. Bu Interfacelerinde metot yapılarının ortak olduğu yerler için kod tekrarını önlemek için bir Taban(base) yapısı kurmak ideal bir çözümdür. Bunn için bu taban yapılarını yaratalım.
-		(Data\Base)
-		.IEntityBase.cs
-		.IEntityBaseRepository.cs
-		.EntityBaseRepository.cs
-		
-	+24. IEntityBase interface inin tüm ilgili modeller üzerine implementation u yapılır
-
-	+25. Interface lerin oluşturulması (Data\Interfaces)
-		. IActorsService
-		. ICinemaService
-		. IProducersService
-		. IMovieService
-
-
-		Not: ViewModel yapısı
-
-	+26. Service lerin oluşturulması (Data\Services)
-		. ActorsService
-		. CinemasService
-		. ProducersService
-		. MoviesService
-
-		Bunun yanında MoviesService üzerinde kullanağım View Modelleri de ekledik.
-
-	27. Tüm Controller 
-
-
-
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+------------------------------------------------------------------------
 

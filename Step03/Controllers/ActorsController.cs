@@ -27,20 +27,19 @@ namespace eTickets.Controllers
             return View(actorsData); // olusan değişgen içeriğini View'a postalar
         }
 
-        // (28)
+        // (24)
         // Get : Actors/Create
         public IActionResult Create()
         {
             return View(); // Create view a dallan
         }
 
-        // (28)
+        // (24)
         // Post : Actors/Create den gelen bilgileri yakalama
         [HttpPost]
         public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
         {
-            // ÜK..Model Valid gelmiyor...
-
+            // (25)
             if (!ModelState.IsValid)
             {
                 // Eğer benim Create formumdan gelen verilerde bir uyumsuzluk varsa hiçbir şey yapma.
