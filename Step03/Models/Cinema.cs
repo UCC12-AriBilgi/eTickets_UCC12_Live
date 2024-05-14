@@ -1,12 +1,11 @@
-﻿using eTickets.Data.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace eTickets.Models
 {
     // Cinema bilgilerini tutacak class
 
     // (29)
-    public class Cinema : IEntityBase
+    public class Cinema
     {
         [Key]
         public int Id { get; set; }

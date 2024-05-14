@@ -1,10 +1,9 @@
-﻿using eTickets.Data.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace eTickets.Models
 {
     // (29)
-    public class Producer : IEntityBase
+    public class Producer
     {
         [Key]
         public int Id { get; set; }

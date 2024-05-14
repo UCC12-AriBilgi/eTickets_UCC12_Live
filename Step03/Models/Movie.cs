@@ -1,12 +1,11 @@
-﻿using eTickets.Data.Base;
-using eTickets.Data.Enum;
+﻿using eTickets.Data.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eTickets.Models
 {
     // (29)
-    public class Movie : IEntityBase
+    public class Movie
     {
         [Key]
         public int Id { get; set; }

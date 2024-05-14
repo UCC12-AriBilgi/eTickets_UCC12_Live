@@ -1,22 +1,28 @@
-﻿using eTickets.Data.Base;
-using eTickets.Models;
+﻿using eTickets.Models;
 
 namespace eTickets.Data.Interfaces
 {
-    public interface IActorsService : IEntityBaseRepository<Actor>
+    public interface IActorsService
     {
-        // Interface : Şözleşme
+        // (18)
+        //IEnumerable<Actor> GetAll();
 
-        //Task<IEnumerable<Actor>> GetActorsAsync(); // Burası tüm Actor listesini getirecek
+        // (18.4)
+        //Task<IEnumerable<Actor>> GetAll();
+        // (23)
+        Task<IEnumerable<Actor>> GetAllAsync();
 
-        //Task<Actor> GetActorAsync(int id); // Kayıdı update etmek için kullanılacak
+        //Actor GetById(int id);
+        // (23)
+        Task<Actor> GetByIdAsync(int id);
 
-        //Task AddAsync(Actor actor); // Burası VT ye kayıt eklemek(Actor tablosuna) için
+        //void Add(Actor actor);
+        // (23)
+        Task AddAsync(Actor actor);
 
-        //Task<Actor> UpdateAsync(int id, Actor actor); // Burası VT deki ilgili id kaydını güncellemek için
+        Actor Update(int id, Actor actor);
 
-        //void DeleteAsync(int id); // Burası VTdeki tablodan kayıt silmek için
-        //void UpdateAsync(Actor actor);
-        ////Task UpdateAsync(Actor actor);
+        void Delete(int id);
+
     }
 }

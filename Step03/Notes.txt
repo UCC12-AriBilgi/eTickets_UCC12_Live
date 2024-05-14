@@ -1,4 +1,4 @@
-﻿Step01 (2d x 4h)
+﻿Step01 - Configurations/Models (2d x 4h)
 
 	+1. Projenin Yaratılması
 	
@@ -63,7 +63,7 @@
 	+15. Program.cs altına bu veri yaratma kısmını ekleyelim ve projeyi çalıştıralım.VT tarafında verilerin yaratıldığını görmeliyiz.
 
 ------------------------------------------------------------------------
-Step02 (2d x 4h)
+Step02 - Controllers/Views (2d x 4h)
 
 	Not : 
 		. Solution içersine Step02 isimli yeni bir proje yaratalım.
@@ -101,62 +101,50 @@ Step02 (2d x 4h)
 				Burada movie/Index gelirken bir hata verecektir. Bunu düzeltmek için Movie controller a gitmeli ve düzenlemeyi yapmalıyız (İlişkisellik olduğu için .Include kullanmalıyız)
 
 
-		17.6 - Uygulamanın giriş noktasının Program.cs altından Movies olarak ayarlanması
+		17.6 - Uygulamanın giriş noktasının Program.cs altından Movies olarak ayarlanması ve uygulamanın şu anki durumunun çalıştırılması.
 
 ------------------------------------------------------------------------
-Step03 (2d x 4h)
+Step03 - Verilerle Çalışmak (2d x 4h)
 		
-		Normalde veri alışverişlerinin genelde controller üzerinden yapıldığı durumlar vardır. Ama bazı durumlarda bu pek doğru bir yol olmayabilir. Bunun yerine bu tür işleri gerçekleştirecek olan Service yapılarının olması  daha doğru bir seçenektir. (Olayları geriye daha derin bölgelere almak). İlgili verilerle çalışmaya başlamadan önce gerekli herbir model için bir service interface'i yaratmak ile işe başlayabiliriz. Bunu ilgili controller a injecte ederek veri alışverişini gerçekleştirebiliriz.
+	Not : 
+		. Solution içersine Step03 isimli yeni bir proje yaratarak Step02 projesi içinde yapılanları Step03 projesi içersine kopyeleyelim (Controllers,Data,Migrations,Models,ProjectItems,Views,appsettings.json,Notes,Program.cs)
+		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
+		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
 
-		Hazırlık olması açısından Data\Interfaces  ve Data\Services dizinlerini yaratalım. Gerekli olacak Interface tanımları burada olacak(Data\Interfaces). Gerekli olacak Service tanımları da burada olacak (Data\Services)
+	Normalde veri alışverişlerinin genelde controller üzerinden yapıldığı durumlar vardır. Ama bazı durumlarda bu pek doğru bir yaklaşım olmayabilir(Özellikle birbirine çok benzer metot yapıları olduğunda ve VT haberleşmeleri açısından). Bunun yerine bunları birleştirecek şekilde Service türü yapılara yönelmek daha doğru bir seçenektir. (Olayları geriye daha derin bölgelere almak ve ortaklaştırmak amacıyla). 
+
+	İlgili verilerle çalışmaya başlamadan önce gerekli herbir model için bir service interface'i yaratmak ile işe başlayabiliriz. Bunu ilgili controller a injecte ederek veri alışverişini gerçekleştirebiliriz.
+
+	Hazırlık olması açısından Data\Interfaces (gerekli olacak Interface tanımları için) ve Data\Services (gerekli olacak Service tanımları için) dizinlerini yaratalım.
 
 
-	+17. Service yapısının entegre edilmesi için öncelikle Actor verileriyle işe başlayalım
-		1. IActorsService.cs Interface'ini yaratalım. Ve burada GetActors, GetActor, Add, Update, Delete metot imzalarını yaratalım
+	18. Bu işlem için öncelikle Actor verileriyle işe başlayalım.
+		1. IActorsService.cs Interface'ini yaratalım. Ve burada GetAll, GetById, Add, Update, Delete metot imzalarını yaratalım
 		
-		2. ActorsService.cs Service class'ını yaratalım ve Interfaceinden implement edelim.Ve GetActors kodunu yazalım.
+		2. ActorsService.cs Service class'ını yaratalım ve Interfaceinden implement edelim.Ve GetAll kodunu yazalım.
 
-		3.ActorsController'a geri dönerek IActorsService yapısını enjecte edelim.
+		3. ActorsController'a geri dönerek varolan AppDbContext injection yerine IActorsService yapısını enjecte edelim.
 
-		4.IActorsService yapısını Task şekline çevirelim. Bunu yaptıktan sonra da ActorsService deki ilgili yeri Task haline getirelim.(Implemente etmiş gibi olduk)
+		4.IActorsService yapısını Task(Paralel işlem) şekline çevirelim. Bunu yaptıktan sonra da ActorsService deki ilgili yeri Task haline getirelim.(Implemente etmiş gibi olduk)
 
-		5.ActorsController'da da benzer düzenlemeleri yapalım
+		5.Ardından ActorsController'da da benzer düzenlemeleri yapalım
 
 		6.Bunları yaptıktan sonra programı çalıştıralım. Service tanımlarının yapılmadığına ilişkin bir hata verecektir.(Dependency Injection)
 
 		7.Program.cs e gidelim. Service tanımlarını yapalım.
 
-	+18. Controller lara bağlı olarak Index Viewlarının oluşturulması.
-		. Actors\Index.cshtml
-		. Producers\Index.cshtml
-		. Cinemas\Index.cshtml
-		. Movies\Index.cshtml
+	19. Actor verileri için Create View yaratalım. Actors/Index e de bir create butonu koyalım
 
-		Not: 
-			. Amaç VT tarafında ilgili tablolarda bulunan verileri listeleme yapacağımız için öncelikle bu controller lar içine ilgili View a gittiğinde verileri gösterebilmesi için gerekli VT okumalarını yapalım ki View lar bunları gösterebilsin.
+	20. Data/Model Validation
+		ActorsController altında HttpPost request'i için Create ile aynı isimli bir metot yaratalım
+		İlgili olan Service altında da Add metodunu yazalım	ve test edelim.
 
-			. Viewlar oluşturulurken RazorVie/Template:List/Model:[ilgili model]/DbContext:[ilgili context]
+	21. ActorsController'da Actor verileri için Details View metodu yaratalım 
 
-			. Bundan sonrada _Layout.cshtml de linklerin verilmesi
+	22. View/Actors/Details.cshtml View yaratalım. Ardından ActorsService altında GetByIdAsync metodunu yazalım. Normal Add metodunu da AddAsync yapısına çevirelim.
 
-	+19. Yaratılan Index Viewlar üzerinde bazı düzenlemeler
-		. Actors\Index.cshtml
-		. Producers\Index.cshtml
-		. Cinemas\Index.cshtml
-		. Movies\Index.cshtml	
+	23. Ardından IActorsService altında da buna uygun değişiklikleri yapalım. ActorsController a geri dönerek bu yapılan değişiklikleri uygulayalım. Şimdiye kadarki yapılanları test edelim (Create..Details)
 
-	+20. Gelen sayfanın daha güzel gözükmesi için _Layout.cshtml dosyasında gerekli bazı düzenlemelerin yapılması ..iconlar..
 
-	+21. Uygulamanın ekrana ilk geldiği zaman direkt olarak Movies listesinin gelmesini sağlayalım..Layout üzerinde de gerekli değişikliği yapalım.
-
-	+22. Gelen ana ekranı(Movies) daha da düzenlemek/güzelleştirmek amacıyla verileri bir Card görünümü şeklinde düzenleyebiliriz.
-
-	+23. Üst header kısmında ekranın sağ tarafında yeralacak şekilde bazı düzenlemeler(searchbox,login,register)
-		. login ve register işlemlerini biraz farklı olacak şekilde tasarımlayalım. Bunun için yine view gibi çalışan ama ismi PartialView olarak tanımlanan bir yapı ile tasarlayalım.
-		Views\Shared\_Identity.cshtml olarak bir partial view tanımlayalım
-
-		Bu viewın amacı kullanıcı giriş/kayıt gibi işlemler olacak. Bu yüzden daha sonra da kullanılacak "Yetkilendirme" işlemleriyle ilgili gerekli NuGet paketlerini yüklememiz gerekiyor (Microsoft.AspNetCore.Identity.EntityFrameworkCore)
-
-		Bazı hazırlıklar yaptık.İlerleyen stepler için
 ------------------------------------------------------------------------
 

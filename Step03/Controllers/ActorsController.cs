@@ -2,95 +2,93 @@
 using eTickets.Data.Interfaces;
 using eTickets.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
 {
+
     public class ActorsController : Controller
     {
-        //private readonly AppDbContext _context; service tarafında olacağı için
+        // (16)
+        //private readonly AppDbContext _context;
+        // (18.3)
         private readonly IActorsService _service;
 
-        //constructor - ctor code snippet
+        // (16)
+        //public ActorsController(AppDbContext context)
+        //{
+        //    _context = context;    
+        //}
+
+        // (18.3)
         public ActorsController(IActorsService service)
         {
-            //_context = context; // AppDbContext i içeri almış oluyorum.
-            _service= service;
+            _service = service;
         }
 
+        // (16)
+        //public IActionResult Index()
+        //{
+        //  var actorsData= _context.Actors.ToList();
+        //
+        //  return View(actorsData);
+        //}
 
+        // (18.3)
+        //public IActionResult Index()
+        //{
+        //    var actorsData = _service.GetAll();
+
+        //    return View(actorsData);
+        //}
+
+
+
+        // (18.5)
         public async Task<IActionResult> Index()
         {
-            // Listelemeyi yapacak View...Veriler direkt controller üzerinden değil service üzerinden alınıyor.
+            //var actorsData = await _service.GetAll();
+            // (23)
+            var actorsData = await _service.GetAllAsync();
 
-            var actorsData= _service.GetAll(); // VT deki Actors tablosundaki verileri al..Bir liste yapısı olarak actorsData değişgenine yerleştir.
-
-            return View(actorsData); // olusan değişgen içeriğini View'a postalar
+            return View(actorsData);
         }
 
-        // (24)
-        // Get : Actors/Create
+        // (19)
+        //Get: Actors/Create
         public IActionResult Create()
         {
-            return View(); // Create view a dallan
+            return View();
         }
 
-        // (24)
-        // Post : Actors/Create den gelen bilgileri yakalama
-        [HttpPost] // Request
+        // (20)
+        //Post: Actors/Create
+        [HttpPost]
         public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
         {
-            // (25)
             if (!ModelState.IsValid)
             {
-                // Eğer benim Create formumdan gelen verilerde bir uyumsuzluk varsa hiçbir şey yapma.
-                // 
                 return View(actor);
             }
 
-            _service.AddAsync(actor);
+            //_service.Add(actor);
+            // (23)
+            await _service.AddAsync(actor);
 
-            return RedirectToAction(nameof(Index)); // Index sayfasına tekrardan yönlendirme yapılıyor.
-
+            return RedirectToAction(nameof(Index));
         }
 
-        // (26)
-        // Get: Actors/Detail/1
+        //Get: Actors/Details/1
+        // (21)
         public async Task<IActionResult> Details(int id)
         {
-            var actorDetails= await _service.GetActorAsync(id); // tekbir actoru getiriyor
+            //var actorDetails = _service.GetById(id);
+            // (23)
+            var actorDetails = await _service.GetByIdAsync(id);
 
-            if (actorDetails == null)
-            {
-                return View("Empty"); // eğer ilgili kayıt gelmemişse gidilecek olan View
-            }
+            if (actorDetails == null) { return View("NotFound"); }
 
             return View(actorDetails);
-        }
-
-        // (27)
-        // Get: Actors/Edit/1--- Ekrana getiren kısım
-        [HttpGet]
-        public async Task<IActionResult> Edit(int id)
-        {
-            var actorRecord = await _service.GetActorAsync(id); // tekbir actoru getiriyor
-
-            if (actorRecord == null)
-            {
-                return View("Empty"); // eğer ilgili kayıt gelmemişse gidilecek olan View
-            }
-
-            return View(actorRecord);
-        }
-        // (27)
-        [HttpPost] // Edit Viewdan gönderilen bilgiyi yakalamak
-        public IActionResult Edit(int id, [Bind("Id","FullName","ProfilePictureURL,Bio")] Actor actor)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(actor);
-            }
-            
-            _service.UpdateAsync(actor);
         }
     }
 }

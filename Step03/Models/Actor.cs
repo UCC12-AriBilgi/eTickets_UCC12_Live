@@ -1,12 +1,11 @@
-﻿using eTickets.Data.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace eTickets.Models
 {
     // Actor bilgilerinin tutulacağı model(class)
 
     // (29)
-    public class Actor : IEntityBase
+    public class Actor
     {
         [Key]
         public int Id { get; set; }
