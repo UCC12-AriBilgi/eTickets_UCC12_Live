@@ -1,6 +1,7 @@
 ﻿using eTickets.Data.Interfaces;
 using eTickets.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace eTickets.Data.Services
 {
@@ -55,14 +56,18 @@ namespace eTickets.Data.Services
             await _context.SaveChangesAsync();
         }
 
-        public Actor Update(int id, Actor actor)
+        public async Task UpdateAsync(int id, Actor actor)
         {
-            throw new NotImplementedException();
+            _context.Update(actor);
+
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id,Actor actor)
         {
-            throw new NotImplementedException();
+            _context.Remove(actor);
+
+            _context.SaveChanges();
         }
 
     }

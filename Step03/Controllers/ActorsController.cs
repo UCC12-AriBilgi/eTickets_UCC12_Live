@@ -92,7 +92,7 @@ namespace eTickets.Controllers
             return View(actorDetails);
         }
 
-        //Get: Actors/Edit/1
+        // Get: Actors/Edit/1
         // (24)
         public async Task<IActionResult> Edit(int id)
         {
@@ -101,6 +101,47 @@ namespace eTickets.Controllers
             if (actorDetails == null) return View("NotFound");
 
             return View(actorDetails);
+        }
+
+        // Post
+        // (25)
+        [HttpPost] // View tarafından gönderilecek verileri yakamak için
+        public IActionResult Edit(int id, [Bind("Id,FullName,ProfilePictureURL,Bio")] Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+
+            _service.UpdateAsync(id, actor); // Servisde çalışacak kısım
+
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        // Get : Actors\Delete\1
+        // (26)
+        public async Task<IActionResult> Delete(int id) 
+        {
+            var actorDetails = await _service.GetByIdAsync(id); // var mı/yok mu
+
+            if (actorDetails == null) return View("NotFound");
+
+            return View(actorDetails);
+        }
+
+        // Post
+        [HttpPost,ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var actorDetails = _service.GetByIdAsync(id);
+
+            if (actorDetails == null) return View("NotFound");
+
+            _service.Delete(id,actorDetails);
+
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }
