@@ -1,4 +1,4 @@
-﻿Step01 (2dx4h)
+﻿Step01 - Configurations/Models (2d x 4h)
 
 	-1. Projenin Yaratılması
 	

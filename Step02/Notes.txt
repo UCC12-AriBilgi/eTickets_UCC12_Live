@@ -63,7 +63,7 @@
 	+15. Program.cs altına bu veri yaratma kısmını ekleyelim ve projeyi çalıştıralım.VT tarafında verilerin yaratıldığını görmeliyiz.
 
 ------------------------------------------------------------------------
-Step02 (2d x 4h)
+Step02 - Controllers/Views (2d x 4h)
 
 	Not : 
 		. Solution içersine Step02 isimli yeni bir proje yaratalım.
@@ -103,7 +103,7 @@ Step02 (2d x 4h)
 
 		17.6 - Uygulamanın giriş noktasının Program.cs altından Movies olarak ayarlanması
 
-		*************************************************************************
+		************************************************************************* kalkacak.
 		Normalde veri alışverişlerinin genelde controller üzerinden yapıldığı durumlar vardır. Ama bazı durumlarda bu pek doğru bir yol olmayabilir. Bunun yerine bu tür işleri gerçekleştirecek olan Service yapılarının olması  daha doğru bir seçenektir. (Olayları geriye daha derin bölgelere almak). İlgili verilerle çalışmaya başlamadan önce gerekli herbir model için bir service interface'i yaratmak ile işe başlayabiliriz. Bunu ilgili controller a injecte ederek veri alışverişini gerçekleştirebiliriz.
 
 		Hazırlık olması açısından Data\Interfaces  ve Data\Services dizinlerini yaratalım. Gerekli olacak Interface tanımları burada olacak(Data\Interfaces). Gerekli olacak Service tanımları da burada olacak (Data\Services)

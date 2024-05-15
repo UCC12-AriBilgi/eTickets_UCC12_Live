@@ -1,5 +1,5 @@
 ﻿using eTickets.Models;
-using eTickets.Data.Enum;
+using eTickets.Data.Enums;
 
 namespace eTickets.Data
 {
@@ -177,7 +177,7 @@ namespace eTickets.Data
                             EndDate=DateTime.Now.AddDays(20), // Bulunduğumuz günden 20 gün sonrası
                             CinemaId=3,
                             ProducerId=3,
-                            movieCategory=MovieCategory.Action
+                            MovieCategory=MovieCategory.Action
 
                         },
                         // 2.Kayıt
@@ -191,7 +191,7 @@ namespace eTickets.Data
                             EndDate=DateTime.Now.AddDays(3),
                             CinemaId=1,
                             ProducerId=1,
-                            movieCategory=MovieCategory.Drama
+                            MovieCategory=MovieCategory.Drama
                         },
                         // 3.Kayıt
                         new Movie()
@@ -204,7 +204,7 @@ namespace eTickets.Data
                             EndDate=DateTime.Now.AddDays(7),
                             CinemaId=4,
                             ProducerId=4,
-                            movieCategory=MovieCategory.Drama
+                            MovieCategory=MovieCategory.Drama
 
                         },
                         // 4.Kayıt
@@ -218,7 +218,7 @@ namespace eTickets.Data
                             EndDate=DateTime.Now.AddDays(-5), // Bulunduğumuz günden 20 gün sonrası
                             CinemaId=1,
                             ProducerId=2,
-                            movieCategory=MovieCategory.Action
+                            MovieCategory=MovieCategory.Action
 
                         },
                         // 5.Kayıt
@@ -232,7 +232,7 @@ namespace eTickets.Data
                             EndDate=DateTime.Now.AddDays(20), // Bulunduğumuz günden 20 gün sonrası
                             CinemaId=1,
                             ProducerId=3,
-                            movieCategory=MovieCategory.Horror
+                            MovieCategory=MovieCategory.Horror
 
                         },
                         // 6.Kayıt
@@ -246,7 +246,7 @@ namespace eTickets.Data
                             EndDate=DateTime.Now.AddDays(-2), // Bulunduğumuz günden 20 gün sonrası
                             CinemaId=1,
                             ProducerId=3,
-                            movieCategory=MovieCategory.Cartoon
+                            MovieCategory=MovieCategory.Cartoon
 
                         }
 

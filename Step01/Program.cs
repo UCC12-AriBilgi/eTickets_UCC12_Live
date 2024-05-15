@@ -11,7 +11,7 @@ builder.Services.AddControllersWithViews();
 //builder.Services.AddDbContext<AppDbContext>();
 
 // (Step01.10)
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));  // Connection bilgileri appsettings.json dosyasından okunuyor
 
 
 
@@ -41,7 +41,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
-// VT içine fake/dummy veri yaratma kısmı
+// VT içine örnek/fake/dummy veri yaratma kısmı
 
 AppDbInitializer.Seed(app);
 

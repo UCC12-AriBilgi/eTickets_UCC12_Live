@@ -15,7 +15,7 @@
 		. Producer
 		. Cinema
 		. Movie
-			Bu class da movienin hangi category de olduğunu belirtecek bir alanımız var.Bunu ayrı bir class altında "enum" yapısı olarak tutalım. Bunun için ayrı bir Data isimli klasör yaratalım.
+			Bu class da movienin hangi category de olduğunu belirtecek bir alanımız var.Bunu ayrı bir class altında "Enum(Sabitler)" yapısı olarak tutalım. Bunun için ayrı bir Data\Enums isimli klasör yaratalım.(ayrı bir yerde dursun)
 
 	+5. DbContext yapısının eklenmesi (Db ile Modellerim arasındaki translator/tercüman) 
 		. \Data\AppDbContext.cs classının eklenmesi (İçeriği ilerleyen bölümlerde tamamlayacağız.)
