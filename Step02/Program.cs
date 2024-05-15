@@ -48,7 +48,7 @@ app.MapControllerRoute(
 
 // VT içine fake/dummy veri yaratma kısmı
 
-AppDbInitializer.Seed(app);
+AppDbInitializer.FakeVeriYarat(app);
 
 
 app.Run(); // Uygulama başlar...

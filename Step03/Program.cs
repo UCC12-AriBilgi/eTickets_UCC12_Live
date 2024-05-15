@@ -18,10 +18,11 @@ namespace Step02
             //(6)
             //builder.Services.AddDbContext<AppDbContext>();
             // (10)
-            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Conn")));
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
             // (18.6)
             // Services configuration
+            // Servisleri register etmek gerekiyor. Burada bu işlem yapılıyor.
             builder.Services.AddScoped<IActorsService, ActorsService>();
 
 

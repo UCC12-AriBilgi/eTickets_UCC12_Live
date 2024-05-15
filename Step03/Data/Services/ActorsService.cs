@@ -6,7 +6,7 @@ namespace eTickets.Data.Services
 {
     public class ActorsService : IActorsService
     {
-
+        // Bu servis yapısı içersine VT ile uğraşma kısımlarını aldım.
         private readonly AppDbContext _context;
 
         public ActorsService(AppDbContext context)
@@ -15,9 +15,10 @@ namespace eTickets.Data.Services
         }
 
         //(18.2)
+        // VT tarafından Actors tablosundaki tüm kayıtları getirecek
         //public IEnumerable<Actor> GetAll()
         //{
-        //    var result= _context.Actors.ToList();
+        //    var result = _context.Actors.ToList();
 
         //    return result;
         //}
@@ -32,11 +33,11 @@ namespace eTickets.Data.Services
 
         // (22)
         public async Task<IEnumerable<Actor>> GetAllAsync()
-        {
-            var result = await _context.Actors.ToListAsync();
+            {
+                var result = await _context.Actors.ToListAsync();
 
-            return result;
-        }
+                return result;
+            }
 
         //(22)
         public async Task<Actor> GetByIdAsync(int id)

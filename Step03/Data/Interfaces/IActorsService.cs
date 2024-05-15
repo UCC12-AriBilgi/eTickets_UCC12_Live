@@ -2,6 +2,8 @@
 
 namespace eTickets.Data.Interfaces
 {
+    // Burası bir sözleşme metni/yönerge gibi düşünülürse...Yapacağın servis içeriğinde bunlar olacaktır tanımlarını yaptığımız yer. Herhangi bir kod parçası yok. Kodlar esas Service modüllerinde olacak.
+
     public interface IActorsService
     {
         // (18)
@@ -10,7 +12,7 @@ namespace eTickets.Data.Interfaces
         // (18.4)
         //Task<IEnumerable<Actor>> GetAll();
         // (23)
-        Task<IEnumerable<Actor>> GetAllAsync();
+        Task <IEnumerable<Actor>> GetAllAsync();
 
         //Actor GetById(int id);
         // (23)

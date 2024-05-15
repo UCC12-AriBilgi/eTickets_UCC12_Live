@@ -11,7 +11,8 @@ namespace eTickets.Controllers
     {
         // (16)
         //private readonly AppDbContext _context;
-        // (18.3)
+        // (18.3) Önceki VT ile ilişkili olan kısmı kaldırıp...artık Servisimle VT tarafına eriş diyorum.
+
         private readonly IActorsService _service;
 
         // (16)
@@ -87,6 +88,17 @@ namespace eTickets.Controllers
             var actorDetails = await _service.GetByIdAsync(id);
 
             if (actorDetails == null) { return View("NotFound"); }
+
+            return View(actorDetails);
+        }
+
+        //Get: Actors/Edit/1
+        // (24)
+        public async Task<IActionResult> Edit(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id); // var mı/yok mu
+
+            if (actorDetails == null) return View("NotFound");
 
             return View(actorDetails);
         }

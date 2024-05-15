@@ -111,7 +111,7 @@ Step03 - Verilerle Çalışmak (2d x 4h)
 		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
 		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
 
-	Normalde veri alışverişlerinin genelde controller üzerinden yapıldığı durumlar vardır. Ama bazı durumlarda bu pek doğru bir yaklaşım olmayabilir(Özellikle birbirine çok benzer metot yapıları olduğunda ve VT haberleşmeleri açısından). Bunun yerine bunları birleştirecek şekilde Service türü yapılara yönelmek daha doğru bir seçenektir. (Olayları geriye daha derin bölgelere almak ve ortaklaştırmak amacıyla). 
+	Normalde veri alışverişlerinin genelde controller üzerinden yapıldığı durumlar vardır. Ama bazı durumlarda bu pek doğru bir yaklaşım olmayabilir(Özellikle birbirine çok benzer metot yapıları olduğunda ve VT haberleşmeleri açısından). Bunun yerine bunları ortak bir şekilde birleştirecek şekilde Service türü yapılara yönelmek daha doğru bir seçenektir. (Olayları geriye daha derin bölgelere almak ve ortaklaştırmak amacıyla). 
 
 	İlgili verilerle çalışmaya başlamadan önce gerekli herbir model için bir service interface'i yaratmak ile işe başlayabiliriz. Bunu ilgili controller a injecte ederek veri alışverişini gerçekleştirebiliriz.
 
@@ -119,6 +119,7 @@ Step03 - Verilerle Çalışmak (2d x 4h)
 
 
 	18. Bu işlem için öncelikle Actor verileriyle işe başlayalım.
+		
 		1. IActorsService.cs Interface'ini yaratalım. Ve burada GetAll, GetById, Add, Update, Delete metot imzalarını yaratalım
 		
 		2. ActorsService.cs Service class'ını yaratalım ve Interfaceinden implement edelim.Ve GetAll kodunu yazalım.
@@ -129,7 +130,7 @@ Step03 - Verilerle Çalışmak (2d x 4h)
 
 		5.Ardından ActorsController'da da benzer düzenlemeleri yapalım
 
-		6.Bunları yaptıktan sonra programı çalıştıralım. Service tanımlarının yapılmadığına ilişkin bir hata verecektir.(Dependency Injection)
+		6.Bunları yaptıktan sonra programı çalıştıralım. Service tanımlarının yapılmadığına ilişkin bir hata verecektir(Register edilmediğine ilişkin).(Dependency Injection)
 
 		7.Program.cs e gidelim. Service tanımlarını yapalım.
 
@@ -145,6 +146,9 @@ Step03 - Verilerle Çalışmak (2d x 4h)
 
 	23. Ardından IActorsService altında da buna uygun değişiklikleri yapalım. ActorsController a geri dönerek bu yapılan değişiklikleri uygulayalım. Şimdiye kadarki yapılanları test edelim (Create..Details)
 
+	24. View/Actors/Edit.cshtml view oluşturalım. Test edelim. Bootstrapsal değişiklikleri yapalım.
 
-------------------------------------------------------------------------
+
+
+
 

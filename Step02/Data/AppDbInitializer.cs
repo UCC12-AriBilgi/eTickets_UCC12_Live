@@ -3,11 +3,12 @@ using eTickets.Data.Enums;
 
 namespace eTickets.Data
 {
-    // Burası fake/dummy data üretecek
+    // Burası fake/dummy data üretecek olan kısım.
+    // Metodumun ismine de Seed 
 
     public class AppDbInitializer
     {
-        public static void Seed(IApplicationBuilder applicationBuilder)
+        public static void FakeVeriYarat(IApplicationBuilder applicationBuilder)
         {
             using(var serviceScope= applicationBuilder.ApplicationServices.CreateScope()) // Kapsam belirliyor
             {
