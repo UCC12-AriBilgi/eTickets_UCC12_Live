@@ -63,11 +63,17 @@ namespace eTickets.Data.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id,Actor actor)
+        public async Task DeleteAsync(int id)
         {
-            _context.Remove(actor);
+            var result = await _context.Actors.FirstOrDefaultAsync(a=> a.Id==id);
 
-            _context.SaveChanges();
+            _context.Actors.Remove(result);
+
+            await _context.SaveChangesAsync();
+
+
+
+
         }
 
     }

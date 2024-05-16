@@ -24,7 +24,7 @@ namespace eTickets.Data.Interfaces
 
         Task UpdateAsync(int id, Actor actor);
 
-        void Delete(int id);
+        Task DeleteAsync(int id);
 
     }
 }

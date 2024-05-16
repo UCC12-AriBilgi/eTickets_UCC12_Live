@@ -104,8 +104,8 @@ namespace eTickets.Controllers
         }
 
         // Post
-        // (25)
-        [HttpPost] // View tarafından gönderilecek verileri yakamak için
+        // (25) Update kısmı
+        [HttpPost] // View tarafından gönderilecek verileri yakalamak için
         public IActionResult Edit(int id, [Bind("Id,FullName,ProfilePictureURL,Bio")] Actor actor)
         {
             if (!ModelState.IsValid)
@@ -119,7 +119,7 @@ namespace eTickets.Controllers
 
         }
 
-        // Get : Actors\Delete\1
+        // Get : Actors/Delete/1
         // (26)
         public async Task<IActionResult> Delete(int id) 
         {
@@ -132,13 +132,13 @@ namespace eTickets.Controllers
 
         // Post
         [HttpPost,ActionName("Delete")]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var actorDetails = _service.GetByIdAsync(id);
 
             if (actorDetails == null) return View("NotFound");
 
-            _service.Delete(id,actorDetails);
+            await _service.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
 

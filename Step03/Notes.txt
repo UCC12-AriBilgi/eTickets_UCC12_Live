@@ -150,7 +150,9 @@ Step03 - Verilerle Çalışmak (2d x 4h)
 
 	25. ActorsController üzerine View ekranından gelecek olan bilgileri alıp VT tarafına gönderecek metodu yazalım. Ardından ilgili Service altındaki şu an henüz olmayan Update metodunu tamamlayalım. Test
 
-	26. View/Actors/Edit.cshtml view oluşturalım. 
+	26. ActorsController üzerinde Delete(Get) metodunu yazalım. 
+
+	27. 
 
 
 
