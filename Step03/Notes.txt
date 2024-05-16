@@ -152,7 +152,14 @@ Step03 - Verilerle Çalışmak (2d x 4h)
 
 	26. ActorsController üzerinde Delete(Get) metodunu yazalım. 
 
-	27. 
+	27. View/Actors/Delete.cshtml view oluşturalım. Test edelim. Bootstrapsal değişiklikleri yapalım.
+
+	28. ActorsController üzerinde Delete(Post) metodunu yazalım.
+
+	29. IActorsService ve ActorsService tarafında da Delete işlemi ile ilgili kodları yazalım...Test
+
+	30. NotFound bilgilendirme View ının hazırlanması
+
 
 
 
