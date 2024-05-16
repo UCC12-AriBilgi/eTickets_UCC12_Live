@@ -5,6 +5,8 @@ namespace eTickets.Data.Interfaces
 {
     // Burası bir sözleşme metni/yönerge gibi düşünülürse...Yapacağın servis içeriğinde bunlar olacaktır tanımlarını yaptığımız yer. Herhangi bir kod parçası yok. Kodlar esas Service modüllerinde olacak.
 
+    // (36)
+
     public interface IActorsService : IEntityBaseRepository<Actor>
     {
 

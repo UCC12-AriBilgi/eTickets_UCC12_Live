@@ -181,4 +181,25 @@ Step04 - Base Repository yapısını yerleştirmek (2d x 4h)
 
 	34. Taşıma işleminden son halen varolan IActorService üzerinde bu yeni yaptığımız yapıyı kullanabilmesi için gerekli değişikliği yapalım. Aynı zamanda Actor modeli üzerinde de IEntityBase interfaceini kullanacak şekilde değişikliği yapalım. Aynı zamanda diğer modeller üzerinde de yapalım.
 
-	35. Actors servisi içersinde var olan CRUD fonksiyonlarını yine Generic yapıda kullanabilmemiz için ortak bir yer tanımlayalım . Data\Base altında EntityBaseRepository.cs classını yaratalım.
+	35. Actors servisi içersinde var olan CRUD fonksiyonlarını yine Generic yapıda kullanabilmemiz için ortak bir yer tanımlayalım . Data\Base altında EntityBaseRepository.cs classını yaratalım. Ve bu class ı IEntityBaseRepository interface inden implement edelim.
+
+	36.IActorsService içindekileri IEntityBaseRepository altında yeni yapıya göre kodlayacağız. Dolayısı ile artık kendini IEntityBaseRepository den miras almış olacak.
+
+	37. ActorsServis classımız da artık IActorsService ile birlikte EntityBaseRepository classından miras alacak. Ve dolayısı ile buradaki kodları da kaldıracağız.(Çünkü bunlar EntityBaseRepository de artık)
+
+	38. EntityBaseRepository.cs altında CRUD kodları yeni yapıya göre tamalayalım.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	36. 
