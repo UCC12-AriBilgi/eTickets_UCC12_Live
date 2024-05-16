@@ -187,8 +187,14 @@ Step04 - Base Repository yapısını yerleştirmek (2d x 4h)
 
 	37. ActorsServis classımız da artık IActorsService ile birlikte EntityBaseRepository classından miras alacak. Ve dolayısı ile buradaki kodları da kaldıracağız.(Çünkü bunlar EntityBaseRepository de artık)
 
-	38. EntityBaseRepository.cs altında CRUD kodları yeni yapıya göre tamalayalım.
+	38. EntityBaseRepository.cs altında CRUD kodları yeni yapıya göre tamamlayalım.
 
+	39. Şimdi diğer modeller(Cinema,Producer,Movie) için Interface ve Servislerini yeni yapıya göre oluşturalım.(İlgili dizinlerin altında)
+		. ICinemaService, CinemaService
+		. IProducerService, ProducerService
+		. IMovieService, MovieService
+
+		Movie modelinin yapısı biraz farklı (relation acısından). O yüzden IMovieService üzerinde bu yapıya uygun metot imzalarını tutalım. Varolan Movie modelinden biraz farklı olarak tutmak için NewMovieVM.cs (ViewModel) modelini yaratalım(\ViewModels) ve Model örneğini Movie modelinden kopyayalayalım.
 
 
 
