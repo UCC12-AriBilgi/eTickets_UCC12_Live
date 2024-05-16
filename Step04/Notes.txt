@@ -171,7 +171,12 @@ Step04 - Base Repository yapısını yerleştirmek (2d x 4h)
 
 		Şu ana kadar bir ön çalışma olması açısından Actor yapıları üzerinde çalıştık. (List/Add/Update/Delete ) Bunları yaparken de arka planda Service ve Interface yapılarını kullandık. Bundan sonraki kısımlar için (Cinema,Producer,Movie) yine benzer olaylar için de yapacağız. Yapılacak olanlar içinde yine metot ve tanımları yapacağız. Fakat bu olay karşımıza biraz(cık) kod fazlalığı, hep tekrar eden aynı şeyler olacaktır (kod kirliliği) Bu yüzdendir ki kullanılan bu yapıları daha da ortaklaştırmak, tekrarları önlemek veya en aza indirmek amacıyla bazı düzenlemeler yapmamız yerinde olacaktır. (Generic duruma getirmek)
 
+		Bunun için bir BaseRepository Interface'i ve ana fonksiyonlar için Base implatation yaratalım. Önce ayrı bir dizin açalım (Data\Base)
 
+	31. Modellerimize bakıldığında hepsinde ortak bir alan var aslında (Id). Bunun için Base kısmına bir interface tanımlayalım (IEntityBase.cs)
 
+	32. Yine Base kısmında IEntityBaseRepository.cs isminde bir Interface daha yaratalım. (Bunun içersinde Generic yapıları kuracağımız metotlar olacak)
 
+	33. Şu ana kadar zaten Actor üzerinde bunları yazmıştık. Oradan(IActorsService) alıp IEntityBaseRepository içine taşıyalım.
 
+	34. Taşıma işleminden son halen varolan IActorService üzerinde bu yeni yaptığımız yapıyı kullanabilmesi için gerekli değişikliği yapalım. Aynı zamanda Actor modeli üzerinde de IEntityBase interfaceini kullanacak şekilde değişikliği yapalım. Aynı zamanda diğer modeller üzerinde de yapalım.
