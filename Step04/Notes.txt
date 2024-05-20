@@ -161,7 +161,7 @@ Step03 - Verilerle Çalışmak (2d x 4h)
 	30. NotFound bilgilendirme View ının hazırlanması
 
 ------------------------------------------------------------------------
-Step04 - Base Repository yapısını yerleştirmek (2d x 4h)	
+Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)	
 	
 	Not : 
 		. Solution içersine Step04 isimli yeni bir proje yaratalım.

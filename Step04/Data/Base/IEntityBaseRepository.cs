@@ -2,7 +2,7 @@
 
 namespace eTickets.Data.Base
 {
-    // Burada ortak olacak tüm metotlar Generic yapısın bulunacaklar.
+    // Burada ortak olacak tüm metotlar Generic yapısında bulunacaklar.
 
     public interface IEntityBaseRepository<T> where T : class, IEntityBase, new() 
     {
