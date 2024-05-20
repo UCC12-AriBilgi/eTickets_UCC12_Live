@@ -8,6 +8,7 @@ namespace eTickets.Controllers
     {
         //private readonly AppDbContext _context;
         private readonly IProducersService _service;
+        
         //constructor - ctor code snippet
         public ProducersController(IProducersService service)
         {
@@ -22,5 +23,22 @@ namespace eTickets.Controllers
 
             return View(producersData); // olusan değişgen içeriğini View'a postalar
         }
+
+        // 40 
+        //Get: Actors/Details/1
+        // (21)
+        public async Task<IActionResult> Details(int id)
+        {
+            //var actorDetails = _service.GetById(id);
+            // (23)
+            var producerDetails = await _service.GetByIdAsync(id);
+
+            if (producerDetails == null) { return View("NotFound"); }
+
+            return View(producerDetails);
+        }
+
+
+
     }
 }
