@@ -198,7 +198,10 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 
 
 	40. Şimdi bu yapıyı sırasıyla Producer,Cinema,Movie bölümlerine uygulayalım
-		
+		?? Validations
+
+
+
 		Producer için
 			. Details (Controller method, View yaratılacak)
 			. Create

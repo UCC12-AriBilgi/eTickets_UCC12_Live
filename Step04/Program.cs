@@ -25,7 +25,7 @@ namespace Step02
             // Servisleri register etmek gerekiyor. Burada bu işlem yapılıyor.
             builder.Services.AddScoped<IActorsService, ActorsService>();
             builder.Services.AddScoped<IProducersService, ProducerService>();
-
+            builder.Services.AddScoped<ICinemasService, CinemasSevice>();
 
             builder.Services.AddControllersWithViews();
 
