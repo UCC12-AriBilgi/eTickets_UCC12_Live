@@ -1,5 +1,6 @@
 ﻿using eTickets.Data;
 using eTickets.Data.Interfaces;
+using eTickets.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eTickets.Controllers
@@ -25,7 +26,7 @@ namespace eTickets.Controllers
         }
 
         // 40 
-        //Get: Actors/Details/1
+        //Get: Producer/Details/1
         // (21)
         public async Task<IActionResult> Details(int id)
         {
@@ -36,6 +37,82 @@ namespace eTickets.Controllers
             if (producerDetails == null) { return View("NotFound"); }
 
             return View(producerDetails);
+        }
+
+        // (19)
+        //Get: Producera/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // (20)
+        //Post: Producers/Create (Save kısmı)
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Producer producer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(producer);
+            }
+
+            //_service.Add(actor);
+            // (23)
+            await _service.AddAsync(producer);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // Get: Actors/Edit/1
+        // (24)
+        public async Task<IActionResult> Edit(int id)
+        {
+            var producerDetails = await _service.GetByIdAsync(id); // var mı/yok mu
+
+            if (producerDetails == null) return View("NotFound");
+
+            return View(producerDetails);
+        }
+
+        // Post
+        // (25) Update kısmı
+        [HttpPost] // View tarafından gönderilecek verileri yakalamak için
+        public IActionResult Edit(int id, [Bind("Id,FullName,ProfilePictureURL,Bio")] Producer producer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(producer);
+            }
+
+            _service.UpdateAsync(id, producer); // Servisde çalışacak kısım
+
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        // Get : Actors/Delete/1
+        // (26)
+        public async Task<IActionResult> Delete(int id)
+        {
+            var producerDetails = await _service.GetByIdAsync(id); // var mı/yok mu
+
+            if (producerDetails == null) return View("NotFound");
+
+            return View(producerDetails);
+        }
+
+        // Post
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var producerDetails = _service.GetByIdAsync(id);
+
+            if (producerDetails == null) return View("NotFound");
+
+            await _service.DeleteAsync(id);
+
+            return RedirectToAction(nameof(Index));
+
         }
 
 
