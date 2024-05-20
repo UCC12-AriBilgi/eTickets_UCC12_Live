@@ -41,14 +41,17 @@ namespace eTickets.ViewModels
         public MovieCategory movieCategory { get; set; }
 
         // Relations (One-to-Many)
+        // Burası çoktan seçmeli dropdownlist olarak gelecek
         [Display(Name = "Select Actor(s)")]
         [Required(ErrorMessage = "Film aktorleri gerekli bilgidir...")]
         public List<int> ActorIds { get; set; }
 
+        // Burası çoktan seçmeli dropdownlist olarak gelecek
         [Display(Name = "Select Cinema")]
         [Required(ErrorMessage = "Cinema bilgisi gerekli bilgidir...")]
         public int CinemaId {  get; set; }
 
+        // Burası çoktan seçmeli dropdownlist olarak gelecek
         [Display(Name = "Select Producer")]
         [Required(ErrorMessage = "Film yönetmeni gerekli bilgidir...")]
         public int ProducerId { get; set; }

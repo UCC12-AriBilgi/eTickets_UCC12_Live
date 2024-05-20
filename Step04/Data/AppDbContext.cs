@@ -1,5 +1,6 @@
 ﻿using eTickets.Models;
 using Microsoft.EntityFrameworkCore;
+using eTickets.ViewModels;
 
 namespace eTickets.Data
 {
@@ -47,6 +48,8 @@ namespace eTickets.Data
         public DbSet<Actor_Movie> Actors_Movies { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Producer> Producers { get; set; }
+    // VT ile aradaki tercüman olacağı için bunu DbContext(EF içindeki) sınıfından kalıtıyorum.
+public DbSet<eTickets.ViewModels.NewMovieVM> NewMovieVM { get; set; } = default!;
 
 
     }

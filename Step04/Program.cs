@@ -26,6 +26,8 @@ namespace Step02
             builder.Services.AddScoped<IActorsService, ActorsService>();
             builder.Services.AddScoped<IProducersService, ProducerService>();
             builder.Services.AddScoped<ICinemasService, CinemasSevice>();
+            builder.Services.AddScoped<IMoviesService, MoviesService>();
+
 
             builder.Services.AddControllersWithViews();
 

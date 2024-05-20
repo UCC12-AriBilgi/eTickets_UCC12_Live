@@ -214,6 +214,8 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 			. Edit
 			. Delete
 
+		Movie için
+
 
 
 
