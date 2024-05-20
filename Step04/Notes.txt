@@ -201,6 +201,15 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 		
 		Producer için
 			. Details (Controller method, View yaratılacak)
+			. Create
+			. Edit
+			. Delete
+
+		Cinema için
+			. Details (Controller method, View yaratılacak)
+			. Create
+			. Edit
+			. Delete
 
 
 
@@ -208,5 +217,3 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 
 
 
-
-	36. 
