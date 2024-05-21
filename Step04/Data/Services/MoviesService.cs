@@ -19,7 +19,18 @@ namespace eTickets.Data.Services
 
 
         // 40.Movie 
-        public Movie AddNewMovie(NewMovieVM data)
+        public async Task<Movie> GetMovieByIdAsync(int id)
+        {
+            var movieDetails = _context.Movies
+                .Include(c => c.Cinema)
+                .Include(p => p.Producer)
+                .Include(acmo => acmo.Actors_Movies)
+                .ThenInclude(a => a.Actor)
+                .FirstOrDefault(n => n.Id == id);
+
+            return movieDetails;
+        }
+        public async Task AddNewMovieAsync(NewMovieVM data)
         {
             // Önce Movie data oluşturuluyor.
             var newMovie = new Movie()
@@ -35,8 +46,8 @@ namespace eTickets.Data.Services
                 movieCategory = data.MovieCategory
             };
 
-            _context.Movies.Add(newMovie);
-            _context.SaveChanges();
+            await _context.Movies.AddAsync(newMovie);
+            await _context.SaveChangesAsync();
 
             // Sonra da bu filimde oynayan actorler için
             foreach (var actorId in data.ActorIds)
@@ -47,59 +58,22 @@ namespace eTickets.Data.Services
                     ActorId = actorId
                 };
 
-                _context.Actors_Movies.Add(newActorMovie);
+                await _context.Actors_Movies.AddAsync(newActorMovie);
             }
 
-            _context.SaveChanges();
-
-            return newMovie;
-
+            await _context.SaveChangesAsync();
         }
 
-        public Movie GetMovieById(int id)
+        public async Task UpdateMovieAsync(NewMovieVM data)
         {
-            var movieDetails = _context.Movies
-                .Include(c => c.Cinema)
-                .Include(p => p.Producer)
-                .Include(acmo => acmo.Actors_Movies)
-                .ThenInclude(a => a.Actor)
-                .FirstOrDefault(n => n.Id == id);
-
-            return movieDetails;
-        }
-
-        public NewMovieDropdownsVM GetNewMovieDropdownsValues()
-        {
-            // Create ekranında bulunacak dropdownlar için listeler oluşturacak...
-
-
-            var response = new NewMovieDropdownsVM()
-            {
-                Actors = _context.Actors
-                     .OrderBy(n => n.FullName).ToList(),
-                Cinemas = _context.Cinemas.OrderBy(n => n.Name).ToList(),
-                Producers = _context.Producers.OrderBy(n => n.FullName).ToList()
-
-            };
-
-            return response;
-        }
-
-        public Movie AddNewMovieAsync(NewMovieVM data)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Movie UpdateMovieAsync(NewMovieVM data)
-        {
-            var dbMovie=_context.Movies.FirstOrDefault(n=> n.Id == data.Id);
+            var dbMovie = _context.Movies.FirstOrDefault(n => n.Id == data.Id);
 
             if (dbMovie != null)
             {
                 // update kısmı
-                dbMovie.Name=data.Name;
-                dbMovie.Description=data.Description;
-                dbMovie.Price=data.Price;
+                dbMovie.Name = data.Name;
+                dbMovie.Description = data.Description;
+                dbMovie.Price = data.Price;
                 dbMovie.ImageURL = data.ImageURL;
                 dbMovie.StartDate = data.StartDate;
                 dbMovie.EndDate = data.EndDate;
@@ -107,19 +81,19 @@ namespace eTickets.Data.Services
                 dbMovie.CinemaId = data.CinemaId;
                 dbMovie.ProducerId = data.ProducerId;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             // Öncelikle bu movie ile ilgili olan Actorleri ara tablodan(Actors_Movies) kaldıralım...
 
             // Burada Actors_Movie tablosundaki data dan gelen Id(MovieId) e sahip olan kayıtlar seçiliyor.
 
-            var existingActors=_context.Actors_Movies.Where(n=> n.MovieId==data.Id).ToList();
+            var existingActors = _context.Actors_Movies.Where(n => n.MovieId == data.Id).ToList();
 
             // Bulduğun ilgili aktörleri ilgili movieden kaldır.
             _context.Actors_Movies.RemoveRange(existingActors);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
 
             // Yeni seçilen Actorleri Actors_Movies tablosuna ekleyelim.
@@ -132,12 +106,27 @@ namespace eTickets.Data.Services
                     ActorId = actorId
                 };
 
-                _context.Actors_Movies.Add(newActorMovie);
+                await _context.Actors_Movies.AddAsync(newActorMovie);
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
-            return dbMovie;
         }
+        public async Task<NewMovieDropdownsVM> GetNewMovieDropdownsValues()
+        {
+            // Create ekranında bulunacak dropdownlar için listeler oluşturacak...
+
+            var response = new NewMovieDropdownsVM()
+            {
+                Actors = await _context.Actors
+                     .OrderBy(n => n.FullName).ToListAsync(),
+                Cinemas = await _context.Cinemas.OrderBy(n => n.Name).ToListAsync(),
+                Producers = await _context.Producers.OrderBy(n => n.FullName).ToListAsync()
+
+            };
+
+            return response;
+        }
+
     }
 }
