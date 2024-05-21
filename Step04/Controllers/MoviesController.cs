@@ -18,18 +18,19 @@ namespace eTickets.Controllers
             _service = service; // Servis yapısını içeri almış oluyorum.
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             // Listelemeyi yapacak View
 
             //var moviesData = _context.Movies.ToList(); // VT deki Movies tablosundaki verileri al..Bir liste yapısı olarak moviesData değişgenine yerleştir.
 
-           var moviesData = _service.GetAllAsync();
-
+            //var moviesData = _service.GetAllAsync();
+            var moviesData = await _service.GetAllAsync(n => n.Cinema);
+ ;
             return View(moviesData); // olusan değişgen içeriğini View'a postalar
         }
 
-        //Get: Moviess/Details/1
+        //Get: Movies/Details/1
 
     }
 }

@@ -229,6 +229,15 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 
 			Test sonucu diğer modellerden farklı bir yapıda olduğu için Index sayfamız gelmedi.(Şu ana kullandığımız ortak yapı Movie tarafına yetmedi)
 
+			EntityBaseRepository GetAllAsync metodu Movie için çalışadı(ilişkilendirmelerden dolayı) Diğerleri için normaldi.
+
+			Dolayısı ile EntityBaseRepository Generic yapısında ilişkilendirmeler Include() tanımı gerektirmektedir.Gerekli düzenlemeyi yapalım.
+
+			Index.cshtml üzerinde de ilişkiyi kurduğumuz için CinemaId olarak olan kısmı CinemaName değiştirelim.Artık sinema adlarının gelm,iş olduğunu görürüz.
+
+
+
+
 
 
 
