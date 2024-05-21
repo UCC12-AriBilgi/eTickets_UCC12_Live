@@ -38,7 +38,7 @@ namespace eTickets.ViewModels
 
         [Display(Name = "Select a Category")]
         [Required(ErrorMessage = "Film kategorisi gerekli bilgidir...")]
-        public MovieCategory movieCategory { get; set; }
+        public MovieCategory MovieCategory { get; set; }
 
         // Relations (One-to-Many)
         // Burası çoktan seçmeli dropdownlist olarak gelecek

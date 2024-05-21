@@ -32,7 +32,7 @@ namespace eTickets.Data.Services
                 EndDate = data.EndDate,
                 CinemaId = data.CinemaId,
                 ProducerId = data.ProducerId,
-                movieCategory = data.movieCategory
+                movieCategory = data.MovieCategory
             };
 
             _context.Movies.Add(newMovie);
@@ -103,7 +103,7 @@ namespace eTickets.Data.Services
                 dbMovie.ImageURL = data.ImageURL;
                 dbMovie.StartDate = data.StartDate;
                 dbMovie.EndDate = data.EndDate;
-                dbMovie.movieCategory = data.movieCategory;
+                dbMovie.movieCategory = data.MovieCategory;
                 dbMovie.CinemaId = data.CinemaId;
                 dbMovie.ProducerId = data.ProducerId;
 
