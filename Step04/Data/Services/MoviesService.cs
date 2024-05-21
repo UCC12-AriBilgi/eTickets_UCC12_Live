@@ -90,16 +90,6 @@ namespace eTickets.Data.Services
             throw new NotImplementedException();
         }
 
-        //public Movie GetMovieById(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public NewMovieDropdownsVM GetNewMovieDropdownsValues()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public Movie UpdateMovieAsync(NewMovieVM data)
         {
             var dbMovie=_context.Movies.FirstOrDefault(n=> n.Id == data.Id);
@@ -149,69 +139,5 @@ namespace eTickets.Data.Services
 
             return dbMovie;
         }
-
-
-
-
-        //    public List<Movie> GetAll()
-        //    {
-        //        var movieDetails = _context.Movies
-        //.Include(c => c.Cinema)
-        //.Include(p => p.Producer)
-        //.Include(acmo => acmo.Actors_Movies)
-        //.ThenInclude(a => a.Actor)
-        //.ToList();
-
-        //        return movieDetails;
-
-        //    }
-
-
-
-
-
-
-
-
-
-        //    //============================
-
-
-        //    //public Task AddAsync(Movie entity)
-        //    //{
-        //    //    throw new NotImplementedException();
-        //    //}
-
-        //    public Task AddNewMovieAsync(NewMovieVM data)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-
-
-
-        //    public NewMovieDropdownsVM GetNewMovieDropdownsValues()
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-
-        //    public Task UpdateAsync(int id, Movie entity)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-
-        //    public Task UpdateMovieAsync(NewMovieVM data)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-
-        //    Task<IEnumerable<Movie>> IEntityBaseRepository<Movie>.GetAllAsync()
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-
-        //    Task<Movie> IEntityBaseRepository<Movie>.GetByIdAsync(int id)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
     }
 }
