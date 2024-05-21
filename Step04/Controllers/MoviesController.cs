@@ -61,7 +61,7 @@ namespace eTickets.Controllers
         }
 
         //Post: Movies/Create
-        [HttpPost]
+        //[HttpPost]
         //public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Movie movie)
         //{
         //    if (!ModelState.IsValid)
