@@ -235,6 +235,16 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 
 			Index.cshtml üzerinde de ilişkiyi kurduğumuz için CinemaId olarak olan kısmı CinemaName değiştirelim.Artık sinema adlarının gelm,iş olduğunu görürüz.
 
+	??41. MoviesController'a gelerek Details View oluşturabilmek için gerekli metodu ekleyelim.
+
+		??View tarafında Cinema Name, ProducerName gelemedi, Actor_Movie de gelemedi
+
+	42. MoviesController'a gelerek Create View oluşturabilmek için gerekli metodları ekleyelim.
+
+		Burada normal Movie modelinden yararlanmak yerine kendi ViewModelimizi oluşturalım. Çünkü ekranda dropdownlist gibi yapılar olacak. Bunların ViewModellerini (VM) yaratalım.Ve sonra burada kullanalım.
+		
+
+
 
 
 

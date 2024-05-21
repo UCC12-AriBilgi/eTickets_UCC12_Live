@@ -44,7 +44,7 @@ namespace eTickets.ViewModels
         // Burası çoktan seçmeli dropdownlist olarak gelecek
         [Display(Name = "Select Actor(s)")]
         [Required(ErrorMessage = "Film aktorleri gerekli bilgidir...")]
-        public List<int> ActorIds { get; set; }
+        public List<int> ActorIds { get; set; } // Dropdown için
 
         // Burası çoktan seçmeli dropdownlist olarak gelecek
         [Display(Name = "Select Cinema")]
