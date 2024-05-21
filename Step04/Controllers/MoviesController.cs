@@ -2,6 +2,7 @@
 using eTickets.Data.Interfaces;
 using eTickets.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
@@ -48,9 +49,13 @@ namespace eTickets.Controllers
         {
             var movieDropDownsData = _service.GetNewMovieDropdownsValues();
 
+            // Controllerdan Create View tarafına oluşan dropdownlist bilgilerini aktarmam lazım ki görünsünler.
 
+            ViewBag.Cinema = new SelectList(movieDropDownsData.Cinemas, "Id", "Name");
 
+            ViewBag.Producer = new SelectList(movieDropDownsData.Producers, "Id", "FullName");
 
+            ViewBag.Actor = new SelectList(movieDropDownsData.Actors, "Id", "FullName");
 
             return View();
         }
