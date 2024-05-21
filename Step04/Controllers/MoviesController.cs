@@ -14,6 +14,7 @@ namespace eTickets.Controllers
         {
             //_context = context; // AppDbContext i içeri almış oluyorum.
 
+            // 40.Movie
             _service = service; // Servis yapısını içeri almış oluyorum.
         }
 
@@ -23,20 +24,12 @@ namespace eTickets.Controllers
 
             //var moviesData = _context.Movies.ToList(); // VT deki Movies tablosundaki verileri al..Bir liste yapısı olarak moviesData değişgenine yerleştir.
 
-            var moviesData = _service.GetAll();
+           var moviesData = _service.GetAllAsync();
 
             return View(moviesData); // olusan değişgen içeriğini View'a postalar
         }
 
         //Get: Moviess/Details/1
-        // (40) 
-        public IActionResult Details(int id)
-        {
-            var movieDetails = _service.GetMovieById(id);
 
-            if (movieDetails == null) { return View("NotFound"); }
-
-            return View(movieDetails);
-        }
     }
 }

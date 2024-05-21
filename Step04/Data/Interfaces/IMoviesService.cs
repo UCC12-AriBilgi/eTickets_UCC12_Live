@@ -6,19 +6,19 @@ namespace eTickets.Data.Interfaces
 {
     public interface IMoviesService : IEntityBaseRepository<Movie>
     {
-       List<Movie> GetAll();
 
-        Movie GetMovieById(int id);
+        //List<Movie> GetAll();
 
-        Task AddNewMovieAsync(NewMovieVM data);
+        // Movie GetMovieById(int id);
 
-        Task UpdateMovieAsync(NewMovieVM data);
+        // Task AddNewMovieAsync(NewMovieVM data);
 
-        NewMovieDropdownsVM GetNewMovieDropdownsValues();
+        // Task UpdateMovieAsync(NewMovieVM data);
+
+        // NewMovieDropdownsVM GetNewMovieDropdownsValues();
 
 
 
-        //Task<Movie> GetMovieByIdAsync(int id);
 
     }
 }

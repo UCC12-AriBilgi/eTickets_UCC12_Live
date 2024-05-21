@@ -200,8 +200,6 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 	40. Şimdi bu yapıyı sırasıyla Producer,Cinema,Movie bölümlerine uygulayalım
 		?? Validations
 
-
-
 		Producer için
 			. Details (Controller method, View yaratılacak)
 			. Create
@@ -215,6 +213,23 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 			. Delete
 
 		Movie için
+			Movie yapısı diğer modellerin(Actor,Cinema,Producer) yapısından biraz farklı. Diğer modellerle ilişkilendirmeler var. O yüzden yapısı biraz farklı.
+
+			MovieService Configuration
+			\Data\Interfaces\IMovieService.cs
+			\Data\Services\MovieService.cs implementation yaratalım.
+
+			Movie.cs de IEntityBase tanımı yapılıyor. MovieService üzerinde de EntityBaseRepository tanımını yapalım.
+
+			MovieService üzerinde sadece bir constructor olacak . Diğer tüm metotları EntityBaseRepository de topluyoruz çünkü.
+
+			Bu servisi Program.cs altında register yapalım.
+
+			Bu işlemleri yaptıktan sonra MoviesController'a giderek _context yapısını _service kullanacak şekilde değiştirelim. Çünkü tüm db işlemleri service üzerinde topluyoruz.
+
+			Test sonucu diğer modellerden farklı bir yapıda olduğu için Index sayfamız gelmedi.(Şu ana kullandığımız ortak yapı Movie tarafına yetmedi)
+
+
 
 
 
