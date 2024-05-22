@@ -249,6 +249,8 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 
 		Burada normal Movie modelinden yararlanmak yerine kendi ViewModelimizi oluşturalım. ,Böylelikle ekranda dropdownlist gibi yapılar olacak. Bunların ViewModellerini (VM) yaratalım(NewMovieVM,NewMovieDropdownsVM).Ve sonra burada kullanalım.
 
+	43. MoviesController'a gelerek Edit View oluşturabilmek için gerekli metodları ekleyelim.
+
 
 		
 
