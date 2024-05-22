@@ -233,7 +233,7 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 
 			Dolayısı ile EntityBaseRepository Generic yapısında ilişkilendirmeler Include() tanımı gerektirmektedir.Gerekli düzenlemeyi yapalım.
 
-			Index.cshtml üzerinde de ilişkiyi kurduğumuz için CinemaId olarak olan kısmı CinemaName değiştirelim.Artık sinema adlarının gelm,iş olduğunu görürüz.
+			Index.cshtml üzerinde de ilişkiyi kurduğumuz için CinemaId olarak olan kısmı CinemaName değiştirelim.Artık sinema adlarının gelmiş olduğunu görürüz.
 
 	??41. MoviesController'a gelerek Details View oluşturabilmek için gerekli metodu ekleyelim.
 
