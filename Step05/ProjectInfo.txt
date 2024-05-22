@@ -1,0 +1,5 @@
+﻿Yapılacak olan proje mini bir siname biletleme projesi olacaktır. Geri planda bir VT olacak. Cinemalar ,aktörler,yönetmenler,filmler hakkında tablolar tutulacak, bunlara ilişkin veri giriş/güncelleme/listeleme/silme gibi işlemler olacak. Çok basit olarak bir bilet satış kısmı (gerisinde ödeme altyapısı olmayan) olacak. Aynı zamanda bir yetkilendirme yapısı kullanılarak sisteme hem admin hem de normal kullanıcı olarak girilmesi sağlanacak..Böylelikle;
+
+	- admin haklara sahip kullanıcının sistem üzerinde ilgili tablolara veri girmesi,silmesi,düzenlemesi sağlanacak
+
+	- normal bir kullanıcının sadece sayfalar arasında dolaşması ve bilet alma gibi işlemleri yapması sağlanacak.
