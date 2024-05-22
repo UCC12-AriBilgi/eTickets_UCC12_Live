@@ -36,7 +36,7 @@ namespace eTickets.Controllers
         // Get: Movies/Details/1
         public async Task<IActionResult> Details(int id)
         {
-            var movieDetails = await _service.GetByIdAsync(id);
+            var movieDetails = await _service.GetMovieByIdAsync(id);
 
             if (movieDetails == null) { return View("NotFound"); }
 
@@ -45,9 +45,9 @@ namespace eTickets.Controllers
 
         // 42
         //Get: Movies/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var movieDropDownsData = _service.GetNewMovieDropdownsValues();
+            var movieDropDownsData = await _service.GetNewMovieDropdownsValues();
 
             // Controllerdan Create View tarafına oluşan dropdownlist bilgilerini aktarmam lazım ki görünsünler.
 

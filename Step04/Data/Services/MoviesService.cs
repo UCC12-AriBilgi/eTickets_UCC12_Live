@@ -21,8 +21,10 @@ namespace eTickets.Data.Services
         // 40.Movie 
         public async Task<Movie> GetMovieByIdAsync(int id)
         {
+            // Burada ilişkili yapı için ayrı bir metot devreye giriyor.
+
             var movieDetails = _context.Movies
-                .Include(c => c.Cinema)
+                .Include(c => c.Cinema) // İlişki
                 .Include(p => p.Producer)
                 .Include(acmo => acmo.Actors_Movies)
                 .ThenInclude(a => a.Actor)
@@ -30,6 +32,8 @@ namespace eTickets.Data.Services
 
             return movieDetails;
         }
+
+
         public async Task AddNewMovieAsync(NewMovieVM data)
         {
             // Önce Movie data oluşturuluyor.
@@ -112,6 +116,7 @@ namespace eTickets.Data.Services
             await _context.SaveChangesAsync();
 
         }
+
         public async Task<NewMovieDropdownsVM> GetNewMovieDropdownsValues()
         {
             // Create ekranında bulunacak dropdownlar için listeler oluşturacak...

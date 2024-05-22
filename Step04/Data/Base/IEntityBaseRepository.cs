@@ -13,6 +13,7 @@ namespace eTickets.Data.Base
         Task<IEnumerable<T>> GetAllAsync(Func<object, object> value); // Tüm kayıtları getirme
 
         // 40.Movie
+        // Burada polymorphism uygulanmış oldu.
         Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties);
 
         Task<T> GetByIdAsync(int id); // tek bir kayıt getirme

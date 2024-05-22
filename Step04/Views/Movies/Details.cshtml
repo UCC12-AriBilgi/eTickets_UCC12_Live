@@ -25,13 +25,13 @@
                         <p class="card-text">
                             <b>Cinema :</b>
                             <a asp-controller="Cinemas" asp-action="Details" asp-route-id="@Model.CinemaId">
-                                @* @Model.Cinema.Name *@Cinema Name
+                                @Model.Cinema.Name
                             </a>
                         </p>
                         <p class="card-text">
                             <b>Producer :</b>
                             <a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducerId">
-                                @* @Model.Producer.FullName *@Producer Name
+                                @Model.Producer.FullName
                             </a>
                         </p>
                         <p class="card-text">
@@ -61,7 +61,7 @@
 
 
                         </p>
-@*                         <p class="card-text">
+                        <p class="card-text">
                             <b>Actors : </b>
                             <hr />
                             <div class="row">
@@ -77,7 +77,7 @@
                                     </div>
                                 }
                             </div>
-                        </p> *@
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-12">

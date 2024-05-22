@@ -7,6 +7,9 @@ namespace eTickets.ViewModels
 {
     public class NewMovieVM
     {
+        // Yeni bir film yaratmak istediğimde kullanacağım model.
+        // Movie modeline benzer şekilde CreateView tarafında kullanabilmek için
+
         [Key]
         public int Id { get; set; }
 
