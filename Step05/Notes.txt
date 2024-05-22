@@ -254,13 +254,31 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 	44. Movie Search
 
 ------------------------------------------------------------------------
-Step05 - Yetkilendirme yapısının yerleştirmesi (2d x 4h)	
+Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Identity Framework) yapısının yerleştirmesi (2d x 4h)	
 	
 	Not : 
 		. Solution içersine Step05 isimli yeni bir proje yaratalım.
 		. Step04 projesi içinde yapılanları Step05 projesi içersine kopyeleyelim (Controllers,Data,Migrations,Models,ProjectItems,Views,appsettings.json,Notes,Program.cs)
 		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
 		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
+
+
+	VT üzerinde bu yapıya baplı olarak bazı tablolar gelecek.
+		. Users
+		. Roles (hangi kullanıcı hangi role sahip )
+		. User Manager
+		. Role Manager
+
+	45. Identity tablolarının eklenmesi
+
+		Model klasöründe ApplicationUser.cs olarak bir class ekleyelim. IdentityUser base classından kalıtım alalım. ve bir property ekleyelim.
+
+	46. AppDbContext de DbContext --> IdentityDbContext<ApplicationUser> sekline cevirelim.
+
+	47. Şimdi bu yapıyı VT tarafına anlatmamız lazı. Dolayısı ile yeni bir migration gerekecek
+		PM> add-migration Identity
+
+
 
 		
 
