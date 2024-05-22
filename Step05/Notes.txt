@@ -282,6 +282,8 @@ Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Id
 
 	49. Bazı deneme verilerle AppDbInitializer.cs i düzenleyelim
 
+	50. Program.cs altında bu yeni yaratma kısmını ekleyelim
+
 
 
 

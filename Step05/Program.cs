@@ -53,6 +53,10 @@ namespace Step04
                 name: "default",
                 pattern: "{controller=Movies}/{action=Index}/{id?}");
 
+            AppDbInitializer.Seed(app);
+
+            AppDbInitializer.SeedUsersAndRolesAsync(app);
+
             app.Run();
         }
     }
