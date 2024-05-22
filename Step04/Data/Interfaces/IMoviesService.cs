@@ -14,5 +14,7 @@ namespace eTickets.Data.Interfaces
 
         Task<NewMovieDropdownsVM> GetNewMovieDropdownsValues();
 
+
+
     }
 }

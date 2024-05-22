@@ -251,6 +251,9 @@ Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)
 
 	43. MoviesController'a gelerek Edit View oluşturabilmek için gerekli metodları ekleyelim.
 
+	44. Movie Search
+
+
 
 		
 

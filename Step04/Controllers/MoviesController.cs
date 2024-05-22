@@ -5,6 +5,7 @@ using eTickets.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace eTickets.Controllers
 {
@@ -149,5 +150,33 @@ namespace eTickets.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+
+        // 44
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            // Burası film adı veya Description üzerinde arama kısmı
+
+            // Öncelikle VT Movies tablosundaki tüm kayıtları bir okuyalım
+            var allMovies = await _service.GetAllAsync(n => n.Cinema);
+
+            // Searchtext i doldurulmadan da arama butonuna basılmış olabilir. searchString in dolu olup olmadığına bakılıyor
+
+            if (!string.IsNullOrEmpty(searchString)) 
+            {
+                // Boş değilse
+
+                var filteredResult = allMovies
+                                .Where(n => n.Name.ToLower()
+                                .Contains(searchString.ToLower()) || n.Description.ToLower().Contains(searchString.ToLower())).ToList();
+
+                return View("Index",filteredResult);
+
+
+            }
+
+            return View("Index", allMovies);
+
+        }
+
     }
 }
