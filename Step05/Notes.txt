@@ -278,6 +278,11 @@ Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Id
 	47. Şimdi bu yapıyı VT tarafına anlatmamız lazı. Dolayısı ile yeni bir migration gerekecek
 		PM> add-migration Identity
 
+	48. Öncelikle deneme verilerde kullanılacak olan Rol yapısını belirleyelim. Bunun için de UserRole.cs isminde bir class yaratalım. (Data\Static)
+
+	49. Bazı deneme verilerle AppDbInitializer.cs i düzenleyelim
+
+
 
 
 		
