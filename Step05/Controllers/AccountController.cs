@@ -1,5 +1,6 @@
 ﻿using eTickets.Data;
 using eTickets.Models;
+using eTickets.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +24,18 @@ namespace eTickets.Controllers
 
 
 
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
+        {
+            var response = new LoginVM();
+
+            return View(response);
+        }
+
+
+
+
+
+        public async Task<IActionResult> Register()
         {
             return View();
         }

@@ -292,8 +292,11 @@ Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Id
 
 		55.1 AccountController da Authorization için gerekli kütüphane tanımlarının yapılması
 
-		Kullanıcıdan sisteme giriş yapabilmesi için email adresi/şifresi istenecek şekilde mir model yaratalım. Ve bunu ViewModel şeklinde yapalım.
+		Kullanıcıdan sisteme giriş yapabilmesi için email adresi/şifresi istenecek şekilde bir model yaratalım. Ve bunu ViewModel şeklinde yapalım.
 		ViewModels\LoginVM.cs yaratalım.
+		Test
+
+		. Register View..Controllerda gerekli metodu koyalım. Buna hazırlık olması açısında da RegisterVM.cs oluşturalım.
 
 
 
