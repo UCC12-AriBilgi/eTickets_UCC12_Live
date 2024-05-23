@@ -424,12 +424,7 @@ namespace eTickets.Data
 
                     await usersManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
-
-
-
             }
         }
-
-
     }
 }

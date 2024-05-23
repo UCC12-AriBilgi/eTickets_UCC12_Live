@@ -1,6 +1,9 @@
 ﻿using eTickets.Data;
 using eTickets.Data.Interfaces;
 using eTickets.Data.Services;
+using eTickets.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Step04
@@ -28,6 +31,18 @@ namespace Step04
             builder.Services.AddScoped<ICinemasService, CinemasSevice>();
             builder.Services.AddScoped<IMoviesService, MoviesService>(); // 40
 
+            // 50..Authentication/Authorization servisleri
+            // Microsoft documentation
+            builder.Services
+                .AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSession();
+            builder.Services.AddAuthentication(options => {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
+
+
 
             builder.Services.AddControllersWithViews();
 
@@ -47,7 +62,9 @@ namespace Step04
 
             app.UseRouting();
 
+            // 50.
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.MapControllerRoute(
                 name: "default",
@@ -55,7 +72,7 @@ namespace Step04
 
             AppDbInitializer.Seed(app);
 
-            AppDbInitializer.SeedUsersAndRolesAsync(app);
+            AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 
             app.Run();
         }

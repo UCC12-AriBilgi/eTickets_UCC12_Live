@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace eTickets.Data
 {
     // VT ile aradaki tercüman olacağı için bunu DbContext(EF içindeki) sınıfından kalıtıyorum.
+    // 46
     public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         // Constructor
