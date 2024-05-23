@@ -369,17 +369,17 @@ namespace eTickets.Data
 
         public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
         {
-            using(var serviceScope=applicationBuilder.ApplicationServices.CreateScope())
+            using (var serviceScope=applicationBuilder.ApplicationServices.CreateScope())
             {
                 // Roles
                 var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+                if (!roleManager.RoleExistsAsync(UserRoles.Admin).Result)
                 {
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
                 }
 
-                if (!await roleManager.RoleExistsAsync(UserRoles.User))
+                if (!roleManager.RoleExistsAsync(UserRoles.User).Result)
                 {
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
                 }
@@ -389,7 +389,7 @@ namespace eTickets.Data
 
                 string adminUserEMail = "admin@etickets.com";
 
-                var adminUser= await usersManager.FindByEmailAsync(adminUserEMail);
+                var adminUser= usersManager.FindByEmailAsync(adminUserEMail).Result;
 
                 if (adminUser == null)
                 {
@@ -400,15 +400,15 @@ namespace eTickets.Data
                         Email = adminUserEMail,
                         EmailConfirmed = true
                     };
-
-                    await usersManager.CreateAsync(newAdminUser, "q1w2e3");
+                    // * Şifre bir buyuk harf, sayı, özel karakter istiyormuş
+                    await usersManager.CreateAsync(newAdminUser, "Q1w2e3*");
 
                     await usersManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
                 }
 
                 string appUserEMail = "user@etickets.com";
 
-                var appUser = await usersManager.FindByEmailAsync(appUserEMail);
+                var appUser = usersManager.FindByEmailAsync(appUserEMail);
 
                 if (appUser == null)
                 {
@@ -420,7 +420,7 @@ namespace eTickets.Data
                         EmailConfirmed = true
                     };
 
-                    await usersManager.CreateAsync(newAppUser, "e3w2q1");
+                    await usersManager.CreateAsync(newAppUser, "E3w2q1*");
 
                     await usersManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }

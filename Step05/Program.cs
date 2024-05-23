@@ -74,7 +74,7 @@ namespace Step04
 
             AppDbInitializer.Seed(app);
 
-            //AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
+            AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 
             app.Run();
         }

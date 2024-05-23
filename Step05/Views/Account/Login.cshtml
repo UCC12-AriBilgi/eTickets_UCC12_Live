@@ -11,6 +11,14 @@
             <h4>Login to your Account</h4>
         </p>
 
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Üzgünüz! </b> - @TempData["Error"]</span>
+            </div>
+
+        }
+
 
         <div class="row">
             <div class="col-md-8 offset-2">
