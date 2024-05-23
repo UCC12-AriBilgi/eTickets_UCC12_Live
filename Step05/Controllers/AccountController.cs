@@ -69,13 +69,7 @@ namespace eTickets.Controllers
 
             return View(loginVM);
 
-
-
         }
-
-
-
-
 
         public async Task<IActionResult> Register()
         {
