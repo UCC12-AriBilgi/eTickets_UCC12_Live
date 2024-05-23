@@ -63,8 +63,10 @@ namespace Step04
             app.UseRouting();
 
             // 50.
-            app.UseAuthorization();
+            app.UseSession();
             app.UseAuthentication();
+            app.UseAuthorization();
+
 
             app.MapControllerRoute(
                 name: "default",
@@ -72,7 +74,7 @@ namespace Step04
 
             AppDbInitializer.Seed(app);
 
-            AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
+            //AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 
             app.Run();
         }

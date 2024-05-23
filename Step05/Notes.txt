@@ -282,9 +282,18 @@ Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Id
 
 	49. Bazı deneme verilerle(UserId/Password) AppDbInitializer.cs i düzenleyelim
 
-	50. Yetkilendirme kısmının çalışabilmesi için öncesinde gerekli servislerin tanıtılması gerekmekte.
+	*?50. Yetkilendirme kısmının çalışabilmesi için öncesinde gerekli servislerin tanıtılması gerekmekte.
+		
+		Program.cs altında bu yeni yaratma kısmını ekleyelim
 
-	Program.cs altında bu yeni yaratma kısmını ekleyelim
+	51. Üst menüye kullanıcı giriş/kayıt(Login/Register) kısmının eklenmesi.
+		Bunun için bu tür işlemleri yönetecek bir Controller yaratalım(AccountController)
+		Bu arada _Layout View ında bazı değişiklikler yapalım. Login/Register kısmını ekleyelim.
+
+		55.1 AccountController da Authorization için gerekli kütüphane tanımlarının yapılması
+
+		Kullanıcıdan sisteme giriş yapabilmesi için email adresi/şifresi istenecek şekilde mir model yaratalım. Ve bunu ViewModel şeklinde yapalım.
+		ViewModels\LoginVM.cs yaratalım.
 
 
 
