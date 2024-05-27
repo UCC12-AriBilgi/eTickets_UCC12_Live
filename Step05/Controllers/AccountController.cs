@@ -99,7 +99,8 @@ namespace eTickets.Controllers
             {
                 FullName = registerVM.FullName,
                 Email = registerVM.EmailAddress,
-                UserName = registerVM.EmailAddress
+                UserName = registerVM.EmailAddress,
+                EmailConfirmed = true
             };
 
             var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
@@ -110,11 +111,18 @@ namespace eTickets.Controllers
 
             }
 
-            return View("Kayıt işlemi başarılı");
+            return View("RegisterCompleted");
 
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("Index","Movies");
+        }
 
     }
 }

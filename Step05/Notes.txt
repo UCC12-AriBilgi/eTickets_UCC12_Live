@@ -282,7 +282,7 @@ Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Id
 
 	49. Bazı deneme verilerle(UserId/Password) AppDbInitializer.cs i düzenleyelim
 
-	*?50. Yetkilendirme kısmının çalışabilmesi için öncesinde gerekli servislerin tanıtılması gerekmekte.
+	50. Yetkilendirme kısmının çalışabilmesi için öncesinde gerekli servislerin tanıtılması gerekmekte. (Şifreler Bir büyük harf sayısal ve özel karakterli olması gerekiyormuş)
 		
 		Program.cs altında bu yeni yaratma kısmını ekleyelim
 
@@ -297,6 +297,22 @@ Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Id
 		Test
 
 		. Register View..Controllerda gerekli metodu koyalım. Buna hazırlık olması açısında da RegisterVM.cs oluşturalım.
+
+
+	52. Sisteme giren kullanıcının kim olduğunu gösteren bir bölüm
+		Bu işi _Identity.cshtml içinde düzenleyelim
+
+		Kullanıcının sistemden çıkması için bir buton konulması
+		_Identity.cshtml içinde...
+
+		Eğer kullanıcı sisteme girdiyse Login/Logout butonlarını görünmez yapılması
+
+
+
+
+
+
+
 
 
 
