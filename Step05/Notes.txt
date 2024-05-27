@@ -334,6 +334,10 @@ Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Id
 		ProducersController --> [Authorize]
 		MoviesController --> [Authorize]
 
+		Denendiğinde onaylı bir kullanıcı ile sisteme girip yine izin olmayan bir sayfaya gitmek istenildiğinde bir hata oluşuyor(AccessDenied diye bir sayfaya gitmek istiyor. Ama öyle bir sayfa henüz yok)
+
+	56. O yüzden kullanıcı işlemlerini/kontrollerini sağlayan AccountController üzerinde işlemler yapılacak.
+
 
 
 
