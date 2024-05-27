@@ -305,7 +305,25 @@ Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Id
 		Kullanıcının sistemden çıkması için bir buton konulması
 		_Identity.cshtml içinde...
 
-		Eğer kullanıcı sisteme girdiyse Login/Logout butonlarını görünmez yapılması
+		?? Eğer kullanıcı sisteme girdiyse Login/Logout butonlarını görünmez yapılması
+
+	53. Sisteme giren kullanıcı tipine göre (Normal kullanıcı / Admin kullanıcı) ekranda görülen yapının düzenlenmesi.
+
+		Normal kullanıcı ekranlardaki Edit gibi değişikliğe yönelik bölümleri görmemesi lazım . Bunlar sadece Admin yetkisine sahip kullanıcılar için görülebilir olması gerekmekte.
+
+		. Identity durumuna bağlı olarak giren kullanıcının yetki durumuna göre menü ayarlarının düzenlenmesi
+			_Identity.cshtml
+
+			_Layout.cshtml
+
+			Diğer taraftan Actor, Cinema, Producer, Movie Details ekranlarındaki Edit butonunun görünmemesi
+			Aynı zamanda Actor, Cinema, Producer, Movie Index sayfalarındaki Edit/Details/Delete butonlarınında saklanması
+
+
+
+
+
+
 
 
 
