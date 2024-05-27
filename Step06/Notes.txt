@@ -357,6 +357,13 @@ Step06 - eTicaret Yapısının yerleştirmesi (2d x 4h)
 
 	58. Bu tanımlanan iki modeli birbirine ilişkilendirmemiz lazım.(master-detail yapı için)
 
+	59. Bu yeni tablo tanımlarını AppDbContext e bildirelim ki VT de oluşabilsinler.
+
+	60. Migration yapısını oluşturalım ve VT tarafına uygulayalım.
+		PM> add-migration Order_OrderDetails
+
+		PM> update-database
+
 
 
 
