@@ -1,10 +1,16 @@
 ﻿using eTickets.Data;
 using eTickets.Data.Interfaces;
+using eTickets.Data.Static;
 using eTickets.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eTickets.Controllers
 {
+    //54
+    //[Authorize]
+    //55
+    [Authorize(Roles = UserRoles.Admin)] // sadece Admin hk.sahip olanlar için
     public class ProducersController : Controller
     {
         //private readonly AppDbContext _context;
@@ -16,6 +22,7 @@ namespace eTickets.Controllers
             _service = service; // Servisi içeri almış oluyorum.
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             // Listelemeyi yapacak View

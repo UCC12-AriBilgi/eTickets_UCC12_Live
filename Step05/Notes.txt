@@ -319,6 +319,25 @@ Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Id
 			Diğer taraftan Actor, Cinema, Producer, Movie Details ekranlarındaki Edit butonunun görünmemesi
 			Aynı zamanda Actor, Cinema, Producer, Movie Index sayfalarındaki Edit/Details/Delete butonlarınında saklanması
 
+	54. MVC de gerekli işlem yapılan Pathleri manuel olarak Actors/Create gibi yazıldığında şu an için direkt gidilebilir. Diğerleri içinde geçerli. Yetkilendirmeyi genişletme yapmak gerekiyor. Gerekli Controller lara giriş yapmamış kullanıcıların erişimini engelleyecek şekilde düzenlemeler yapmamız gerekiyor. Bunun için bir middleware yapısı şeklinde olan [Authorize] attribute nu kullanmak gerekiyor.
+		Öncelikle AccountController da [AllowAnonymus]
+		ActorsController --> [Authorize]
+		CinemasController --> [Authorize]
+		ProducersController --> [Authorize]
+		MoviesController --> [Authorize]
+
+	55. Tanımlanmış bir User olarak da girsek Admin tarafını ilgilendiren yerlere hala girebiliyorsak bazı ayarların daha yapılması gerekecek.
+
+		Controllar üzerinde yapılacak
+		ActorsController --> [Authorize]
+		CinemasController --> [Authorize]
+		ProducersController --> [Authorize]
+		MoviesController --> [Authorize]
+
+
+
+
+
 
 
 

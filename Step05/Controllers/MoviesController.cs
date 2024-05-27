@@ -1,7 +1,9 @@
 ﻿using eTickets.Data;
 using eTickets.Data.Interfaces;
+using eTickets.Data.Static;
 using eTickets.Models;
 using eTickets.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +11,10 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace eTickets.Controllers
 {
+    //54
+    //[Authorize]
+    //55
+    [Authorize(Roles = UserRoles.Admin)] // sadece Admin hk.sahip olanlar için
     public class MoviesController : Controller
     {
         private readonly IMoviesService _service;
@@ -22,6 +28,7 @@ namespace eTickets.Controllers
             _service = service; // Servis yapısını içeri almış oluyorum.
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             // Listelemeyi yapacak View

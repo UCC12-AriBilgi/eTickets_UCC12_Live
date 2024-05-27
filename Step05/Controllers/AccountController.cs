@@ -2,6 +2,7 @@
 using eTickets.Data.Static;
 using eTickets.Models;
 using eTickets.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,7 @@ namespace eTickets.Controllers
 
 
 
+        [AllowAnonymous] // Böylelikle sisteme giriş yapmamış kullanıcılar direkt Login sayfasına yönderilir.
         public async Task<IActionResult> Login()
         {
             var response = new LoginVM();

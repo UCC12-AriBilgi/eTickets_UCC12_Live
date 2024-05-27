@@ -1,11 +1,17 @@
 ﻿using eTickets.Data;
 using eTickets.Data.Interfaces;
+using eTickets.Data.Static;
 using eTickets.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
 {
+    //54
+    //[Authorize]
+    //55
+    [Authorize(Roles =UserRoles.Admin)] // sadece Admin hk.sahip olanlar için
 
     public class ActorsController : Controller
     {
@@ -46,6 +52,9 @@ namespace eTickets.Controllers
 
 
         // (18.5)
+
+        //54
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             //var actorsData = await _service.GetAll();
