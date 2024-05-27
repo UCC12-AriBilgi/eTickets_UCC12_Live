@@ -1,0 +1,386 @@
+﻿Step01 - Configurations/Models (2d x 4h)
+
+	+1. Projenin Yaratılması
+	
+	+2.	Proje adım adım ilerleme şeklinde yapılacağı için tüm solution Step01,Step02,Step03,.... yapısında ayrı ayrı ama birbirini takip edecek şekilde olabilmesi için projenin namespace ve assembly kısımlarının aynı olabilmesi için gerekli değişiklikleri Project/Properties kısmından ayarlandı(eTickets)
+	
+	+3.Arka planda bir veritabanı olacağı ve CodeFirst yapısı kullanılacağı için gerekli NuGet paketlerinin yüklenmesi (EF).
+		. Microsoft.EntityFrameworkCore
+		. Microsoft.EntityFrameworkCore.SqlServer
+		. Microsoft.EntityFrameworkCore.Design
+		. Microsoft.EntityFrameworkCore.Tools
+
+	+4. VT mizde olacak olan tabloların yani modellerimizin(class) oluşturulması. (\Models altına)
+		. Actor
+		. Producer
+		. Cinema
+		. Movie
+			Bu class da movienin hangi category de olduğunu belirtecek bir alanımız var.Bunu ayrı bir class altında "Enum(Sabitler)" yapısı olarak tutalım. Bunun için ayrı bir Data\Enums isimli klasör yaratalım.(ayrı bir yerde dursun)
+
+	+5. DbContext yapısının eklenmesi (Db ile Modellerim arasındaki translator/tercüman) 
+		. \Data\AppDbContext.cs classının eklenmesi (İçeriği ilerleyen bölümlerde tamamlayacağız.)
+		. Data dizini üzerinde bazı düzenlemeler yapılması
+			Data\Enums
+
+	+6. Programın ana giriş noktası olan Program.cs classına gidip bu DbContext tanımını oraya da ekleyelim. VT için gerekli olacak ConnectionString tanımını da ilerleyen bölümlerde güncelleyeceğiz.
+	
+	+7. Model ilişkilendirmeleri
+		. Cinema <-->> Movie (Bir cinemada bir kaç Movie oynayabilir)
+		. Producer <-->> Movie (Bir yapımcı/yönetmen birkaç Movie yaratmış/yönetmiş olabilir)
+		. Birçok Actor birçok Movie de oynayabilir(çoğa çok ilişki). Bundan dolayı Actor-Movie classları/modelleri arasındaki ilişkiyi kurabilmek için ara bir modelden(Actors_Movies) yararlanmak (junction) daha uygun bir çözümdür. Dolayısı ile bununla ilişkili ara modelimi oluşturmalıyım.
+			Movies <-->> Actors_Movies (Bir Movie de birçok Actor olabilir)
+			Actors <-->> Actors_Movies (Bir Actor birçok Movie de oynayabilir)
+
+		7.1 Modellerde relation eklemeleri
+			. Producer.cs --> Relations
+			. Cinema.cs --> Relations
+			. Actor_Movie ara classı yaratıldı ve tanımlarını girelim
+			. Actor.cs --> Relations
+			. Movie.cs --> Relations
+				Movie aynı zamanda Cinema ve Producer'a da bağlı olduğu için
+
+
+	+8. AppDbContext classındaki ayarlamalar. 
+		Yaratılırken modellerin birbirine bağlanması, model yapılarının vt tarafındaki tablo karşılıklarının tanımlanması gibi işlemler.
+
+	+9. appsettings.json (uygulamaya ait çeşitli konfigürasyon ayarlarının bulunduğu dosya) VT için gerekli ConnectionString bilgisinin ayarlanması (Server=[BABEGT\\SQLEXPRESS];Initial Catalog=[eTickets_UCC12];Integrated Security=True;TrustServerCertificate=True;)
+
+	+10. Program.cs altında daha önceden belirtimini yapmış olduğumuz AddDbContext kısmına bu konfigürasyon değerlerini okuyacak ve öğrenecek şekilde gerekli düzenlemelerin yapılması
+
+	+11. SQL tarafında VT yi oluşturabilmek için Migration yapısını kullanalım. Migration işlemi karşı tarafta ne tür bir yapı olacağını oluşturur.
+		PM> add-migration Initial
+		
+	+12. İşlem başarılıysa oluşacak Migration isimli dizin altında ilgili VT yapısının kod karşılığını görmüş olacağız. Not: Daha henüz VT yaratılmadı.
+
+	+13. VT nin yaratılması için PM dan aşağıdaki komut girilir
+		PM> update-database -verbose
+
+		(Not : ALTER AUTHORIZATION ON DATABASE::eTickets_UCC12 TO sa) (SQL tarafında Digram yaratma sorunuyla karşılaşılırsa)
+
+	+14. Şu an VT yapı olarak oluştu fakat içinde herhangi bir veri yok. Onun için fake/dummy data oluşturacak şekilde düzenlemeler yapalım.
+		. \Data\AppDbInitializer.cs isimli class ı yaratalım
+
+	+15. Program.cs altına bu veri yaratma kısmını ekleyelim ve projeyi çalıştıralım.VT tarafında verilerin yaratıldığını görmeliyiz.
+
+------------------------------------------------------------------------
+Step02 - Controllers/Views (2d x 4h)
+
+	Not : 
+		. Solution içersine Step02 isimli yeni bir proje yaratalım.
+		. Step01 projesi içinde yapılanları Step02 projesi içersine kopyeleyelim (Controllers,Data,Migrations,Models,ProjectItems,Views,appsettings.json,Notes,Program.cs)
+		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
+		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
+
+	+16. Controller'ların oluşturulması
+		. ActorsController (View henüz yok)
+		. ProducersController
+		. CinemasController
+		. MoviesController
+	
+		Not : public IActionResult  --> public async Task<IActionResult>.. await..ToList --> ToListAsync 
+
+	+17. Controller lara bağlı şekilde ilk olarak Index Viewlarının oluşturulması.
+		! Viewlar oluşturulurken RazorView/Template:List /Model:[ilgili model] /DbContext:[ilgili context]
+		Normal bir şekilde bunlar oluştuktan sonra Bootstrap yapısını kullanarak View larımızı daha güzel hale getirelim
+
+		. Actors\Index.cshtml
+		. Producers\Index.cshtml
+		. Cinemas\Index.cshtml
+		
+
+		17.1 - Bootstrap ile ilgili bölümleri hazırlarken ekranda görülmesi istediğimiz textleri ilgili modeller üzerinde tanımlayalım
+
+		17.3 - Movies\Index.cshtml
+			Viewlarımızın en önemlisi. 
+			Öncelikle MoviesController üzerinde Index View a veriyi gönderelim
+			Bootstrap yapısında CardView yöntemini kullanalım
+
+		17.4 - _Layout.cshtml de bootstrap düzenlemelerinin yapılması ve navigation yapılması
+
+		17.5 - İlgili viewları manuel olarak deneyelim (Actors/Index...)
+				Burada movie/Index gelirken bir hata verecektir. Bunu düzeltmek için Movie controller a gitmeli ve düzenlemeyi yapmalıyız (İlişkisellik olduğu için .Include kullanmalıyız)
+
+
+		17.6 - Uygulamanın giriş noktasının Program.cs altından Movies olarak ayarlanması ve uygulamanın şu anki durumunun çalıştırılması.
+
+------------------------------------------------------------------------
+Step03 - Verilerle Çalışmak (2d x 4h)
+		
+	Not : 
+		. Solution içersine Step03 isimli yeni bir proje yaratarak Step02 projesi içinde yapılanları Step03 projesi içersine kopyeleyelim (Controllers,Data,Migrations,Models,ProjectItems,Views,appsettings.json,Notes,Program.cs)
+		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
+		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
+
+	Normalde veri alışverişlerinin genelde controller üzerinden yapıldığı durumlar vardır. Ama bazı durumlarda bu pek doğru bir yaklaşım olmayabilir(Özellikle birbirine çok benzer metot yapıları olduğunda ve VT haberleşmeleri açısından). Bunun yerine bunları ortak bir şekilde birleştirecek şekilde Service türü yapılara yönelmek daha doğru bir seçenektir. (Olayları geriye daha derin bölgelere almak ve ortaklaştırmak amacıyla). 
+
+	İlgili verilerle çalışmaya başlamadan önce gerekli herbir model için bir service interface'i yaratmak ile işe başlayabiliriz. Bunu ilgili controller a injecte ederek veri alışverişini gerçekleştirebiliriz.
+
+	Hazırlık olması açısından Data\Interfaces (gerekli olacak Interface tanımları için) ve Data\Services (gerekli olacak Service tanımları için) dizinlerini yaratalım.
+
+
+	18. Bu işlem için öncelikle Actor verileriyle işe başlayalım.
+		
+		1. IActorsService.cs Interface'ini yaratalım. Ve burada GetAll, GetById, Add, Update, Delete metot imzalarını yaratalım
+		
+		2. ActorsService.cs Service class'ını yaratalım ve Interfaceinden implement edelim.Ve GetAll kodunu yazalım.
+
+		3. ActorsController'a geri dönerek varolan AppDbContext injection yerine IActorsService yapısını enjecte edelim.
+
+		4.IActorsService yapısını Task(Paralel işlem) şekline çevirelim. Bunu yaptıktan sonra da ActorsService deki ilgili yeri Task haline getirelim.(Implemente etmiş gibi olduk)
+
+		5.Ardından ActorsController'da da benzer düzenlemeleri yapalım
+
+		6.Bunları yaptıktan sonra programı çalıştıralım. Service tanımlarının yapılmadığına ilişkin bir hata verecektir(Register edilmediğine ilişkin).(Dependency Injection)
+
+		7.Program.cs e gidelim. Service tanımlarını yapalım.
+
+	19. Actor verileri için Create View yaratalım. Actors/Index e de bir create butonu koyalım
+
+	20. Data/Model Validation
+		ActorsController altında HttpPost request'i için Create ile aynı isimli bir metot yaratalım
+		İlgili olan Service altında da Add metodunu yazalım	ve test edelim.
+
+	21. ActorsController'da Actor verileri için Details View metodu yaratalım 
+
+	22. View/Actors/Details.cshtml View yaratalım. Ardından ActorsService altında GetByIdAsync metodunu yazalım. Normal Add metodunu da AddAsync yapısına çevirelim.
+
+	23. Ardından IActorsService altında da buna uygun değişiklikleri yapalım. ActorsController a geri dönerek bu yapılan değişiklikleri uygulayalım. Şimdiye kadarki yapılanları test edelim (Create..Details)
+
+	24. View/Actors/Edit.cshtml view oluşturalım. Test edelim. Bootstrapsal değişiklikleri yapalım.
+
+	25. ActorsController üzerine View ekranından gelecek olan bilgileri alıp VT tarafına gönderecek metodu yazalım. Ardından ilgili Service altındaki şu an henüz olmayan Update metodunu tamamlayalım. Test
+
+	26. ActorsController üzerinde Delete(Get) metodunu yazalım. 
+
+	27. View/Actors/Delete.cshtml view oluşturalım. Test edelim. Bootstrapsal değişiklikleri yapalım.
+
+	28. ActorsController üzerinde Delete(Post) metodunu yazalım.
+
+	29. IActorsService ve ActorsService tarafında da Delete işlemi ile ilgili kodları yazalım...Test
+
+	30. NotFound bilgilendirme View ının hazırlanması
+
+------------------------------------------------------------------------
+Step04 - Base Repository yapısının yerleştirmesi (2d x 4h)	
+	
+	Not : 
+		. Solution içersine Step04 isimli yeni bir proje yaratalım.
+		. Step03 projesi içinde yapılanları Step04 projesi içersine kopyeleyelim (Controllers,Data,Migrations,Models,ProjectItems,Views,appsettings.json,Notes,Program.cs)
+		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
+		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
+
+		Şu ana kadar bir ön çalışma olması açısından Actor yapıları üzerinde çalıştık. (List/Add/Update/Delete ) Bunları yaparken de arka planda Service ve Interface yapılarını kullandık. Bundan sonraki kısımlar için (Cinema,Producer,Movie) yine benzer olaylar için de yapacağız. Yapılacak olanlar içinde yine metot ve tanımları yapacağız. Fakat bu olay karşımıza biraz(cık) kod fazlalığı, hep tekrar eden aynı şeyler olacaktır (kod kirliliği) Bu yüzdendir ki kullanılan bu yapıları daha da ortaklaştırmak, tekrarları önlemek veya en aza indirmek amacıyla bazı düzenlemeler yapmamız yerinde olacaktır. (Generic duruma getirmek)
+
+		Bunun için bir BaseRepository Interface'i ve ana fonksiyonlar için Base implatation yaratalım. Önce ayrı bir dizin açalım (Data\Base)
+
+	31. Modellerimize bakıldığında hepsinde ortak bir alan var aslında (Id). Bunun için Base kısmına bir interface tanımlayalım (IEntityBase.cs)
+
+	32. Yine Base kısmında IEntityBaseRepository.cs isminde bir Interface daha yaratalım. (Bunun içersinde Generic yapıları kuracağımız metotlar olacak)
+
+	33. Şu ana kadar zaten Actor üzerinde bunları yazmıştık. Oradan(IActorsService) alıp IEntityBaseRepository içine taşıyalım.
+
+	34. Taşıma işleminden son halen varolan IActorService üzerinde bu yeni yaptığımız yapıyı kullanabilmesi için gerekli değişikliği yapalım. Aynı zamanda Actor modeli üzerinde de IEntityBase interfaceini kullanacak şekilde değişikliği yapalım. Aynı zamanda diğer modeller üzerinde de yapalım.
+
+	35. Actors servisi içersinde var olan CRUD fonksiyonlarını yine Generic yapıda kullanabilmemiz için ortak bir yer tanımlayalım . Data\Base altında EntityBaseRepository.cs classını yaratalım. Ve bu class ı IEntityBaseRepository interface inden implement edelim.
+
+	36.IActorsService içindekileri IEntityBaseRepository altında yeni yapıya göre kodlayacağız. Dolayısı ile artık kendini IEntityBaseRepository den miras almış olacak.
+
+	37. ActorsServis classımız da artık IActorsService ile birlikte EntityBaseRepository classından miras alacak. Ve dolayısı ile buradaki kodları da kaldıracağız.(Çünkü bunlar EntityBaseRepository de artık)
+
+	38. EntityBaseRepository.cs altında CRUD kodları yeni yapıya göre tamamlayalım.
+
+	39. Şimdi diğer modeller(Cinema,Producer,Movie) için Interface ve Servislerini yeni yapıya göre oluşturalım.(İlgili dizinlerin altında)
+		. ICinemaService, CinemaService
+		. IProducerService, ProducerService
+		. IMovieService, MovieService
+
+		Movie modelinin yapısı biraz farklı (relation acısından). O yüzden IMovieService üzerinde bu yapıya uygun metot imzalarını tutalım. Varolan Movie modelinden biraz farklı olarak tutmak için NewMovieVM.cs (ViewModel) modelini yaratalım(\ViewModels) ve Model örneğini Movie modelinden kopyayalayalım.
+
+
+	40. Şimdi bu yapıyı sırasıyla Producer,Cinema,Movie bölümlerine uygulayalım
+		?? Validations
+
+		Producer için
+			. Details (Controller method, View yaratılacak)
+			. Create
+			. Edit
+			. Delete
+
+		Cinema için
+			. Details (Controller method, View yaratılacak)
+			. Create
+			. Edit
+			. Delete
+
+		Movie için
+			Movie yapısı diğer modellerin(Actor,Cinema,Producer) yapısından biraz farklı. Diğer modellerle ilişkilendirmeler var. O yüzden yapısı biraz farklı.
+
+			MovieService Configuration
+			\Data\Interfaces\IMovieService.cs
+			\Data\Services\MovieService.cs implementation yaratalım.
+
+			Movie.cs de IEntityBase tanımı yapılıyor. MovieService üzerinde de EntityBaseRepository tanımını yapalım.
+
+			MovieService üzerinde sadece bir constructor olacak . Diğer tüm metotları EntityBaseRepository de topluyoruz çünkü.
+
+			Bu servisi Program.cs altında register yapalım.
+
+			Bu işlemleri yaptıktan sonra MoviesController'a giderek _context yapısını _service kullanacak şekilde değiştirelim. Çünkü tüm db işlemleri service üzerinde topluyoruz.
+
+			Test sonucu diğer modellerden farklı bir yapıda olduğu için Index sayfamız gelmedi.(Şu ana kullandığımız ortak yapı Movie tarafına yetmedi)
+
+			EntityBaseRepository GetAllAsync metodu Movie için çalışadı(ilişkilendirmelerden dolayı) Diğerleri için normaldi.
+
+			Dolayısı ile EntityBaseRepository Generic yapısında ilişkilendirmeler Include() tanımı gerektirmektedir.Gerekli düzenlemeyi yapalım.
+
+			Index.cshtml üzerinde de ilişkiyi kurduğumuz için CinemaId olarak olan kısmı CinemaName değiştirelim.Artık sinema adlarının gelmiş olduğunu görürüz.
+
+	41. MoviesController'a gelerek Details View oluşturabilmek için gerekli metodu ekleyelim.
+
+		??View tarafında Cinema Name, ProducerName gelemedi, Actor_Movie de gelemedi
+
+		MoviesController altındaki metotda şu ana kadar kullanmış olduğumuz yöntem Movies deki ilişkili yapı nedeniyle burada işe yaramadı. Bunun için IEntityBaseRepository altında bu tür ilişkili yapılar için kullanabileceğimiz ayrı bir metot imzası ve metodu bildirmek gerekmekte.(GetAllAsync--parametreli)
+
+		Diğer taraftan esas olarak ilişkilendirmeli yapıdan veri çekecek şekilde servis tarafına(MovieService) ayrı bir metot imzası ve gövdesi yazılması gerekiyor.
+
+
+
+	42. MoviesController'a gelerek Create View oluşturabilmek için gerekli metodları ekleyelim.
+
+		Burada normal Movie modelinden yararlanmak yerine kendi ViewModelimizi oluşturalım. ,Böylelikle ekranda dropdownlist gibi yapılar olacak. Bunların ViewModellerini (VM) yaratalım(NewMovieVM,NewMovieDropdownsVM).Ve sonra burada kullanalım.
+
+	43. MoviesController'a gelerek Edit View oluşturabilmek için gerekli metodları ekleyelim.
+
+	44. Movie Search
+
+------------------------------------------------------------------------
+Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Identity Framework) yapısının yerleştirmesi (2d x 4h)	
+	
+	Not : 
+		. Solution içersine Step05 isimli yeni bir proje yaratalım.
+		. Step04 projesi içinde yapılanları Step05 projesi içersine kopyeleyelim (Controllers,Data,Migrations,Models,ProjectItems,Views,appsettings.json,Notes,Program.cs)
+		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
+		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
+
+
+	VT üzerinde bu yapıya baplı olarak bazı tablolar gelecek.
+		. Users
+		. Roles (hangi kullanıcı hangi role sahip )
+		. User Manager
+		. Role Manager
+
+	45. Identity tablolarının eklenmesi
+
+		Model klasöründe ApplicationUser.cs olarak bir class ekleyelim. IdentityUser base classından kalıtım alalım. ve bir property ekleyelim.
+
+	46. AppDbContext de DbContext --> IdentityDbContext<ApplicationUser> sekline cevirelim.
+
+	47. Şimdi bu yapıyı VT tarafına anlatmamız lazı. Dolayısı ile yeni bir migration gerekecek
+		PM> add-migration Identity
+
+	48. Öncelikle deneme verilerde kullanılacak olan Rol yapısını belirleyelim. Bunun için de UserRole.cs isminde bir class yaratalım. (Data\Static)
+
+	49. Bazı deneme verilerle(UserId/Password) AppDbInitializer.cs i düzenleyelim
+
+	50. Yetkilendirme kısmının çalışabilmesi için öncesinde gerekli servislerin tanıtılması gerekmekte. (Şifreler Bir büyük harf sayısal ve özel karakterli olması gerekiyormuş)
+		
+		Program.cs altında bu yeni yaratma kısmını ekleyelim
+
+	51. Üst menüye kullanıcı giriş/kayıt(Login/Register) kısmının eklenmesi.
+		Bunun için bu tür işlemleri yönetecek bir Controller yaratalım(AccountController)
+		Bu arada _Layout View ında bazı değişiklikler yapalım. Login/Register kısmını ekleyelim.
+
+		55.1 AccountController da Authorization için gerekli kütüphane tanımlarının yapılması
+
+		Kullanıcıdan sisteme giriş yapabilmesi için email adresi/şifresi istenecek şekilde bir model yaratalım. Ve bunu ViewModel şeklinde yapalım.
+		ViewModels\LoginVM.cs yaratalım.
+		Test
+
+		. Register View..Controllerda gerekli metodu koyalım. Buna hazırlık olması açısında da RegisterVM.cs oluşturalım.
+
+
+	52. Sisteme giren kullanıcının kim olduğunu gösteren bir bölüm
+		Bu işi _Identity.cshtml içinde düzenleyelim
+
+		Kullanıcının sistemden çıkması için bir buton konulması
+		_Identity.cshtml içinde...
+
+		?? Eğer kullanıcı sisteme girdiyse Login/Logout butonlarını görünmez yapılması
+
+	53. Sisteme giren kullanıcı tipine göre (Normal kullanıcı / Admin kullanıcı) ekranda görülen yapının düzenlenmesi.
+
+		Normal kullanıcı ekranlardaki Edit gibi değişikliğe yönelik bölümleri görmemesi lazım . Bunlar sadece Admin yetkisine sahip kullanıcılar için görülebilir olması gerekmekte.
+
+		. Identity durumuna bağlı olarak giren kullanıcının yetki durumuna göre menü ayarlarının düzenlenmesi
+			_Identity.cshtml
+
+			_Layout.cshtml
+
+			Diğer taraftan Actor, Cinema, Producer, Movie Details ekranlarındaki Edit butonunun görünmemesi
+			Aynı zamanda Actor, Cinema, Producer, Movie Index sayfalarındaki Edit/Details/Delete butonlarınında saklanması
+
+	54. MVC de gerekli işlem yapılan Pathleri manuel olarak Actors/Create gibi yazıldığında şu an için direkt gidilebilir. Diğerleri içinde geçerli. Yetkilendirmeyi genişletme yapmak gerekiyor. Gerekli Controller lara giriş yapmamış kullanıcıların erişimini engelleyecek şekilde düzenlemeler yapmamız gerekiyor. Bunun için bir middleware yapısı şeklinde olan [Authorize] attribute nu kullanmak gerekiyor.
+		Öncelikle AccountController da [AllowAnonymus]
+		ActorsController --> [Authorize]
+		CinemasController --> [Authorize]
+		ProducersController --> [Authorize]
+		MoviesController --> [Authorize]
+
+	55. Tanımlanmış bir User olarak da girsek Admin tarafını ilgilendiren yerlere hala girebiliyorsak bazı ayarların daha yapılması gerekecek.
+
+		Controllar üzerinde yapılacak
+		ActorsController --> [Authorize]
+		CinemasController --> [Authorize]
+		ProducersController --> [Authorize]
+		MoviesController --> [Authorize]
+
+		Denendiğinde onaylı bir kullanıcı ile sisteme girip yine izin olmayan bir sayfaya gitmek istenildiğinde bir hata oluşuyor(AccessDenied diye bir sayfaya gitmek istiyor. Ama öyle bir sayfa henüz yok)
+
+	56. O yüzden kullanıcı işlemlerini/kontrollerini sağlayan AccountController üzerinde işlemler yapılacak.
+
+		Yeni bir AccessDenied Action' ve buna bağlı olarak AccessDenied.cshtml i yaratılacak. Kullanıcıya bir mesaj geçilecek.
+
+------------------------------------------------------------------------
+Step06 - eTicaret Yapısının yerleştirmesi (2d x 4h)	
+	
+	Not : 
+		. Solution içersine Step06 isimli yeni bir proje yaratalım.
+		. Step05 projesi içinde yapılanları Step06 projesi içersine kopyeleyelim (Controllers,Data,Migrations,Models,ProjectItems,Views,appsettings.json,Notes,Program.cs)
+		. Projenin tümünün uyumlu olabilmesi açısından gerekli Namespaces ve Assembly tanımlarını düzenleme (eTickets) (Project/Properties)
+		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
