@@ -350,6 +350,14 @@ Step06 - eTicaret Yapısının yerleştirmesi (2d x 4h)
 		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
 
 
+	Bu bölümde kullanıcı bilet alması gibi işlemler olacak. Dolayısı ile VT tarafında siparişlerini ve bu siparişlerin detayları tutacak tablolar olacak. Bunlar için gerekli modellerimizi oluşturalım
+
+	57. Order modelinin oluşturulması (Models\Order.cs)
+		OrderItem modelinin oluşturulması (Models\OrderItem.cs) Herbir siparişin içinde bulunan detay bilgiler.
+
+	58. Bu tanımlanan iki modeli birbirine ilişkilendirmemiz lazım.(master-detail yapı için)
+
+
 
 
 
