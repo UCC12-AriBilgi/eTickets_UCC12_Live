@@ -338,6 +338,11 @@ Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Id
 
 	56. O yüzden kullanıcı işlemlerini/kontrollerini sağlayan AccountController üzerinde işlemler yapılacak.
 
+		Yeni bir AccessDenied Action' ve buna bağlı olarak AccessDenied.cshtml i yaratılacak. Kullanıcıya bir mesaj geçilecek.
+
+
+
+
 
 
 
