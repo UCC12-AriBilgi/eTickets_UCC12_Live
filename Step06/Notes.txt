@@ -341,7 +341,7 @@ Step05 - Yetkilendirme ve Kimlik doğrulama(Authentication ve Authorization...Id
 		Yeni bir AccessDenied Action' ve buna bağlı olarak AccessDenied.cshtml i yaratılacak. Kullanıcıya bir mesaj geçilecek.
 
 ------------------------------------------------------------------------
-Step06 - eTicaret Yapısının yerleştirmesi (2d x 4h)	
+Step06 - Sepet Yapısının yerleştirmesi (2d x 4h)	
 	
 	Not : 
 		. Solution içersine Step06 isimli yeni bir proje yaratalım.
@@ -350,7 +350,7 @@ Step06 - eTicaret Yapısının yerleştirmesi (2d x 4h)
 		. EF kullanmak için gerekli NuGet paketleri ni bu proje de uygulamak gerekiyor.(Kopyeleme esnasında bunlar gelmiyor)
 
 
-	Bu bölümde kullanıcı bilet alması gibi işlemler olacak. Dolayısı ile VT tarafında siparişlerini ve bu siparişlerin detayları tutacak tablolar olacak. Bunlar için gerekli modellerimizi oluşturalım
+	Bu bölümde kullanıcının filme bilet alması gibi işlemler olacak. Dolayısı ile VT tarafında siparişlerini ve bu siparişlerin detayları tutacak tablolar olacak. Bunlar için gerekli modellerimizi oluşturalım
 
 	57. Order modelinin oluşturulması (Models\Order.cs)
 		OrderItem modelinin oluşturulması (Models\OrderItem.cs) Herbir siparişin içinde bulunan detay bilgiler.
@@ -363,6 +363,17 @@ Step06 - eTicaret Yapısının yerleştirmesi (2d x 4h)
 		PM> add-migration Order_OrderDetails
 
 		PM> update-database
+
+	61. Sepetimizde neler var bilgisini tutacak "ShoppingCartItem" modelini oluşturalım. (Models\ShoppingCartItem.cs)
+
+	62. Bu modeli AppDbContext içine ekleyelim.
+
+	63. Migration yapısını oluşturalım ve VT tarafına uygulayalım.
+		PM> add-migration ShoppingCartItem_Added
+
+		PM> update-database
+
+	64. Data\Cart dizini açarak içinde ShoppingCart.cs classını oluşturalım. Buranın içinde sepetteki itemları getiren , sepet toplamını getiren ve daha baska metotlar olacak.
 
 
 

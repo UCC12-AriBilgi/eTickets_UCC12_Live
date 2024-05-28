@@ -13,7 +13,7 @@ namespace eTickets.Models
         public string UserId { get; set; }
 
         //58
-        public List<OrderItem> OrderItems { get; set; }
+        public List<OrderItem> OrderItems { get; set; } //OrderItems tablosuna referans veriyoruz
 
     }
 }

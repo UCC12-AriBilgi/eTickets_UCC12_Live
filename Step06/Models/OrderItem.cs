@@ -23,6 +23,6 @@ namespace eTickets.Models
         public int OrderId { get; set; }
 
         [ForeignKey("OrderId")]
-        public Order Order { get; set; }
+        public Order Order { get; set; } // Orders tablosuna referans veriyoruz
     }
 }

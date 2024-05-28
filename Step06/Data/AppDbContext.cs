@@ -55,9 +55,11 @@ namespace eTickets.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems {  get; set; }
 
+        // 62.
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
     // VT ile aradaki tercüman olacağı için bunu DbContext(EF içindeki) sınıfından kalıtıyorum.
-public DbSet<eTickets.ViewModels.NewMovieVM> NewMovieVM { get; set; } = default!;
+    public DbSet<eTickets.ViewModels.NewMovieVM> NewMovieVM { get; set; } = default!;
 
 
     }
