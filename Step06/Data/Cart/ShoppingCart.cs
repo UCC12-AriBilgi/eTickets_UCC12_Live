@@ -21,14 +21,13 @@ namespace eTickets.Data.Cart
         }
 
         // ShoppingCart içinde bulunan itemları getiren metot.
-
         public List<ShoppingCartItem> GetShoppingCartItems() 
         {
             // LINQ sorgusu ile
             return ShoppingCartItems ??
                 (ShoppingCartItems = _context.ShoppingCartItems
-                                            .Where(c => c.ShoppingCartId == ShoppingCartId)
-                                            .Include(m => m.Movie) //join gibi düşünebiliriz
+                    .Where(c => c.ShoppingCartId == ShoppingCartId)
+                        .Include(m => m.Movie) //join gibi düşünebiliriz
                                             .ToList());
         
         }
@@ -42,6 +41,64 @@ namespace eTickets.Data.Cart
                 .Sum();
 
             return total;
+        }
+
+        // Sepete bir item ekleyecek metot
+        public void AddItemToCart(Movie movie)
+        {
+            // Öncelikle sepette ilgili Movie ile aynı Id li bir kayıt var mı / yokmu kontrolu
+            // eğer yoksa ilk sepet elemanını oluşturacak
+            // eğer varsa varolan miktarı artıracak.
+
+            var shoppingCartItem = _context.ShoppingCartItems
+                .FirstOrDefault(n => n.Movie.Id == movie.Id && n.ShoppingCartId == ShoppingCartId);
+
+            if (shoppingCartItem == null)
+            { // İlgili movie ile ilgili bir kayıt yoksa
+                // bir tane kayıt oluştur.
+                shoppingCartItem = new ShoppingCartItem()
+                {
+                    ShoppingCartId = ShoppingCartId,
+                    Movie = movie,
+                    Amount = 1 // ilk bilet
+                };
+
+                _context.ShoppingCartItems.Add(shoppingCartItem);
+            }
+            else
+            {
+                // Eğer Movie ile ilgili bir kayıda rastlamış ise
+                
+                shoppingCartItem.Amount++; // Bir bilet daha ekle
+            }
+
+            _context.SaveChanges();
+        }
+
+        // Sepetten bir item kaldıracak metot
+        public void RemoveItemFromCart(Movie movie)
+        {
+            var shoppingCartItem = _context.ShoppingCartItems
+    .FirstOrDefault(n => n.Movie.Id == movie.Id && n.ShoppingCartId == ShoppingCartId);
+
+            if (shoppingCartItem != null)
+            {
+                // Eğer varsa
+
+                if (shoppingCartItem.Amount > 1)
+                {
+                    shoppingCartItem.Amount--; // Sepetten çıkarttım
+                }
+                else
+                {
+                    // Sadece tek biletim varsa
+                    _context.ShoppingCartItems.Remove(shoppingCartItem);
+
+                }
+            }
+
+            _context.SaveChanges();
+
         }
     }
 }

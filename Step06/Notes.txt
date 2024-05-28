@@ -373,7 +373,7 @@ Step06 - Sepet Yapısının yerleştirmesi (2d x 4h)
 
 		PM> update-database
 
-	64. Data\Cart dizini açarak içinde ShoppingCart.cs classını oluşturalım. Buranın içinde sepetteki itemları getiren , sepet toplamını getiren ve daha baska metotlar olacak.
+	64. Data\Cart dizini açarak içinde ShoppingCart.cs classını oluşturalım. Buranın içinde sepetteki itemları getiren , sepet toplamını getiren, item ekleyen, item silen.. 
 
 
 
