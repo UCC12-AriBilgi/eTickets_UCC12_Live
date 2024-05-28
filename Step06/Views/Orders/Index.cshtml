@@ -45,10 +45,13 @@
                 }
             </tbody>
             <tfoot>
-                <td colspan="2"></td>
-                <td><b>Total :</b></td>
-                <td><b>@Model.ShoppingCart.GetShoppingCartTotal().ToString("c")</b></td>
-                <td>&nbsp;</td>
+                <tr>
+                    <td colspan="2"></td>
+                    <td><b>Total :</b></td>
+                    <td><b>@Model.ShoppingCartTotal.ToString("c")</b></td>
+                    <td>&nbsp;</td>
+                </tr>
+
             </tfoot>
         </table>
         <div class="text-center">
