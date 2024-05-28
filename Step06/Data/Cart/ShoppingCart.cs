@@ -37,7 +37,7 @@ namespace eTickets.Data.Cart
         {
             var total = _context.ShoppingCartItems
                 .Where(c => c.ShoppingCartId == ShoppingCartId)
-                .Select(c => c.Movie.Price * c.Amout) // bir filme kac adet bilet almışım
+                .Select(c => c.Movie.Price * c.Amount) // bir filme kac adet bilet almışım
                 .Sum();
 
             return total;

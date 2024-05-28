@@ -375,6 +375,10 @@ Step06 - Sepet Yapısının yerleştirmesi (2d x 4h)
 
 	64. Data\Cart dizini açarak içinde ShoppingCart.cs classını oluşturalım. Buranın içinde sepetteki itemları getiren , sepet toplamını getiren, item ekleyen, item silen.. 
 
+	65. Şimdi sıra geldi OrdersController eklemeye. Aynı zamanda yaratılacak olan View lar üzerinde ben kendi modelimi kullanacağım. Bunun için ViewModels\ShoppingCartVM.cs oluşturalım. Sonrasında OrdersController'ı düzenleyelim.
+
+	66. Orders\Index.cshtml View oluşturulması
+
 
 
 
