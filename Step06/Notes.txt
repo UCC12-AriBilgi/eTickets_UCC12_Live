@@ -387,7 +387,27 @@ Step06 - Sepet Yapısının yerleştirmesi (2d x 4h)
 
 	68. Yerleştirilen bu session yapısını Program.cs altına da tanımlamasının yapılması gerekiyor.
 
-	69.
+	69. Shopping Cart a ekleme yapma...
+
+		OrdersController üzerine AddItemToShoppingCart metodu yazalım.
+
+		Sonrasında da Movies/Index.cshtml içinde bir tane "Add To Cart" butonu tanımlayalım ve buna bir action ve route-id tanımlayalım.
+
+	70. Shopping Cart dan silme....
+
+		OrdersController üzerine RemoveItemFromShoppingCart metodu yazalım.
+
+		Sonrasında da Orders/ShoppingCart.cshtml içinde bir tane "RemoveFromCart" butonu tanımlayalım ve buna bir action ve route-id verelim..
+
+	71. ViewComponent yapısının yerleştirilmesi
+
+		Bilgi : ViewComponent dediğimiz yapılar aslında PartialView yapısına benzerlik gösterir. Aslınıda mini anlamda bir controllerdır.Dolayısı ile bir class yapısı sunarlar. Çağırılmaları Invoke metoduyla yapılır. Normal bir cshtml sayfası Render metoduyla çağırılrken bunlar Invoke ile çağrılırlar. Bir ViewComponent içinde birden fazla PartialView olabilir. Ve bu parçalı görünümler farklı amaçlar için kullanılabilir. Böylece ViewComponent lar uygulama tasarımında daha modüler ve esnek bir yaklaşım sağlarlar. Kod tekrarının önüne geçerler.
+
+		Data dizini altına ViewComponents dizini açalım.İçine de ShoppingCartSummary.cs classını yaratalım.
+
+		Kodu yazdıktan sonra Views\Shared\Components\ShoppingCartSummary dizini altına Default.cshtml view oluşturalım.
+
+
 
 		
 

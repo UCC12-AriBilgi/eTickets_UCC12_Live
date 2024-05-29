@@ -38,5 +38,34 @@ namespace eTickets.Controllers
 
             return View(response);
         }
+
+        // 69
+        public async Task<RedirectToActionResult> AddItemToShoppingCart(int id)
+        {
+            // Hangi movie ile ilgili Order yapıldığını anlamak için
+            var item=await _moviesService.GetMovieByIdAsync(id);
+
+            if (item != null)
+            {
+                _shoppingCart.AddItemToCart(item);
+            }
+
+            return RedirectToAction("ShoppingCart");
+        }
+
+        // 70
+        public async Task<RedirectToActionResult> RemoveItemFromShoppingCart(int id)
+        {
+            var item = await _moviesService.GetMovieByIdAsync(id);
+
+            if (item != null)
+            {
+                _shoppingCart.RemoveItemFromCart(item);
+            }
+
+            return RedirectToAction("ShoppingCart");
+        }
+
+
     }
 }
