@@ -12,12 +12,29 @@ namespace eTickets.Controllers
 
         private readonly IMoviesService _moviesService;
         private readonly ShoppingCart _shoppingCart;
+        // 72
+        private readonly IOrdersService _ordersService;
 
-        public OrdersController(IMoviesService moviesService, ShoppingCart shoppingCart)
+        public OrdersController(IMoviesService moviesService, ShoppingCart shoppingCart, IOrdersService ordersService)
         {
             _moviesService = moviesService;
             _shoppingCart = shoppingCart;
+            _ordersService = ordersService; // 72
         }
+
+        // 74
+        public async Task<IActionResult> Index() 
+        {
+            string userId = "";
+            string userRole = "";
+
+            var orders=await _ordersService.GetOrdersByUserIdAndRoleAsyncs(userId, userRole);
+
+            return View(orders);
+        }
+
+
+
 
         public IActionResult ShoppingCart()
         {
@@ -64,6 +81,23 @@ namespace eTickets.Controllers
             }
 
             return RedirectToAction("ShoppingCart");
+        }
+
+        // 73
+        public async Task<IActionResult> CompleteOrder()
+        {
+            var items = _shoppingCart.GetShoppingCartItems(); // Cart da neler var gelcek
+
+            string userId = "";
+            string userEmailAddress = "";
+
+            await _ordersService.StoreOrderAsync(items, userId, userEmailAddress);
+
+            // VT tarafına gönderdikten sonra sepeti boşaltalım...
+
+            await _shoppingCart.ClearShoppinCartAsync();
+
+            return View("OrderCompleted");
         }
 
 

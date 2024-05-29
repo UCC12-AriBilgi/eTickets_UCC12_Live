@@ -31,7 +31,8 @@ namespace Step04
             builder.Services.AddScoped<IProducersService, ProducerService>();
             builder.Services.AddScoped<ICinemasService, CinemasSevice>();
             builder.Services.AddScoped<IMoviesService, MoviesService>(); // 40
-
+            builder.Services.AddScoped<IOrdersService, OrdersService>(); // 72
+            
             // ShoppingCart kısmını bir servis olarak ekleme
             builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
             builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));

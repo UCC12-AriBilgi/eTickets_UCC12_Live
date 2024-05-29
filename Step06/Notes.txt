@@ -418,6 +418,24 @@ Step06 - Sepet Yapısının yerleştirmesi (2d x 4h)
 		(Bunun içinde sadece 2 adet metot tanımı olacak)
 
 		Data\Services\OrdersService.cs classını yaratalım
+		Not: OrdersService üzerinde sadece bir constructor olacak. Diğer tüm metotlar birbiriyle bağlantılı olarak EntityBaseRepository'de topladığımız için..
+
+		Program.cs altında bu servisi register edelim.
+
+		Bu işlemleri yaptıktan sonra OrdersController altına gelerek _context yapısını _service kullacak şekilde değiştirelim.Çünkü tüm VT iletişim işklemlerini Serviceler altında topladık.
+
+		Test edelim..
+
+	73. Sipariş Kaydı oluşturma..
+
+		Öncelikle Orders\ShoppingCart.cshtml içinde footer a "Order Now" butonu oluşturalım ve buna bir action atayalım.
+
+		OrdersController altında "CompleteOrder" metodunu yazalım.
+
+	74. Sipariş Listesini görmek
+
+		OrderController altında bir Index metodu oluşturalım.
+
 
 
 

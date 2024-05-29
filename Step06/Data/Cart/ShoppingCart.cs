@@ -118,5 +118,18 @@ namespace eTickets.Data.Cart
             _context.SaveChanges();
 
         }
+
+        // 73
+        public async Task ClearShoppinCartAsync()
+        {
+            var items = await _context.ShoppingCartItems
+                .Where(n => n.ShoppingCartId == ShoppingCartId)
+                .ToListAsync();
+
+
+            _context.ShoppingCartItems.RemoveRange(items);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }
