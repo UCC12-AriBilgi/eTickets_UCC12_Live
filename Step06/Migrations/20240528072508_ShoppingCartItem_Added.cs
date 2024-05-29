@@ -17,7 +17,7 @@ namespace eTickets.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MovieId = table.Column<int>(type: "int", nullable: false),
-                    Amout = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<int>(type: "int", nullable: false),
                     ShoppingCartId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

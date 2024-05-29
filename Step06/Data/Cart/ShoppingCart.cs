@@ -43,11 +43,10 @@ namespace eTickets.Data.Cart
         public List<ShoppingCartItem> GetShoppingCartItems() 
         {
             // LINQ sorgusu ile
-            return ShoppingCartItems ??
-                (ShoppingCartItems = _context.ShoppingCartItems
-                    .Where(c => c.ShoppingCartId == ShoppingCartId)
-                        .Include(m => m.Movie) //join gibi düşünebiliriz
-                                            .ToList());
+            return ShoppingCartItems ?? (ShoppingCartItems = _context.ShoppingCartItems
+                        .Where(c => c.ShoppingCartId == ShoppingCartId)
+                        .Include(s => s.Movie) //join gibi düşünebiliriz
+                        .ToList());
         
         }
 

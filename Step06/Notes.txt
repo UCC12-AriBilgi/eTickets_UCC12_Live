@@ -407,6 +407,10 @@ Step06 - Sepet Yapısının yerleştirmesi (2d x 4h)
 
 		Kodu yazdıktan sonra Views\Shared\Components\ShoppingCartSummary dizini altına Default.cshtml view oluşturalım.
 
+		_Layout.cshtml içinden de ShoppingCartSummary i çağıralım
+
+		Test edelim..
+
 
 
 		

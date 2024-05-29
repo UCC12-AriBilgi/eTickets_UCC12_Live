@@ -1,4 +1,5 @@
 ﻿using eTickets.Data;
+using eTickets.Data.Cart;
 using eTickets.Data.Interfaces;
 using eTickets.Data.Services;
 using eTickets.Models;
@@ -30,6 +31,12 @@ namespace Step04
             builder.Services.AddScoped<IProducersService, ProducerService>();
             builder.Services.AddScoped<ICinemasService, CinemasSevice>();
             builder.Services.AddScoped<IMoviesService, MoviesService>(); // 40
+
+            // ShoppingCart kısmını bir servis olarak ekleme
+            builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+            builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+
+
 
             // 50..Authentication/Authorization servisleri
             // Microsoft documentation
