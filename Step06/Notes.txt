@@ -377,7 +377,19 @@ Step06 - Sepet Yapısının yerleştirmesi (2d x 4h)
 
 	65. Şimdi sıra geldi OrdersController eklemeye. Aynı zamanda yaratılacak olan View lar üzerinde ben kendi modelimi kullanacağım. Bunun için ViewModels\ShoppingCartVM.cs oluşturalım. Sonrasında OrdersController'ı düzenleyelim.
 
-	66. Orders\Index.cshtml View oluşturulması
+	66. Views\Orders\ShoppingCart.cshtml View oluşturulması
+
+		Test...(Orders/ShoppinCart...) Servislerle ilgili bir hata verdi.
+
+	67. Session(!) konfigürasyonu ve Shopping cart bir servis olarak tanımlama.
+
+		Öncelikle ShoppingCart.cs üzerinde bazı düzenlemeler(session & service yapısı)
+
+	68. Yerleştirilen bu session yapısını Program.cs altına da tanımlamasının yapılması gerekiyor.
+
+	69.
+
+		
 
 
 

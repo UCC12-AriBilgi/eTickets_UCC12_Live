@@ -20,6 +20,25 @@ namespace eTickets.Data.Cart
             _context = context;
         }
 
+        // 67
+        // Shopping Cart direk getiren metot
+        public static ShoppingCart GetShoppingCart(IServiceProvider services)
+        {
+            // Session yapısını yerleştiriyoruz
+            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+
+            var _context = services.GetService<AppDbContext>();
+
+            string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();// eğer CartId tanımında bir session olarak bulamıyorsan yeni bir tane Guid olarak oluştur.
+
+            session.SetString("CartId", cartId); //Seesion a yeni değeri yerleştir.
+
+            return new ShoppingCart(_context) { ShoppingCartId = cartId };
+
+        }
+
+
+
         // ShoppingCart içinde bulunan itemları getiren metot.
         public List<ShoppingCartItem> GetShoppingCartItems() 
         {

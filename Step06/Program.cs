@@ -37,7 +37,7 @@ namespace Step04
                 .AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
             builder.Services.AddMemoryCache();
-            builder.Services.AddSession();
+            builder.Services.AddSession(); //  68
             builder.Services.AddAuthentication(options => {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             });
@@ -63,7 +63,7 @@ namespace Step04
             app.UseRouting();
 
             // 50.
-            app.UseSession();
+            app.UseSession(); // 68
             app.UseAuthentication();
             app.UseAuthorization();
 

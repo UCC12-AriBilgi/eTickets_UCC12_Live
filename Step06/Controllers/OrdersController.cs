@@ -19,7 +19,7 @@ namespace eTickets.Controllers
             _shoppingCart = shoppingCart;
         }
 
-        public IActionResult Index()
+        public IActionResult ShoppingCart()
         {
             // benim ekranda göstereceğim cart itemlarını almam lazım.
 
