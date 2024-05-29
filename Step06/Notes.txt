@@ -411,6 +411,15 @@ Step06 - Sepet Yapısının yerleştirmesi (2d x 4h)
 
 		Test edelim..
 
+	72. Sipariş kısmını da servis yapısına çevirelim. (OrdersService config)
+		Bununla ilgili olarak 
+
+		Data\Interfaces\IOrdersService.cs interfaceini
+		(Bunun içinde sadece 2 adet metot tanımı olacak)
+
+		Data\Services\OrdersService.cs classını yaratalım
+
+
 
 
 		
